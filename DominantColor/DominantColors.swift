@@ -82,9 +82,8 @@ extension IN_YUVColor : ClusteredType {
 }
 
 private func selectKForElements<T>(elements: [T]) -> Int {
-    // Wikipedia suggests choosing k = sqrt(n/2) as a "rule of thumb"
-    // http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set
-    return Int(sqrt(Float(countElements(elements) / 2)))
+    // Seems like a magic number...
+    return 16
 }
 
 // MARK: Main
