@@ -27,14 +27,10 @@ public struct Cluster<T : ClusteredType> {
     let size: Int
 }
 
-// Maxmimum number of iterations to run regardless of whether the
-// average error is greater than the threshold.
-private let kmeansMaxIterations = 500
-
 // k-means clustering algorithm from
 // http://users.eecs.northwestern.edu/~wkliao/Kmeans/
 
-public func kmeans<T : ClusteredType>(objects: [T], k: Int, threshold: Float) -> [Cluster<T>] {
+public func kmeans<T : ClusteredType>(objects: [T], k: Int, threshold: Float = 0.0001) -> [Cluster<T>] {
     let n = countElements(objects)
     assert(k <= n, "k cannot be larger than the total number of objects")
 
@@ -43,7 +39,7 @@ public func kmeans<T : ClusteredType>(objects: [T], k: Int, threshold: Float) ->
     var clusterSizes = [Int](count: k, repeatedValue: 0)
     
     var error: Float = 0
-    var iterations = 0
+    var previousError: Float = 0
     
     do {
         error = 0
@@ -66,8 +62,10 @@ public func kmeans<T : ClusteredType>(objects: [T], k: Int, threshold: Float) ->
                 centroids[i] = newCentroids[i].divideScalar(size)
             }
         }
+        
         clusterSizes = newClusterSizes
-    } while (error / Float(n) > threshold) && (iterations++ < kmeansMaxIterations)
+        previousError = error
+    } while abs(error - previousError) > threshold
     
     return map(Zip2(centroids, clusterSizes)) { Cluster(centroid: $0, size: $1) }
 }

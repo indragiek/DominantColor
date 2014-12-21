@@ -100,9 +100,6 @@ private func scaledDimensionsForPixelLimit(limit: UInt, width: UInt, height: UIn
     return (width, height)
 }
 
-// Threshold used for k-means algorithm
-private let kmeansThreshold: Float = 0.1
-
 public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt) -> [CGColor] {
     let (width, height) = (CGImageGetWidth(image), CGImageGetHeight(image))
     let dimensions = scaledDimensionsForPixelLimit(maxSampledPixels, width, height)
@@ -126,7 +123,7 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt) -> [CG
     // (converted to the YUV color space)
     let yuvColors = colors.map { IN_RGBColorToYUVColor($0) }
     let k = selectKForElements(yuvColors)
-    var clusters = kmeans(yuvColors, k, kmeansThreshold)
+    var clusters = kmeans(yuvColors, k)
     
     // Sort the clusters by size in descending order so that the
     // most dominant colors come first.
