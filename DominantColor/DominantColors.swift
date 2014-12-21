@@ -102,12 +102,12 @@ private func scaledDimensionsForPixelLimit(limit: UInt, width: UInt, height: UIn
 
 public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: Int) -> [CGColor] {
     let (width, height) = (CGImageGetWidth(image), CGImageGetHeight(image))
-    let dimensions = scaledDimensionsForPixelLimit(maxSampledPixels, width, height)
+    let (scaledWidth, scaledHeight) = scaledDimensionsForPixelLimit(maxSampledPixels, width, height)
     
     // Downsample the image if necessary, so that the total number of
     // pixels sampled does not exceed the specified maximum.
-    let context = createRGBAContext(dimensions)
-    CGContextDrawImage(context, CGRect(x: 0, y: 0, width: Int(width), height: Int(height)), image)
+    let context = createRGBAContext(scaledWidth, scaledHeight)
+    CGContextDrawImage(context, CGRect(x: 0, y: 0, width: Int(scaledWidth), height: Int(scaledHeight)), image)
     
     // Get the RGB colors from the bitmap context, ignoring any pixels
     // that have alpha transparency.
