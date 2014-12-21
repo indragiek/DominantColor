@@ -19,6 +19,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, DragAndDropImageViewDelegate
     @IBOutlet weak var box5: NSBox!
     @IBOutlet weak var box6: NSBox!
     @IBOutlet weak var imageView: DragAndDropImageView!
+    
+    var image: NSImage?
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         imageView.delegate = self
@@ -26,22 +28,27 @@ class AppDelegate: NSObject, NSApplicationDelegate, DragAndDropImageViewDelegate
     
     // MARK: DragAndDropImageViewDelegate
     
-    func dragAndDropImageView(imageView: DragAndDropImageView, droppedImage image: NSImage?) {
+    @IBAction func runBenchmark(sender: NSButton) {
         if let image = image {
-            imageView.image = image
-            
-            let cgImage = image.CGImageForProposedRect(nil, context: nil, hints: nil)!.takeUnretainedValue()
-            
-            let nValues: [UInt] = [10, 100, 1000, 2000, 5000, 10000]
+            let nValues: [UInt] = [100, 1000, 2000, 5000, 10000]
+            let CGImage = image.CGImageForProposedRect(nil, context: nil, hints: nil)!.takeUnretainedValue()
             for n in nValues {
                 let ns = dispatch_benchmark(5) {
-                    dominantColorsInImage(cgImage, n, 98251)
+                    dominantColorsInImage(CGImage, n, 98251)
                     return
                 }
                 println("n = \(n) averaged \(ns/1000000) ms")
             }
+        }
+    }
+    
+    func dragAndDropImageView(imageView: DragAndDropImageView, droppedImage image: NSImage?) {
+        if let image = image {
+            imageView.image = image
             
-            let colors = dominantColorsInImage(cgImage, 1000, 98251)
+            self.image = image
+            let CGImage = image.CGImageForProposedRect(nil, context: nil, hints: nil)!.takeUnretainedValue()
+            let colors = dominantColorsInImage(CGImage, 1000, 98251)
             let boxes = [box1, box2, box3, box4, box5, box6]
             
             for box in boxes {

@@ -676,14 +676,14 @@
         <window title="DominantColor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
+            <rect key="contentRect" x="335" y="390" width="480" height="406"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="406"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="ReE-rJ-36o">
-                        <rect key="frame" x="40" y="20" width="50" height="50"/>
+                        <rect key="frame" x="40" y="66" width="50" height="50"/>
                         <view key="contentView">
                             <rect key="frame" x="1" y="1" width="48" height="48"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -692,7 +692,7 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="n8N-ac-BLw">
-                        <rect key="frame" x="110" y="20" width="50" height="50"/>
+                        <rect key="frame" x="110" y="66" width="50" height="50"/>
                         <view key="contentView">
                             <rect key="frame" x="1" y="1" width="48" height="48"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -701,7 +701,7 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="OPr-Kb-zGI">
-                        <rect key="frame" x="180" y="20" width="50" height="50"/>
+                        <rect key="frame" x="180" y="66" width="50" height="50"/>
                         <view key="contentView">
                             <rect key="frame" x="1" y="1" width="48" height="48"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -710,7 +710,7 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="yjy-IF-4e7">
-                        <rect key="frame" x="250" y="20" width="50" height="50"/>
+                        <rect key="frame" x="250" y="66" width="50" height="50"/>
                         <view key="contentView">
                             <rect key="frame" x="1" y="1" width="48" height="48"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -719,7 +719,7 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="ojC-PP-OfF">
-                        <rect key="frame" x="320" y="20" width="50" height="50"/>
+                        <rect key="frame" x="320" y="66" width="50" height="50"/>
                         <view key="contentView">
                             <rect key="frame" x="1" y="1" width="48" height="48"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -728,7 +728,7 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="TUf-um-YQH">
-                        <rect key="frame" x="390" y="20" width="50" height="50"/>
+                        <rect key="frame" x="390" y="66" width="50" height="50"/>
                         <view key="contentView">
                             <rect key="frame" x="1" y="1" width="48" height="48"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -737,12 +737,22 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x3Q-dR-DUq" customClass="DragAndDropImageView" customModule="DominantColor" customModuleProvider="target">
-                        <rect key="frame" x="17" y="87" width="446" height="256"/>
+                        <rect key="frame" x="17" y="133" width="446" height="256"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" id="Lv6-SI-Q1P"/>
                     </imageView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cPK-2Y-wPu">
+                        <rect key="frame" x="171" y="13" width="139" height="32"/>
+                        <buttonCell key="cell" type="push" title="Run Benchmark" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="psD-Tq-WmP">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="runBenchmark:" target="Voe-Tx-rLC" id="EKs-UX-jd8"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="200" y="327"/>
+            <point key="canvasLocation" x="200" y="350"/>
         </window>
     </objects>
 </document>
