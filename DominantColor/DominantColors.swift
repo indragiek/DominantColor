@@ -100,7 +100,7 @@ private func scaledDimensionsForPixelLimit(limit: UInt, width: UInt, height: UIn
     return (width, height)
 }
 
-public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt) -> [CGColor] {
+public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: Int) -> [CGColor] {
     let (width, height) = (CGImageGetWidth(image), CGImageGetHeight(image))
     let dimensions = scaledDimensionsForPixelLimit(maxSampledPixels, width, height)
     
@@ -123,7 +123,7 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt) -> [CG
     // (converted to the YUV color space)
     let yuvColors = colors.map { IN_RGBColorToYUVColor($0) }
     let k = selectKForElements(yuvColors)
-    var clusters = kmeans(yuvColors, k)
+    var clusters = kmeans(yuvColors, k, seed)
     
     // Sort the clusters by size in descending order so that the
     // most dominant colors come first.
