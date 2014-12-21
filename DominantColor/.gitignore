@@ -1,0 +1,5 @@
+*.o
+*.so
+_test
+*.swp
+.DS_Store
