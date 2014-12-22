@@ -2,6 +2,6 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
-#import "RGBYUVConversion.h"
+#import "ColorSpaceConversion.h"
 
 extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));

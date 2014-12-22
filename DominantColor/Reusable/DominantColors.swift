@@ -45,39 +45,37 @@ private func enumerateRGBAContext(context: CGContext, handler: (UInt, UInt, RGBA
 
 // MARK: Conversions
 
-private extension IN_RGBColor {
-    func toCGColor() -> CGColorRef {
-        return CGColorCreateGenericRGB(CGFloat(r), CGFloat(g), CGFloat(b), 1.0)
-    }
+private func RGBVectorToCGColor(rgbVector: INVector3) -> CGColor {
+    return CGColorCreateGenericRGB(CGFloat(rgbVector.x), CGFloat(rgbVector.y), CGFloat(rgbVector.z), 1.0)
 }
 
 private extension RGBAPixel {
-    func toRGBColor() -> IN_RGBColor {
-        return IN_RGBColor(
-            r: Float(r) / Float(UInt8.max),
-            g: Float(g) / Float(UInt8.max),
-            b: Float(b) / Float(UInt8.max)
+    func toRGBVector() -> INVector3 {
+        return INVector3(
+            x: Float(r) / Float(UInt8.max),
+            y: Float(g) / Float(UInt8.max),
+            z: Float(b) / Float(UInt8.max)
         )
     }
 }
 
 // MARK: Clustering
 
-public func +(lhs: IN_YUVColor, rhs: IN_YUVColor) -> IN_YUVColor {
-    return IN_YUVColorSum(lhs, rhs)
+public func +(lhs: INVector3, rhs: INVector3) -> INVector3 {
+    return INVector3Add(lhs, rhs)
 }
 
-extension IN_YUVColor : ClusteredType {
-    public func distance(to: IN_YUVColor) -> Float {
-        return IN_YUVColorSquaredDistance(self, to)
+extension INVector3 : ClusteredType {
+    public func distance(to: INVector3) -> Float {
+        return INVector3Distance(self, to)
     }
     
-    public func divideScalar(scalar: Int) -> IN_YUVColor {
-        return IN_YUVColorDivideScalar(self, Float(scalar))
+    public func divideScalar(scalar: Int) -> INVector3 {
+        return INVector3DivideScalar(self, Float(scalar))
     }
     
-    public static var identity: IN_YUVColor {
-        return IN_YUVColor(y: 0, u: 0, v: 0)
+    public static var identity: INVector3 {
+        return INVector3(x: 0, y: 0, z: 0)
     }
 }
 
@@ -110,17 +108,21 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: 
     
     // Get the RGB colors from the bitmap context, ignoring any pixels
     // that have alpha transparency.
-    var colors = [IN_RGBColor]()
+    var colors = [INVector3]()
     colors.reserveCapacity(Int(width * height))
     enumerateRGBAContext(context) { (_, _, pixel) in
         if pixel.a == UInt8.max {
-            colors.append(pixel.toRGBColor())
+            colors.append(pixel.toRGBVector())
         }
     }
     
-    // Use the k-means clustering algorithm to cluster the colors
-    // (converted to the YUV color space)
-    let yuvColors = colors.map { IN_RGBColorToYUVColor($0) }
+    // Convert the colors to the LAB color space. The conversion process requires
+    // the RGB values to be in the sRGB color space, but newer iOS devices (iPhone 5 and later)
+    // supposedly render the full sRGB gamut so we're going to assume that the RGB
+    // values are good approximations of sRGB values.
+    let yuvColors = colors.map { INSRGBToLAB($0) }
+    
+    // Cluster the colors using the k-means algorithm
     let k = selectKForElements(yuvColors)
     var clusters = kmeans(yuvColors, k, seed)
     
@@ -128,5 +130,5 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: 
     // most dominant colors come first.
     clusters.sort { $0.size > $1.size }
     
-    return clusters.map { IN_YUVColorToRGBColor($0.centroid).toCGColor() }
+    return clusters.map { RGBVectorToCGColor(INLABToSRGB($0.centroid)) }
 }
