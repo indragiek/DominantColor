@@ -69,7 +69,7 @@ static GLKVector3 XYZToLAB(GLKVector3 xyzVector, GLKVector3 tristimulus) {
     };
     const float fx = f(xyzVector.x / tristimulus.x);
     const float fy = f(xyzVector.y / tristimulus.y);
-    const float fz = f(xyzVector.x / tristimulus.x);
+    const float fz = f(xyzVector.z / tristimulus.z);
     
     const float l = (116.f * fy) - 16.f;
     const float a = 500 * (fx - fy);
