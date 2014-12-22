@@ -89,8 +89,8 @@ static GLKVector3 LABToXYZ(GLKVector3 labVector, GLKVector3 tristimulus) {
     const float c = (1.f / 116.f) * (labVector.x + 16.f);
     
     const float y = tristimulus.y * f(c);
-    const float x = tristimulus.x * f(c + ((1.f / 500.f) * tristimulus.y));
-    const float z = tristimulus.z * f(c - ((1.f / 200.f) * tristimulus.z));
+    const float x = tristimulus.x * f(c + ((1.f / 500.f) * labVector.y));
+    const float z = tristimulus.z * f(c - ((1.f / 200.f) * labVector.z));
     
     return GLKVector3Make(x, y, z);
 }
