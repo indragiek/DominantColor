@@ -97,6 +97,7 @@ static GLKVector3 LABToXYZ(GLKVector3 labVector, GLKVector3 tristimulus) {
 
 #pragma mark - Public
 
+// From http://www.easyrgb.com/index.php?X=MATH&H=15#text15
 static const GLKVector3 D65Tristimulus = (GLKVector3){ 95.047f, 100.f, 108.883f };
 
 INVector3 INSRGBToLAB(INVector3 srgbVector) {
