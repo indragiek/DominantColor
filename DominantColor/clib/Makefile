@@ -1,5 +1,5 @@
 CC:=gcc
-CFLAGS:=-Wextra -Wall -DUNIQ_CENTROIDS
+CFLAGS:=-Wextra -Wall
 LIBS:=-lm # For math
 RM:=rm -f
 
@@ -9,9 +9,7 @@ RM:=rm -f
 %:
 	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
 
-alt_lib_test:   alt_lib_test.c bit_map.o alt_lib.o
-test_bitmap:	bit_map.o
-test:	kmeans.o
+alt_lib_test:   alt_lib_test.c alt_lib.o
 
 clean:
 	$(RM) *.o *.so

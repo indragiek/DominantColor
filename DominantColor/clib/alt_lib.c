@@ -50,12 +50,12 @@
 #include <assert.h>
 #include <float.h>
 #include <math.h>
+#include <time.h>
 #include <stdio.h>
 #include <string.h> // For memcpy
 
 #include "azzert.h"
 #include "alt_lib.h"
-#include "bit_map.h"
 
 int *kMeans(double **data, int n, int m, int k, double t, double **centroids) {
    /* output cluster label for each data point */
@@ -148,6 +148,7 @@ static size_t prandInt(const size_t min, const size_t max) {
 }
 
 DDArray *newDDArray(const size_t n, const size_t m) {
+    size_t i;
     DDArray *darr = malloc(sizeof(DDArray));
     ASSERT(darr != NULL, "No memory for a new DDArray!");
 
@@ -156,8 +157,10 @@ DDArray *newDDArray(const size_t n, const size_t m) {
 
     darr->data = malloc(darr->n * sizeof(double *));
     ASSERT(darr->data != NULL, "No memory for n member allocation!");
-    printf("darr: %p sz: %zd y: %zd", darr->data, darr->n, darr->m);
-    fflush(stdout);
+
+    for (i = 0; i < darr->n; ++i) {
+        darr->data[i] = malloc(sizeof(double) * darr->m);
+    }
 
     return darr;
 }
@@ -183,13 +186,11 @@ void printDDArray(DDArray *darr) {
     size_t i, j, m;
     double *slice;
     printf("[");
-
     if (darr != NULL) {
         m = darr->m;
         for (i = 0; i < darr->n; ++i) {
-            printf("{ %zd %zd ", i, darr->m);
+            printf("{");
             slice = darr->data[i];
-            
             j = 0;
             do
                 printf("%2.2f, ", slice[j]);
@@ -200,55 +201,33 @@ void printDDArray(DDArray *darr) {
     printf("]\n");
 }
 
-DDArray *populateCluster(double *data[], const size_t n, const size_t m) {
+DDArray *populatedDDArray(const size_t n, const size_t m) {
     size_t i, j;
-    DDArray *cl = newDDArray(n, m);
-    for (i = 0; i < n; ++i) {
-        fprintf(stderr, "\ncl: %p cl->data: %p\n", cl, cl->data);
-        fflush(stderr);
-        cl->data[i] = malloc(cl->m * sizeof(double));
-        for (j = 0; j < m; ++j) {
-            printf("d: %2.2f\n", data[i][j]);
+    double *slice;
+    DDArray *darr = newDDArray(n, m);
+
+    for (i = 0; i < darr->n; ++i) {
+        slice = darr->data[i];
+        for (j = 0; j < darr->m; ++j) {
+            slice[j] = prandInt(0, 256);
         }
     }
-    return cl;
+    return darr;
 }
 
-DDArray *createCentroids(const size_t k, DDArray *darr) {
-    BitMap *bm;
-    double *slice;
-    size_t i, j, index;
+DDArray *createCentroids(const unsigned int seed, const size_t k, DDArray *darr) {
+    size_t i, index;
     DDArray *centroids;
 
     ASSERT(k < darr->n, "k should be less than n");
     centroids = newDDArray(k, darr->m);
     
-    bm =  newBitMap(k);
+    srand(seed);
 
-    for (j = 0; j < centroids->n; ++j) {
-        index = 0;
-        do {
-            index = prandInt(0, darr->n);
-    #ifdef UNIQ_CENTROIDS
-            if (!exists(bm, index)) {
-                printf("inserted: %zd\n", index);
-                bm = add(bm, index);
-                break;
-            }
-    #else
-            break;
-    #endif // UNIQ_CENTROIDS
-        } while (1);
-
-        centroids->data[j] = malloc(centroids->m * sizeof(double));
-        slice = darr->data[index];
-
-        for (i = 0; i < darr->m; ++i) {
-            centroids->data[j][i] = slice[i];
-        }
+    for (i = 0; i < centroids->n; ++i) {
+        index = prandInt(0, darr->n);
+        memcpy(centroids->data[i], darr->data[index], centroids->m);
     }
 
-    bm = freeBitMap(bm);
-    
     return centroids;
 }
