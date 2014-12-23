@@ -116,13 +116,8 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: 
         }
     }
     
-    // Convert the colors to the LAB color space. The conversion process requires
-    // the RGB values to be in the sRGB color space, but newer iOS devices (iPhone 5 and later)
-    // supposedly render the full sRGB gamut so we're going to assume that the RGB
-    // values are good approximations of sRGB values.
+    // Convert the colors to the LAB color space and cluster the colors using the k-means algorithm
     let yuvColors = colors.map { RGBToLAB($0) }
-    
-    // Cluster the colors using the k-means algorithm
     let k = selectKForElements(yuvColors)
     var clusters = kmeans(yuvColors, k, seed)
     
