@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6246"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -32,7 +32,7 @@
                                     <action selector="selectTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="R0z-iL-jNb"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rph-LX-cib">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rph-LX-cib">
                                 <rect key="frame" x="-1" y="348" width="323" height="80"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8RD-Ya-Lx7">
@@ -61,6 +61,10 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="i5s-4d-kbj"/>
+                                    <constraint firstAttribute="width" constant="323" id="wMz-0m-9Vm"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xab-U8-4aK">
                                 <rect key="frame" x="105" y="455" width="110" height="30"/>
@@ -85,13 +89,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="box1" destination="t5o-oD-cMC" id="0Wq-4k-rtX"/>
-                        <outlet property="box2" destination="dhx-DO-y5X" id="vNC-jC-2uv"/>
-                        <outlet property="box3" destination="wjD-pL-t1O" id="THy-QE-fK9"/>
-                        <outlet property="box4" destination="sbD-ZP-BKy" id="yjV-aU-B06"/>
-                        <outlet property="box5" destination="hzD-zq-e5t" id="NZc-32-dpm"/>
-                        <outlet property="box6" destination="8RD-Ya-Lx7" id="o5K-TL-fqE"/>
                         <outlet property="imageView" destination="gjM-vU-Oxh" id="ePF-ha-mjP"/>
+                        <outletCollection property="boxes" destination="t5o-oD-cMC" collectionClass="NSMutableArray" id="Kh3-Cy-puO"/>
+                        <outletCollection property="boxes" destination="dhx-DO-y5X" collectionClass="NSMutableArray" id="HpV-m0-rQv"/>
+                        <outletCollection property="boxes" destination="wjD-pL-t1O" collectionClass="NSMutableArray" id="BtD-nd-fhs"/>
+                        <outletCollection property="boxes" destination="sbD-ZP-BKy" collectionClass="NSMutableArray" id="w5O-ZY-iU4"/>
+                        <outletCollection property="boxes" destination="hzD-zq-e5t" collectionClass="NSMutableArray" id="7rj-oY-ccC"/>
+                        <outletCollection property="boxes" destination="8RD-Ya-Lx7" collectionClass="NSMutableArray" id="D2U-6v-7ab"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
