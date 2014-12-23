@@ -110,18 +110,30 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: 
     let context = createRGBAContext(scaledWidth, scaledHeight)
     CGContextDrawImage(context, CGRect(x: 0, y: 0, width: Int(scaledWidth), height: Int(scaledHeight)), image)
     
+    var yuvColors = [INVector3]()
+    yuvColors.reserveCapacity(Int(width * height))
+    var cache = [UInt32:INVector3]()
+
     // Get the RGB colors from the bitmap context, ignoring any pixels
     // that have alpha transparency.
-    var colors = [INVector3]()
-    colors.reserveCapacity(Int(width * height))
+    // Also convert the colors to the LAB color space
     enumerateRGBAContext(context) { (_, _, pixel) in
         if pixel.a == UInt8.max {
-            colors.append(pixel.toRGBVector())
+            // HashValue will be the result of an OR op over the R, G, B values which are each 8 bytes
+            // But 8 * 3 = 24, so align that on the next available byte size ie 32
+            // So hashvalue will look like this: 00000000rrrrrrrrggggggggbbbbbbbb
+            var hashValue = (UInt32(pixel.r) << 16) | (UInt32(pixel.g) << 8) | (UInt32(pixel.b) << 0)
+            var labValue = cache[hashValue]
+            
+            if labValue == nil { // Cache miss
+                labValue = IN_RGBToLAB(pixel.toRGBVector())
+                cache[hashValue] = labValue
+            }
+            yuvColors.append(labValue!)
         }
     }
-    
-    // Convert the colors to the LAB color space and cluster the colors using the k-means algorithm
-    let yuvColors = colors.map { IN_RGBToLAB($0) }
+
+    // cluster the colors using the k-means algorithm
     let k = selectKForElements(yuvColors)
     var clusters = kmeans(yuvColors, k, seed)
     
