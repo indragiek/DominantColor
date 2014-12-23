@@ -138,7 +138,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = indragie;
+				ORGANIZATIONNAME = "Indragie Karunaratne";
 				TargetAttributes = {
 					72D797B71A43F44D00D32E7C = {
 						CreatedOnToolsVersion = 6.1.1;
