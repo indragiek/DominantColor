@@ -7,60 +7,135 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7216C7501A476EF700DC2545 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74C1A476EF700DC2545 /* DominantColors.swift */; };
-		7216C7511A476EF700DC2545 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74D1A476EF700DC2545 /* KMeans.swift */; };
-		723DE5101A49336F00C357E3 /* ColorDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282C2E01A48C747001D4408 /* ColorDifference.swift */; };
-		723DE5111A49337C00C357E3 /* INVector3.m in Sources */ = {isa = PBXBuildFile; fileRef = 728FC1AA1A47C8F1005F0C62 /* INVector3.m */; };
-		723DE5121A49337F00C357E3 /* ColorSpaceConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D2D2511A47CA2500242484 /* ColorSpaceConversion.m */; };
-		7282C2E11A48C747001D4408 /* ColorDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282C2E01A48C747001D4408 /* ColorDifference.swift */; };
-		728FC1AC1A47C8F1005F0C62 /* INVector3.m in Sources */ = {isa = PBXBuildFile; fileRef = 728FC1AA1A47C8F1005F0C62 /* INVector3.m */; };
-		72B92AF51A45157800A2C24C /* DragAndDropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B92AF41A45157800A2C24C /* DragAndDropImageView.swift */; };
-		72D2D2521A47CA2500242484 /* ColorSpaceConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D2D2511A47CA2500242484 /* ColorSpaceConversion.m */; };
-		72D797BE1A43F44D00D32E7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D797BD1A43F44D00D32E7C /* AppDelegate.swift */; };
-		72D797C01A43F44D00D32E7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D797BF1A43F44D00D32E7C /* Images.xcassets */; };
-		72D797C31A43F44D00D32E7C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72D797C11A43F44D00D32E7C /* MainMenu.xib */; };
-		72D797DF1A43F89000D32E7C /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72D797DE1A43F89000D32E7C /* GLKit.framework */; };
-		898845D71A490CE000003EF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898845D61A490CE000003EF2 /* AppDelegate.swift */; };
-		898845D91A490CE000003EF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898845D81A490CE000003EF2 /* ViewController.swift */; };
-		898845DC1A490CE000003EF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 898845DA1A490CE000003EF2 /* Main.storyboard */; };
-		898845DE1A490CE000003EF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 898845DD1A490CE000003EF2 /* Images.xcassets */; };
-		898845E11A490CE000003EF2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 898845DF1A490CE000003EF2 /* LaunchScreen.xib */; };
-		898845F41A490CF600003EF2 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74D1A476EF700DC2545 /* KMeans.swift */; };
+		723DE5291A4934E200C357E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5261A4934E200C357E3 /* AppDelegate.swift */; };
+		723DE52A1A4934E200C357E3 /* DragAndDropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5271A4934E200C357E3 /* DragAndDropImageView.swift */; };
+		723DE52B1A4934E200C357E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 723DE5281A4934E200C357E3 /* Images.xcassets */; };
+		723DE52E1A4934F800C357E3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 723DE52C1A4934F800C357E3 /* MainMenu.xib */; };
+		723DE54D1A49353C00C357E3 /* DominantColor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723DE5361A49353C00C357E3 /* DominantColor.framework */; };
+		723DE54E1A49353C00C357E3 /* DominantColor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 723DE5361A49353C00C357E3 /* DominantColor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		723DE5591A49358F00C357E3 /* DominantColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5581A49358F00C357E3 /* DominantColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		723DE55A1A49360A00C357E3 /* INVector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5181A49348D00C357E3 /* INVector3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		723DE55B1A49360C00C357E3 /* ColorSpaceConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5151A49348D00C357E3 /* ColorSpaceConversion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		723DE55C1A49360F00C357E3 /* ColorDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5141A49348D00C357E3 /* ColorDifference.swift */; };
+		723DE55D1A49361100C357E3 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5171A49348D00C357E3 /* DominantColors.swift */; };
+		723DE55E1A49361200C357E3 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE51A1A49348D00C357E3 /* KMeans.swift */; };
+		723DE55F1A49361700C357E3 /* INVector3.m in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5191A49348D00C357E3 /* INVector3.m */; };
+		723DE5601A49361900C357E3 /* ColorSpaceConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */; };
+		723DE5611A49372D00C357E3 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72D797DE1A43F89000D32E7C /* GLKit.framework */; };
+		723DE5691A49385C00C357E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5661A49385C00C357E3 /* AppDelegate.swift */; };
+		723DE56A1A49385C00C357E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 723DE5671A49385C00C357E3 /* Images.xcassets */; };
+		723DE56B1A49385C00C357E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5681A49385C00C357E3 /* ViewController.swift */; };
+		723DE5701A49386B00C357E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 723DE56C1A49386B00C357E3 /* LaunchScreen.xib */; };
+		723DE5711A49386B00C357E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 723DE56E1A49386B00C357E3 /* Main.storyboard */; };
+		723DE5B61A4938DD00C357E3 /* DominantColor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723DE59F1A4938DD00C357E3 /* DominantColor.framework */; };
+		723DE5B71A4938DD00C357E3 /* DominantColor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 723DE59F1A4938DD00C357E3 /* DominantColor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		723DE5BF1A49394D00C357E3 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723DE5BE1A49394D00C357E3 /* GLKit.framework */; };
+		723DE5C01A49395A00C357E3 /* DominantColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5581A49358F00C357E3 /* DominantColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		723DE5C11A49395C00C357E3 /* ColorSpaceConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5151A49348D00C357E3 /* ColorSpaceConversion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		723DE5C21A49395D00C357E3 /* INVector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5181A49348D00C357E3 /* INVector3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		723DE5C31A49399E00C357E3 /* ColorDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5141A49348D00C357E3 /* ColorDifference.swift */; };
+		723DE5C41A4939A000C357E3 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5171A49348D00C357E3 /* DominantColors.swift */; };
+		723DE5C51A4939A200C357E3 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE51A1A49348D00C357E3 /* KMeans.swift */; };
+		723DE5C61A4939A300C357E3 /* ColorSpaceConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */; };
+		723DE5C71A4939A500C357E3 /* INVector3.m in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5191A49348D00C357E3 /* INVector3.m */; };
 		898845F51A490CFC00003EF2 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		898845F61A490D0B00003EF2 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74C1A476EF700DC2545 /* DominantColors.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		723DE54B1A49353C00C357E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72D797B01A43F44D00D32E7C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 723DE5351A49353C00C357E3;
+			remoteInfo = DominantColor;
+		};
+		723DE5B41A4938DD00C357E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72D797B01A43F44D00D32E7C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 723DE59E1A4938DD00C357E3;
+			remoteInfo = DominantColor;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		723DE5521A49353C00C357E3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				723DE54E1A49353C00C357E3 /* DominantColor.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		723DE5921A4938B500C357E3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				723DE5B71A4938DD00C357E3 /* DominantColor.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		7216C74C1A476EF700DC2545 /* DominantColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DominantColors.swift; sourceTree = "<group>"; };
-		7216C74D1A476EF700DC2545 /* KMeans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMeans.swift; sourceTree = "<group>"; };
-		7282C2E01A48C747001D4408 /* ColorDifference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorDifference.swift; sourceTree = "<group>"; };
-		728FC1AA1A47C8F1005F0C62 /* INVector3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INVector3.m; sourceTree = "<group>"; };
-		728FC1AB1A47C8F1005F0C62 /* INVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INVector3.h; sourceTree = "<group>"; };
-		72B92AF41A45157800A2C24C /* DragAndDropImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropImageView.swift; sourceTree = "<group>"; };
-		72D2D2501A47CA2500242484 /* ColorSpaceConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSpaceConversion.h; sourceTree = "<group>"; };
-		72D2D2511A47CA2500242484 /* ColorSpaceConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSpaceConversion.m; sourceTree = "<group>"; };
-		72D797B81A43F44D00D32E7C /* DominantColor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DominantColor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		72D797BC1A43F44D00D32E7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		72D797BD1A43F44D00D32E7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		72D797BF1A43F44D00D32E7C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		72D797C21A43F44D00D32E7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		72D797DA1A43F86100D32E7C /* DominantColor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DominantColor-Bridging-Header.h"; sourceTree = "<group>"; };
+		723DE5141A49348D00C357E3 /* ColorDifference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorDifference.swift; sourceTree = "<group>"; };
+		723DE5151A49348D00C357E3 /* ColorSpaceConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSpaceConversion.h; sourceTree = "<group>"; };
+		723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSpaceConversion.m; sourceTree = "<group>"; };
+		723DE5171A49348D00C357E3 /* DominantColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DominantColors.swift; sourceTree = "<group>"; };
+		723DE5181A49348D00C357E3 /* INVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INVector3.h; sourceTree = "<group>"; };
+		723DE5191A49348D00C357E3 /* INVector3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INVector3.m; sourceTree = "<group>"; };
+		723DE51A1A49348D00C357E3 /* KMeans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMeans.swift; sourceTree = "<group>"; };
+		723DE5261A4934E200C357E3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Mac/AppDelegate.swift; sourceTree = "<group>"; };
+		723DE5271A4934E200C357E3 /* DragAndDropImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DragAndDropImageView.swift; path = Mac/DragAndDropImageView.swift; sourceTree = "<group>"; };
+		723DE5281A4934E200C357E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Mac/Images.xcassets; sourceTree = "<group>"; };
+		723DE52D1A4934F800C357E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Mac/Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		723DE52F1A49350000C357E3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Mac/Info.plist; sourceTree = "<group>"; };
+		723DE5361A49353C00C357E3 /* DominantColor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DominantColor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		723DE5561A49357D00C357E3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Shared/Info.plist; sourceTree = "<group>"; };
+		723DE5581A49358F00C357E3 /* DominantColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DominantColor.h; sourceTree = "<group>"; };
+		723DE5641A4937AD00C357E3 /* ExampleMac-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ExampleMac-Bridging-Header.h"; path = "Mac/ExampleMac-Bridging-Header.h"; sourceTree = "<group>"; };
+		723DE5661A49385C00C357E3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = DominantColor/iOS/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		723DE5671A49385C00C357E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = DominantColor/iOS/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		723DE5681A49385C00C357E3 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = DominantColor/iOS/ViewController.swift; sourceTree = SOURCE_ROOT; };
+		723DE56D1A49386B00C357E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = DominantColor/iOS/Base.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
+		723DE56F1A49386B00C357E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DominantColor/iOS/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		723DE5721A49387800C357E3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = DominantColor/iOS/Info.plist; sourceTree = SOURCE_ROOT; };
+		723DE5741A49388400C357E3 /* ExampleiOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ExampleiOS-Bridging-Header.h"; path = "DominantColor/iOS/ExampleiOS-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		723DE59F1A4938DD00C357E3 /* DominantColor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DominantColor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		723DE5BE1A49394D00C357E3 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/GLKit.framework; sourceTree = DEVELOPER_DIR; };
+		72D797B81A43F44D00D32E7C /* ExampleMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72D797DE1A43F89000D32E7C /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		898845D21A490CE000003EF2 /* DominantColor-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DominantColor-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		898845D51A490CE000003EF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		898845D61A490CE000003EF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		898845D81A490CE000003EF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		898845DB1A490CE000003EF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		898845DD1A490CE000003EF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		898845E01A490CE000003EF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		898845D21A490CE000003EF2 /* ExampleiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		723DE5321A49353C00C357E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				723DE5611A49372D00C357E3 /* GLKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		723DE59B1A4938DD00C357E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				723DE5BF1A49394D00C357E3 /* GLKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		72D797B51A43F44D00D32E7C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72D797DF1A43F89000D32E7C /* GLKit.framework in Frameworks */,
+				723DE54D1A49353C00C357E3 /* DominantColor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,29 +143,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				723DE5B61A4938DD00C357E3 /* DominantColor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7216C74B1A476EF700DC2545 /* Reusable */ = {
+		723DE5131A49348D00C357E3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				7216C74C1A476EF700DC2545 /* DominantColors.swift */,
-				7216C74D1A476EF700DC2545 /* KMeans.swift */,
-				7282C2E01A48C747001D4408 /* ColorDifference.swift */,
-				728FC1AB1A47C8F1005F0C62 /* INVector3.h */,
-				728FC1AA1A47C8F1005F0C62 /* INVector3.m */,
-				72D2D2501A47CA2500242484 /* ColorSpaceConversion.h */,
-				72D2D2511A47CA2500242484 /* ColorSpaceConversion.m */,
+				723DE5581A49358F00C357E3 /* DominantColor.h */,
+				723DE5141A49348D00C357E3 /* ColorDifference.swift */,
+				723DE5151A49348D00C357E3 /* ColorSpaceConversion.h */,
+				723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */,
+				723DE5171A49348D00C357E3 /* DominantColors.swift */,
+				723DE5181A49348D00C357E3 /* INVector3.h */,
+				723DE5191A49348D00C357E3 /* INVector3.m */,
+				723DE51A1A49348D00C357E3 /* KMeans.swift */,
+				723DE5381A49353C00C357E3 /* Supporting Files */,
 			);
-			path = Reusable;
+			name = Shared;
+			path = DominantColor/Shared;
+			sourceTree = "<group>";
+		};
+		723DE5381A49353C00C357E3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				723DE5561A49357D00C357E3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		72B92ADA1A44CCCD00A2C24C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				723DE5BE1A49394D00C357E3 /* GLKit.framework */,
 				72D797DE1A43F89000D32E7C /* GLKit.framework */,
 			);
 			name = Frameworks;
@@ -100,8 +189,9 @@
 		72D797AF1A43F44D00D32E7C = {
 			isa = PBXGroup;
 			children = (
-				72D797BA1A43F44D00D32E7C /* DominantColor */,
-				898845D31A490CE000003EF2 /* DominantColor-iOS */,
+				723DE5131A49348D00C357E3 /* Shared */,
+				72D797BA1A43F44D00D32E7C /* Mac */,
+				898845D31A490CE000003EF2 /* iOS */,
 				72B92ADA1A44CCCD00A2C24C /* Frameworks */,
 				72D797B91A43F44D00D32E7C /* Products */,
 			);
@@ -110,90 +200,157 @@
 		72D797B91A43F44D00D32E7C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				72D797B81A43F44D00D32E7C /* DominantColor.app */,
-				898845D21A490CE000003EF2 /* DominantColor-iOS.app */,
+				72D797B81A43F44D00D32E7C /* ExampleMac.app */,
+				898845D21A490CE000003EF2 /* ExampleiOS.app */,
+				723DE5361A49353C00C357E3 /* DominantColor.framework */,
+				723DE59F1A4938DD00C357E3 /* DominantColor.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		72D797BA1A43F44D00D32E7C /* DominantColor */ = {
+		72D797BA1A43F44D00D32E7C /* Mac */ = {
 			isa = PBXGroup;
 			children = (
-				72D797BD1A43F44D00D32E7C /* AppDelegate.swift */,
-				72B92AF41A45157800A2C24C /* DragAndDropImageView.swift */,
-				72D797DA1A43F86100D32E7C /* DominantColor-Bridging-Header.h */,
-				7216C74B1A476EF700DC2545 /* Reusable */,
-				72D797BF1A43F44D00D32E7C /* Images.xcassets */,
-				72D797C11A43F44D00D32E7C /* MainMenu.xib */,
+				723DE5261A4934E200C357E3 /* AppDelegate.swift */,
+				723DE5271A4934E200C357E3 /* DragAndDropImageView.swift */,
+				723DE5641A4937AD00C357E3 /* ExampleMac-Bridging-Header.h */,
+				723DE5281A4934E200C357E3 /* Images.xcassets */,
+				723DE52C1A4934F800C357E3 /* MainMenu.xib */,
 				72D797BB1A43F44D00D32E7C /* Supporting Files */,
 			);
+			name = Mac;
 			path = DominantColor;
 			sourceTree = "<group>";
 		};
 		72D797BB1A43F44D00D32E7C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				72D797BC1A43F44D00D32E7C /* Info.plist */,
+				723DE52F1A49350000C357E3 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		898845D31A490CE000003EF2 /* DominantColor-iOS */ = {
+		898845D31A490CE000003EF2 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				898845D61A490CE000003EF2 /* AppDelegate.swift */,
-				898845D81A490CE000003EF2 /* ViewController.swift */,
-				898845DA1A490CE000003EF2 /* Main.storyboard */,
-				898845DD1A490CE000003EF2 /* Images.xcassets */,
-				898845DF1A490CE000003EF2 /* LaunchScreen.xib */,
+				723DE5661A49385C00C357E3 /* AppDelegate.swift */,
+				723DE5681A49385C00C357E3 /* ViewController.swift */,
+				723DE5741A49388400C357E3 /* ExampleiOS-Bridging-Header.h */,
+				723DE5671A49385C00C357E3 /* Images.xcassets */,
+				723DE56C1A49386B00C357E3 /* LaunchScreen.xib */,
+				723DE56E1A49386B00C357E3 /* Main.storyboard */,
 				898845D41A490CE000003EF2 /* Supporting Files */,
 			);
+			name = iOS;
 			path = "DominantColor-iOS";
 			sourceTree = "<group>";
 		};
 		898845D41A490CE000003EF2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				898845D51A490CE000003EF2 /* Info.plist */,
+				723DE5721A49387800C357E3 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		723DE5331A49353C00C357E3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				723DE5591A49358F00C357E3 /* DominantColor.h in Headers */,
+				723DE55B1A49360C00C357E3 /* ColorSpaceConversion.h in Headers */,
+				723DE55A1A49360A00C357E3 /* INVector3.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		723DE59C1A4938DD00C357E3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				723DE5C01A49395A00C357E3 /* DominantColor.h in Headers */,
+				723DE5C11A49395C00C357E3 /* ColorSpaceConversion.h in Headers */,
+				723DE5C21A49395D00C357E3 /* INVector3.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		72D797B71A43F44D00D32E7C /* DominantColor */ = {
+		723DE5351A49353C00C357E3 /* DominantColor-Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 72D797D21A43F44D00D32E7C /* Build configuration list for PBXNativeTarget "DominantColor" */;
+			buildConfigurationList = 723DE54F1A49353C00C357E3 /* Build configuration list for PBXNativeTarget "DominantColor-Mac" */;
 			buildPhases = (
-				72D797B41A43F44D00D32E7C /* Sources */,
-				72D797B51A43F44D00D32E7C /* Frameworks */,
-				72D797B61A43F44D00D32E7C /* Resources */,
+				723DE5311A49353C00C357E3 /* Sources */,
+				723DE5321A49353C00C357E3 /* Frameworks */,
+				723DE5331A49353C00C357E3 /* Headers */,
+				723DE5341A49353C00C357E3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = DominantColor;
+			name = "DominantColor-Mac";
 			productName = DominantColor;
-			productReference = 72D797B81A43F44D00D32E7C /* DominantColor.app */;
-			productType = "com.apple.product-type.application";
+			productReference = 723DE5361A49353C00C357E3 /* DominantColor.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		898845D11A490CE000003EF2 /* DominantColor-iOS */ = {
+		723DE59E1A4938DD00C357E3 /* DominantColor-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 898845F21A490CE000003EF2 /* Build configuration list for PBXNativeTarget "DominantColor-iOS" */;
+			buildConfigurationList = 723DE5B81A4938DD00C357E3 /* Build configuration list for PBXNativeTarget "DominantColor-iOS" */;
 			buildPhases = (
-				898845CE1A490CE000003EF2 /* Sources */,
-				898845CF1A490CE000003EF2 /* Frameworks */,
-				898845D01A490CE000003EF2 /* Resources */,
+				723DE59A1A4938DD00C357E3 /* Sources */,
+				723DE59B1A4938DD00C357E3 /* Frameworks */,
+				723DE59C1A4938DD00C357E3 /* Headers */,
+				723DE59D1A4938DD00C357E3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "DominantColor-iOS";
+			productName = DominantColor;
+			productReference = 723DE59F1A4938DD00C357E3 /* DominantColor.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		72D797B71A43F44D00D32E7C /* ExampleMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72D797D21A43F44D00D32E7C /* Build configuration list for PBXNativeTarget "ExampleMac" */;
+			buildPhases = (
+				72D797B41A43F44D00D32E7C /* Sources */,
+				72D797B51A43F44D00D32E7C /* Frameworks */,
+				72D797B61A43F44D00D32E7C /* Resources */,
+				723DE5521A49353C00C357E3 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				723DE54C1A49353C00C357E3 /* PBXTargetDependency */,
+			);
+			name = ExampleMac;
+			productName = DominantColor;
+			productReference = 72D797B81A43F44D00D32E7C /* ExampleMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		898845D11A490CE000003EF2 /* ExampleiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 898845F21A490CE000003EF2 /* Build configuration list for PBXNativeTarget "ExampleiOS" */;
+			buildPhases = (
+				898845CE1A490CE000003EF2 /* Sources */,
+				898845CF1A490CE000003EF2 /* Frameworks */,
+				898845D01A490CE000003EF2 /* Resources */,
+				723DE5921A4938B500C357E3 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				723DE5B51A4938DD00C357E3 /* PBXTargetDependency */,
+			);
+			name = ExampleiOS;
 			productName = "DominantColor-iOS";
-			productReference = 898845D21A490CE000003EF2 /* DominantColor-iOS.app */;
+			productReference = 898845D21A490CE000003EF2 /* ExampleiOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -205,6 +362,12 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Indragie Karunaratne";
 				TargetAttributes = {
+					723DE5351A49353C00C357E3 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					723DE59E1A4938DD00C357E3 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
 					72D797B71A43F44D00D32E7C = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -226,19 +389,35 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				72D797B71A43F44D00D32E7C /* DominantColor */,
-				898845D11A490CE000003EF2 /* DominantColor-iOS */,
+				72D797B71A43F44D00D32E7C /* ExampleMac */,
+				898845D11A490CE000003EF2 /* ExampleiOS */,
+				723DE5351A49353C00C357E3 /* DominantColor-Mac */,
+				723DE59E1A4938DD00C357E3 /* DominantColor-iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		723DE5341A49353C00C357E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		723DE59D1A4938DD00C357E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		72D797B61A43F44D00D32E7C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72D797C01A43F44D00D32E7C /* Images.xcassets in Resources */,
-				72D797C31A43F44D00D32E7C /* MainMenu.xib in Resources */,
+				723DE52B1A4934E200C357E3 /* Images.xcassets in Resources */,
+				723DE52E1A4934F800C357E3 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,26 +425,45 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				898845DC1A490CE000003EF2 /* Main.storyboard in Resources */,
-				898845E11A490CE000003EF2 /* LaunchScreen.xib in Resources */,
-				898845DE1A490CE000003EF2 /* Images.xcassets in Resources */,
+				723DE5711A49386B00C357E3 /* Main.storyboard in Resources */,
+				723DE5701A49386B00C357E3 /* LaunchScreen.xib in Resources */,
+				723DE56A1A49385C00C357E3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		723DE5311A49353C00C357E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				723DE55C1A49360F00C357E3 /* ColorDifference.swift in Sources */,
+				723DE55D1A49361100C357E3 /* DominantColors.swift in Sources */,
+				723DE55E1A49361200C357E3 /* KMeans.swift in Sources */,
+				723DE5601A49361900C357E3 /* ColorSpaceConversion.m in Sources */,
+				723DE55F1A49361700C357E3 /* INVector3.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		723DE59A1A4938DD00C357E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				723DE5C31A49399E00C357E3 /* ColorDifference.swift in Sources */,
+				723DE5C41A4939A000C357E3 /* DominantColors.swift in Sources */,
+				723DE5C51A4939A200C357E3 /* KMeans.swift in Sources */,
+				723DE5C61A4939A300C357E3 /* ColorSpaceConversion.m in Sources */,
+				723DE5C71A4939A500C357E3 /* INVector3.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		72D797B41A43F44D00D32E7C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72D797BE1A43F44D00D32E7C /* AppDelegate.swift in Sources */,
-				7282C2E11A48C747001D4408 /* ColorDifference.swift in Sources */,
-				72D2D2521A47CA2500242484 /* ColorSpaceConversion.m in Sources */,
-				72B92AF51A45157800A2C24C /* DragAndDropImageView.swift in Sources */,
-				728FC1AC1A47C8F1005F0C62 /* INVector3.m in Sources */,
-				7216C7511A476EF700DC2545 /* KMeans.swift in Sources */,
-				7216C7501A476EF700DC2545 /* DominantColors.swift in Sources */,
+				723DE5291A4934E200C357E3 /* AppDelegate.swift in Sources */,
+				723DE52A1A4934E200C357E3 /* DragAndDropImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,47 +471,152 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				898845F61A490D0B00003EF2 /* DominantColors.swift in Sources */,
+				723DE56B1A49385C00C357E3 /* ViewController.swift in Sources */,
+				723DE5691A49385C00C357E3 /* AppDelegate.swift in Sources */,
 				898845F51A490CFC00003EF2 /* (null) in Sources */,
-				723DE5121A49337F00C357E3 /* ColorSpaceConversion.m in Sources */,
-				723DE5101A49336F00C357E3 /* ColorDifference.swift in Sources */,
-				898845F41A490CF600003EF2 /* KMeans.swift in Sources */,
-				723DE5111A49337C00C357E3 /* INVector3.m in Sources */,
-				898845D91A490CE000003EF2 /* ViewController.swift in Sources */,
-				898845D71A490CE000003EF2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		723DE54C1A49353C00C357E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 723DE5351A49353C00C357E3 /* DominantColor-Mac */;
+			targetProxy = 723DE54B1A49353C00C357E3 /* PBXContainerItemProxy */;
+		};
+		723DE5B51A4938DD00C357E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 723DE59E1A4938DD00C357E3 /* DominantColor-iOS */;
+			targetProxy = 723DE5B41A4938DD00C357E3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		72D797C11A43F44D00D32E7C /* MainMenu.xib */ = {
+		723DE52C1A4934F800C357E3 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				72D797C21A43F44D00D32E7C /* Base */,
+				723DE52D1A4934F800C357E3 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		898845DA1A490CE000003EF2 /* Main.storyboard */ = {
+		723DE56C1A49386B00C357E3 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				898845DB1A490CE000003EF2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		898845DF1A490CE000003EF2 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				898845E01A490CE000003EF2 /* Base */,
+				723DE56D1A49386B00C357E3 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		723DE56E1A49386B00C357E3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				723DE56F1A49386B00C357E3 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		723DE5501A49353C00C357E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DominantColor/Shared/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = DominantColor;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		723DE5511A49353C00C357E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = DominantColor/Shared/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = DominantColor;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		723DE5B91A4938DD00C357E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DominantColor/iOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = DominantColor;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		723DE5BA1A4938DD00C357E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DominantColor/iOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = DominantColor;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		72D797D01A43F44D00D32E7C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -401,10 +704,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				INFOPLIST_FILE = DominantColor/Info.plist;
+				INFOPLIST_FILE = DominantColor/Mac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "DominantColor/DominantColor-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DominantColor/Mac/ExampleMac-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -419,10 +722,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				INFOPLIST_FILE = DominantColor/Info.plist;
+				INFOPLIST_FILE = DominantColor/Mac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "DominantColor/DominantColor-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DominantColor/Mac/ExampleMac-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -435,12 +738,12 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "DominantColor-iOS/Info.plist";
+				INFOPLIST_FILE = DominantColor/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "DominantColor/DominantColor-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DominantColor/iOS/ExampleiOS-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -449,12 +752,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "DominantColor-iOS/Info.plist";
+				INFOPLIST_FILE = DominantColor/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "DominantColor/DominantColor-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DominantColor/iOS/ExampleiOS-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -462,6 +765,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		723DE54F1A49353C00C357E3 /* Build configuration list for PBXNativeTarget "DominantColor-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				723DE5501A49353C00C357E3 /* Debug */,
+				723DE5511A49353C00C357E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		723DE5B81A4938DD00C357E3 /* Build configuration list for PBXNativeTarget "DominantColor-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				723DE5B91A4938DD00C357E3 /* Debug */,
+				723DE5BA1A4938DD00C357E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		72D797B31A43F44D00D32E7C /* Build configuration list for PBXProject "DominantColor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -471,7 +790,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		72D797D21A43F44D00D32E7C /* Build configuration list for PBXNativeTarget "DominantColor" */ = {
+		72D797D21A43F44D00D32E7C /* Build configuration list for PBXNativeTarget "ExampleMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				72D797D31A43F44D00D32E7C /* Debug */,
@@ -480,7 +799,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		898845F21A490CE000003EF2 /* Build configuration list for PBXNativeTarget "DominantColor-iOS" */ = {
+		898845F21A490CE000003EF2 /* Build configuration list for PBXNativeTarget "ExampleiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				898845EE1A490CE000003EF2 /* Debug */,

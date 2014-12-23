@@ -3,29 +3,21 @@
 //  Dominant Color iOS
 //
 //  Created by Jamal E. Kharrat on 12/22/14.
-//  Copyright (c) 2014 indragie. All rights reserved.
+//  Copyright (c) 2014 Indragie Karunaratne. All rights reserved.
 //
 
 import UIKit
+import DominantColor
 
 class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet var boxes: [UIView]!
     @IBOutlet weak var imageView: UIImageView!
     
-    var image : UIImage!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    var image: UIImage!
+
     // MARK: IBActions
+    
     @IBAction func selectTapped(sender: AnyObject) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -45,10 +37,10 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
                 println("n = \(n) averaged \(ns/1000000) ms")
             }
         }
-        
     }
     
     // MARK: ImagePicker Delegate
+    
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         if let imageSelected = image {
             self.image = imageSelected
@@ -63,9 +55,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
             for i in 0..<min(countElements(colors), countElements(boxes)) {
                 boxes[i].backgroundColor = UIColor(CGColor: colors[i])
             }
-            
         }
-        
         picker.dismissViewControllerAnimated(true, completion: nil)
         
     }
@@ -73,7 +63,4 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         picker.dismissViewControllerAnimated(true, completion: nil);
     }
-    
-    
 }
-

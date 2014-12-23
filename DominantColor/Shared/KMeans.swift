@@ -10,7 +10,7 @@ import Darwin
 
 // Represents a type that can be clustered using the k-means clustering
 // algorithm.
-public protocol ClusteredType {
+protocol ClusteredType {
     // Distance between two clustered objects. Typically, this is the
     // Euclidean distance between two vectors.
     func distance(to: Self) -> Float
@@ -24,7 +24,7 @@ public protocol ClusteredType {
     class var identity: Self { get }
 }
 
-public struct Cluster<T : ClusteredType> {
+struct Cluster<T : ClusteredType> {
     let centroid: T
     let size: Int
 }
@@ -32,7 +32,7 @@ public struct Cluster<T : ClusteredType> {
 // k-means clustering algorithm from
 // http://users.eecs.northwestern.edu/~wkliao/Kmeans/
 
-public func kmeans<T : ClusteredType>(objects: [T], k: Int, seed: Int, threshold: Float = 0.0001) -> [Cluster<T>] {
+func kmeans<T : ClusteredType>(objects: [T], k: Int, seed: Int, threshold: Float = 0.0001) -> [Cluster<T>] {
     let n = countElements(objects)
     assert(k <= n, "k cannot be larger than the total number of objects")
 
