@@ -36,7 +36,7 @@ The k-means algorithm has a worst case runtime that is super-polynomial in the i
 
 ### Implementation
 
-Everything is implemented in Swift except for the functions that convert between RGB and YUV color spaces, which use GLKit and thus must be written in C (since Swift doesn't support C unions at this time). 
+Everything is implemented in Swift except for the functions that convert between color spaces, which use GLKit and thus must be written in C (since Swift doesn't support C unions at this time). 
 
 ### Mac App
 
