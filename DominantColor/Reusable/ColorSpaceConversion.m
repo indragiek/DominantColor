@@ -8,6 +8,31 @@
 
 #import "ColorSpaceConversion.h"
 
+#pragma mark - RGB
+
+static GLKVector3 RGBToSRGB(GLKVector3 rgbVector) {
+#if TARGET_OS_IPHONE
+    // sRGB is the native device color space on iOS, no conversion is required.
+    return rgbVector;
+#else
+    NSColor *rgbColor = [NSColor colorWithDeviceRed:rgbVector.x green:rgbVector.y blue:rgbVector.z alpha:1.0];
+    NSColor *srgbColor = [rgbColor colorUsingColorSpace:NSColorSpace.sRGBColorSpace];
+    return GLKVector3Make(srgbColor.redComponent, srgbColor.greenComponent, srgbColor.blueComponent);
+#endif
+}
+
+static GLKVector3 SRGBToRGB(GLKVector3 srgbVector) {
+#if TARGET_OS_IPHONE
+    // sRGB is the native device color space on iOS, no conversion is required.
+    return rgbVector;
+#else
+    const CGFloat components[4] = { srgbVector.x, srgbVector.y, srgbVector.z, 1.0 };
+    NSColor *srgbColor = [NSColor colorWithColorSpace:NSColorSpace.sRGBColorSpace components:components count:4];
+    NSColor *rgbColor = [srgbColor colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace];
+    return GLKVector3Make(rgbColor.redComponent, rgbColor.greenComponent, rgbColor.blueComponent);
+#endif
+}
+
 #pragma mark - SRGB
 // http://en.wikipedia.org/wiki/SRGB#Specification_of_the_transformation
 
@@ -100,18 +125,20 @@ static GLKVector3 LABToXYZ(GLKVector3 labVector, GLKVector3 tristimulus) {
 // From http://www.easyrgb.com/index.php?X=MATH&H=15#text15
 static const GLKVector3 D65Tristimulus = (GLKVector3){ 95.047f, 100.f, 108.883f };
 
-INVector3 SRGBToLAB(INVector3 srgbVector) {
-    const GLKVector3 gVector = INVector3ToGLKVector3(srgbVector);
-    const GLKVector3 lSrgbVector = SRGBToLinearSRGB(gVector);
+INVector3 RGBToLAB(INVector3 rgbVector) {
+    const GLKVector3 gVector = INVector3ToGLKVector3(rgbVector);
+    const GLKVector3 srgbVector = RGBToSRGB(gVector);
+    const GLKVector3 lSrgbVector = SRGBToLinearSRGB(srgbVector);
     const GLKVector3 xyzVector = LinearSRGBToXYZ(lSrgbVector);
     const GLKVector3 labVector = XYZToLAB(xyzVector, D65Tristimulus);
     return GLKVector3ToINVector3(labVector);
 }
 
-INVector3 LABToSRGB(INVector3 labVector) {
+INVector3 LABToRGB(INVector3 labVector) {
     const GLKVector3 gVector = INVector3ToGLKVector3(labVector);
     const GLKVector3 xyzVector = LABToXYZ(gVector, D65Tristimulus);
     const GLKVector3 lSrgbVector = XYZToLinearSRGB(xyzVector);
     const GLKVector3 srgbVector = LinearSRGBToSRGB(lSrgbVector);
-    return GLKVector3ToINVector3(srgbVector);
+    const GLKVector3 rgbVector = SRGBToRGB(srgbVector);
+    return GLKVector3ToINVector3(rgbVector);
 }

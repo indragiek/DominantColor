@@ -8,8 +8,8 @@
 
 #import "INVector3.h"
 
-// Simple sRGB <-> LAB conversion functions assuming a D65 illuminant
+// Simple RGB <-> LAB conversion functions assuming a D65 illuminant
 // with the standard 2° observer for CIE 1931.
 
-INVector3 SRGBToLAB(INVector3 srgbVector);
-INVector3 LABToSRGB(INVector3 labVector);
+INVector3 RGBToLAB(INVector3 rgbVector);
+INVector3 LABToRGB(INVector3 labVector);

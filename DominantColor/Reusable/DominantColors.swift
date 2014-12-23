@@ -120,7 +120,7 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: 
     // the RGB values to be in the sRGB color space, but newer iOS devices (iPhone 5 and later)
     // supposedly render the full sRGB gamut so we're going to assume that the RGB
     // values are good approximations of sRGB values.
-    let yuvColors = colors.map { SRGBToLAB($0) }
+    let yuvColors = colors.map { RGBToLAB($0) }
     
     // Cluster the colors using the k-means algorithm
     let k = selectKForElements(yuvColors)
@@ -130,5 +130,5 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: 
     // most dominant colors come first.
     clusters.sort { $0.size > $1.size }
     
-    return clusters.map { RGBVectorToCGColor(LABToSRGB($0.centroid)) }
+    return clusters.map { RGBVectorToCGColor(LABToRGB($0.centroid)) }
 }
