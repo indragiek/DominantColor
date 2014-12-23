@@ -68,7 +68,8 @@ static const GLKMatrix3 LinearSRGBToXYZMatrix = (GLKMatrix3){
 };
 
 static GLKVector3 LinearSRGBToXYZ(GLKVector3 linearSrgbVector) {
-    return GLKMatrix3MultiplyVector3(LinearSRGBToXYZMatrix, linearSrgbVector);
+    const GLKVector3 unscaledXYZVector = GLKMatrix3MultiplyVector3(LinearSRGBToXYZMatrix, linearSrgbVector);
+    return GLKVector3MultiplyScalar(unscaledXYZVector, 100.f);
 }
 
 static const GLKMatrix3 XYZToLinearSRGBMatrix = (GLKMatrix3){
@@ -78,7 +79,8 @@ static const GLKMatrix3 XYZToLinearSRGBMatrix = (GLKMatrix3){
 };
 
 static GLKVector3 XYZToLinearSRGB(GLKVector3 xyzVector) {
-    return GLKMatrix3MultiplyVector3(XYZToLinearSRGBMatrix, xyzVector);
+    const GLKVector3 scaledXYZVector = GLKVector3DivideScalar(xyzVector, 100.f);
+    return GLKMatrix3MultiplyVector3(XYZToLinearSRGBMatrix, scaledXYZVector);
 }
 
 #pragma mark - LAB
