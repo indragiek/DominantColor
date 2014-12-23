@@ -770,6 +770,7 @@
 				723DE5511A49353C00C357E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		723DE5B81A4938DD00C357E3 /* Build configuration list for PBXNativeTarget "DominantColor-iOS" */ = {
 			isa = XCConfigurationList;
@@ -778,6 +779,7 @@
 				723DE5BA1A4938DD00C357E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		72D797B31A43F44D00D32E7C /* Build configuration list for PBXProject "DominantColor" */ = {
 			isa = XCConfigurationList;
