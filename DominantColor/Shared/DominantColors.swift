@@ -121,7 +121,7 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: 
     }
     
     // Convert the colors to the LAB color space and cluster the colors using the k-means algorithm
-    let yuvColors = colors.map { RGBToLAB($0) }
+    let yuvColors = colors.map { IN_RGBToLAB($0) }
     let k = selectKForElements(yuvColors)
     var clusters = kmeans(yuvColors, k, seed)
     
@@ -129,5 +129,5 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: 
     // most dominant colors come first.
     clusters.sort { $0.size > $1.size }
     
-    return clusters.map { RGBVectorToCGColor(LABToRGB($0.centroid)) }
+    return clusters.map { RGBVectorToCGColor(IN_LABToRGB($0.centroid)) }
 }
