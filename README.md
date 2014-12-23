@@ -38,11 +38,12 @@ The k-means algorithm has a worst case runtime that is super-polynomial in the i
 
 Everything is implemented in Swift except for the functions that convert between color spaces, which use GLKit and thus must be written in C (since Swift doesn't support C unions at this time). 
 
-### Mac App
+### Apps
 
-The project includes a Mac app that can be used to see the results of the algorithm and to run a simple benchmark.
+The project includes Mac and iOS apps that can be used to see the results of the algorithm and to run a simple benchmark.
 
-![screenshot](screenshot.png)
+![Mac app](mac.png)
+![iOS app](ios.png)
 
 ### Contact
 
