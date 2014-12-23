@@ -4,21 +4,27 @@ Finding the dominant colors of an image using the YUV color space and the k-mean
 
 ### Algorithm
 
-#### Color Difference
-
-The simplest and most commonly used metric<sup>[[1](http://en.wikipedia.org/wiki/Color_difference)]</sup> for the difference between two colors is the Euclidian distance between the colors on a 3-dimensional coordinate space. 
-
 #### Color Space
 
-The Euclidian distance between RGB colors doesn't accurately represent how humans perceive color differences, so I used the YUV color space instead, which takes human perception into account<sup>[[2](http://en.wikipedia.org/wiki/YUV)]</sup>. There are a number of other color spaces that could be used for this purpose as well, most notably a [Lab color space](http://en.wikipedia.org/wiki/Lab_color_space). Conversions to a Lab color space from RGB are non-trivial because RGB is device dependent, so I decided to stick with YUV for the time being.
+The RGB color space does not take human perception into account, so the CIELAB color space is used instead, which is designed to approximate human vision <sup>[[1]](http://en.wikipedia.org/wiki/Lab_color_space#Advantages)</sup>. 
+
+##### Conversion from RGB
+
+The conversion from RGB values to LAB values requires first transforming the RGB values to an absolute color space like sRGB<sup>[[2]](http://en.wikipedia.org/wiki/Lab_color_space#RGB_and_CMYK_conversions)</sup>. On iOS, this conversion is not necessary because sRGB is the native device color space<sup>[[3]](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CGColorSpace/index.html)</sup>. On OS X, the conversion can be performed using [`-[NSColorSpace sRGBColorSpace]`](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSColorSpace_Class/index.html).
+
+Once the colors have been converted to sRGB, they are first converted to linear sRGB values and then to CIE XYZ values<sup>[[4]](http://en.wikipedia.org/wiki/SRGB#The_forward_transformation_.28CIE_xyY_or_CIE_XYZ_to_sRGB.29)</sup>. Finally, they are converted to the CIE LAB color space<sup>[[5]](http://en.wikipedia.org/wiki/Lab_color_space#CIELAB-CIEXYZ_conversions)</sup> using a D65 standard illuminant<sup>[[6]](http://en.wikipedia.org/wiki/Illuminant_D65)[[7]](http://www.easyrgb.com/index.php?X=MATH&H=15#text15)</sup>. 
+
+#### Color Difference
+
+A simple calculation of the color difference simply takes the Euclidian distance between two vectors of LAB color coordinates<sup>[[8]](http://en.wikipedia.org/wiki/Color_difference#CIE76)</sup>. However, this does not address perceptual uniformity issues. This project uses the CIE 2000 definition of color difference instead, which adds several corrections to resolve these issues<sup>[[9]](http://en.wikipedia.org/wiki/Color_difference#CIEDE2000)</sup>. 
 
 #### Clustering (k-means)
 
-Pixels are grouped into clusters of dominant colors using a standard k-means clustering algorithm<sup>[[3](http://en.wikipedia.org/wiki/K-means_clustering)][[4](http://users.eecs.northwestern.edu/~wkliao/Kmeans/)][[5](http://cs.smu.ca/~r_zhang/code/kmeans.c)]</sup>. 
+Pixels are grouped into clusters of dominant colors using a standard k-means clustering algorithm<sup>[[10](http://en.wikipedia.org/wiki/K-means_clustering)][[11](http://users.eecs.northwestern.edu/~wkliao/Kmeans/)][[12](http://cs.smu.ca/~r_zhang/code/kmeans.c)]</sup>. 
 
 ##### Choosing K
 
-The k-value was originally chosen based on the rule of thumb `k = sqrt(n/2)`<sup>[[6](http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#cite_note-1)]</sup> but this resulted in `k`-values that were too large to run in a reasonable amount of time for large values of `n`. Right now, I'm using a magic value of `16` because empirical testing showed that it yielded the best results for many different images but I'm still looking into a number of more data-driven alternate approaches.
+The k-value was originally chosen based on the rule of thumb `k = sqrt(n/2)`<sup>[[13](http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#cite_note-1)]</sup> but this resulted in `k`-values that were too large to run in a reasonable amount of time for large values of `n`. Right now, I'm using a magic value of `16` because empirical testing showed that it yielded the best results for many different images but I'm still looking into a number of more data-driven alternate approaches.
 
 ##### Selecting Initial Centroids
 
@@ -26,13 +32,13 @@ The initial centroids are currently selected on a random basis. An alternative a
 
 #### Downsampling
 
-The k-means algorithm has a worst case runtime that is super-polynomial in the input size<sup>[[7](http://en.wikipedia.org/wiki/K-means%2B%2B)]</sup>, so sampling large numbers of pixels is a problem. Images are automatically downsampled such that the total number of pixels is less than or equal to a specified maximum number of pixels to sample. The value I've been using is `1000`, which is a good balance between accurate results and runtime. 
+The k-means algorithm has a worst case runtime that is super-polynomial in the input size<sup>[[14](http://en.wikipedia.org/wiki/K-means%2B%2B)]</sup>, so sampling large numbers of pixels is a problem. Images are automatically downsampled such that the total number of pixels is less than or equal to a specified maximum number of pixels to sample. The value I've been using is `1000`, which is a good balance between accurate results and runtime. 
 
 ### Implementation
 
 Everything is implemented in Swift except for the functions that convert between RGB and YUV color spaces, which use GLKit and thus must be written in C (since Swift doesn't support C unions at this time). 
 
-### App
+### Mac App
 
 The project includes a Mac app that can be used to see the results of the algorithm and to run a simple benchmark.
 
@@ -50,10 +56,17 @@ Licensed under the MIT License.
 
 ### References
 
-<sup>1</sup> [http://en.wikipedia.org/wiki/Color_difference](http://en.wikipedia.org/wiki/Color_difference)  
-<sup>2</sup> [http://en.wikipedia.org/wiki/YUV](http://en.wikipedia.org/wiki/YUV)  
-<sup>3</sup> [http://en.wikipedia.org/wiki/K-means_clustering](http://en.wikipedia.org/wiki/K-means_clustering)    
-<sup>4</sup> [http://users.eecs.northwestern.edu/~wkliao/Kmeans/](http://users.eecs.northwestern.edu/~wkliao/Kmeans/)  
-<sup>5</sup> [http://cs.smu.ca/~r_zhang/code/kmeans.c](http://cs.smu.ca/~r_zhang/code/kmeans.c)  
-<sup>6</sup> [http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#cite_note-1](http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#cite_note-1)  
-<sup>7</sup> [http://en.wikipedia.org/wiki/K-means%2B%2B](http://en.wikipedia.org/wiki/K-means%2B%2B)
+<sup>1</sup> [http://en.wikipedia.org/wiki/Lab_color_space#Advantages](http://en.wikipedia.org/wiki/Lab_color_space#Advantages)  
+<sup>2</sup> [http://en.wikipedia.org/wiki/Lab_color_space#RGB_and_CMYK_conversions](http://en.wikipedia.org/wiki/Lab_color_space#RGB_and_CMYK_conversions)  
+<sup>3</sup> [https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CGColorSpace/index.html](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CGColorSpace/index.html)  
+<sup>4</sup> [http://en.wikipedia.org/wiki/SRGB#The_forward_transformation_.28CIE_xyY_or_CIE_XYZ_to_sRGB.29](http://en.wikipedia.org/wiki/SRGB#The_forward_transformation_.28CIE_xyY_or_CIE_XYZ_to_sRGB.29)    
+<sup>5</sup> [http://en.wikipedia.org/wiki/Lab_color_space#CIELAB-CIEXYZ_conversions](http://en.wikipedia.org/wiki/Lab_color_space#CIELAB-CIEXYZ_conversions)  
+<sup>6</sup> [http://en.wikipedia.org/wiki/Illuminant_D65](http://en.wikipedia.org/wiki/Illuminant_D65)    
+<sup>7</sup> [http://www.easyrgb.com/index.php?X=MATH&H=15#text15](http://www.easyrgb.com/index.php?X=MATH&H=15#text15)  
+<sup>8</sup> [http://en.wikipedia.org/wiki/Color_difference#CIE76](http://en.wikipedia.org/wiki/Color_difference#CIE76)    
+<sup>9</sup> [http://en.wikipedia.org/wiki/Color_difference#CIEDE2000](http://en.wikipedia.org/wiki/Color_difference#CIEDE2000)    
+<sup>10</sup> [http://en.wikipedia.org/wiki/K-means_clustering](http://en.wikipedia.org/wiki/K-means_clustering)  
+<sup>11</sup> [http://users.eecs.northwestern.edu/~wkliao/Kmeans/](http://users.eecs.northwestern.edu/~wkliao/Kmeans/)  
+<sup>12</sup> [http://cs.smu.ca/~r_zhang/code/kmeans.c](http://cs.smu.ca/~r_zhang/code/kmeans.c)  
+<sup>13</sup> [http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#cite_note-1](http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#cite_note-1)  
+<sup>14</sup> [http://en.wikipedia.org/wiki/K-means%2B%2B](http://en.wikipedia.org/wiki/K-means%2B%2B)
