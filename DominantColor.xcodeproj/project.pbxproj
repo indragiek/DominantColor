@@ -45,8 +45,6 @@
 		898845DB1A490CE000003EF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		898845DD1A490CE000003EF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		898845E01A490CE000003EF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		898845EB1A490CE000003EF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		898845EC1A490CE000003EF2 /* DominantColor_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DominantColor_iOSTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +91,6 @@
 			children = (
 				72D797BA1A43F44D00D32E7C /* DominantColor */,
 				898845D31A490CE000003EF2 /* DominantColor-iOS */,
-				898845E91A490CE000003EF2 /* DominantColor-iOSTests */,
 				72B92ADA1A44CCCD00A2C24C /* Frameworks */,
 				72D797B91A43F44D00D32E7C /* Products */,
 			);
@@ -147,23 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				898845D51A490CE000003EF2 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		898845E91A490CE000003EF2 /* DominantColor-iOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				898845EC1A490CE000003EF2 /* DominantColor_iOSTests.swift */,
-				898845EA1A490CE000003EF2 /* Supporting Files */,
-			);
-			path = "DominantColor-iOSTests";
-			sourceTree = "<group>";
-		};
-		898845EA1A490CE000003EF2 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				898845EB1A490CE000003EF2 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
