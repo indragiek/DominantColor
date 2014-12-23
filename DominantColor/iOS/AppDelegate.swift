@@ -3,7 +3,7 @@
 //  DominantColor-iOS
 //
 //  Created by Jamal E. Kharrat on 12/22/14.
-//  Copyright (c) 2014 indragie. All rights reserved.
+//  Copyright (c) 2014 Indragie Karunaratne. All rights reserved.
 //
 
 import UIKit

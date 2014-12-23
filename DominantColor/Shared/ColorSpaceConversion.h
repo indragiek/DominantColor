@@ -11,5 +11,5 @@
 // Simple RGB <-> LAB conversion functions assuming a D65 illuminant
 // with the standard 2° observer for CIE 1931.
 
-INVector3 RGBToLAB(INVector3 rgbVector);
-INVector3 LABToRGB(INVector3 labVector);
+INVector3 IN_RGBToLAB(INVector3 rgbVector);
+INVector3 IN_LABToRGB(INVector3 labVector);

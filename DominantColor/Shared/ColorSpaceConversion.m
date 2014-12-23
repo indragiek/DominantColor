@@ -127,7 +127,7 @@ static GLKVector3 LABToXYZ(GLKVector3 labVector, GLKVector3 tristimulus) {
 // From http://www.easyrgb.com/index.php?X=MATH&H=15#text15
 static const GLKVector3 D65Tristimulus = (GLKVector3){ 95.047f, 100.f, 108.883f };
 
-INVector3 RGBToLAB(INVector3 rgbVector) {
+INVector3 IN_RGBToLAB(INVector3 rgbVector) {
     const GLKVector3 gVector = INVector3ToGLKVector3(rgbVector);
     const GLKVector3 srgbVector = RGBToSRGB(gVector);
     const GLKVector3 lSrgbVector = SRGBToLinearSRGB(srgbVector);
@@ -136,7 +136,7 @@ INVector3 RGBToLAB(INVector3 rgbVector) {
     return GLKVector3ToINVector3(labVector);
 }
 
-INVector3 LABToRGB(INVector3 labVector) {
+INVector3 IN_LABToRGB(INVector3 labVector) {
     const GLKVector3 gVector = INVector3ToGLKVector3(labVector);
     const GLKVector3 xyzVector = LABToXYZ(gVector, D65Tristimulus);
     const GLKVector3 lSrgbVector = XYZToLinearSRGB(xyzVector);
