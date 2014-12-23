@@ -44,8 +44,8 @@ public func CIE2000SquaredColorDifference(lab1: INVector3, lab2: INVector3, kL: 
     
     let hp: (Float, Float) -> Float = { ap, b in
         if ap == 0 && b == 0 { return 0 }
-        let θ = radToDeg(atan(b / ap))
-        return θ < 0 ? (θ + 360) : θ
+        let θ = radToDeg(atan2(b, ap))
+        return fmod(θ < 0 ? (θ + 360) : θ, 360)
     }
     let (h1p, h2p) = (hp(a1p, b1), hp(a2p, b2))
     let Δhabs = abs(h1p - h2p)
