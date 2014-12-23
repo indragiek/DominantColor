@@ -3,7 +3,7 @@
 //  DominantColor
 //
 //  Created by Indragie on 12/21/14.
-//  Copyright (c) 2014 indragie. All rights reserved.
+//  Copyright (c) 2014 Indragie Karunaratne. All rights reserved.
 //
 
 #import "ColorSpaceConversion.h"
@@ -100,7 +100,7 @@ static GLKVector3 LABToXYZ(GLKVector3 labVector, GLKVector3 tristimulus) {
 // From http://www.easyrgb.com/index.php?X=MATH&H=15#text15
 static const GLKVector3 D65Tristimulus = (GLKVector3){ 95.047f, 100.f, 108.883f };
 
-INVector3 INSRGBToLAB(INVector3 srgbVector) {
+INVector3 SRGBToLAB(INVector3 srgbVector) {
     const GLKVector3 gVector = INVector3ToGLKVector3(srgbVector);
     const GLKVector3 lSrgbVector = SRGBToLinearSRGB(gVector);
     const GLKVector3 xyzVector = LinearSRGBToXYZ(lSrgbVector);
@@ -108,7 +108,7 @@ INVector3 INSRGBToLAB(INVector3 srgbVector) {
     return GLKVector3ToINVector3(labVector);
 }
 
-INVector3 INLABToSRGB(INVector3 labVector) {
+INVector3 LABToSRGB(INVector3 labVector) {
     const GLKVector3 gVector = INVector3ToGLKVector3(labVector);
     const GLKVector3 xyzVector = LABToXYZ(gVector, D65Tristimulus);
     const GLKVector3 lSrgbVector = XYZToLinearSRGB(xyzVector);

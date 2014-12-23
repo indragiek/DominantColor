@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7216C7501A476EF700DC2545 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74C1A476EF700DC2545 /* DominantColors.swift */; };
 		7216C7511A476EF700DC2545 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74D1A476EF700DC2545 /* KMeans.swift */; };
+		7282C2E11A48C747001D4408 /* ColorDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282C2E01A48C747001D4408 /* ColorDifference.swift */; };
 		728FC1AC1A47C8F1005F0C62 /* INVector3.m in Sources */ = {isa = PBXBuildFile; fileRef = 728FC1AA1A47C8F1005F0C62 /* INVector3.m */; };
 		72B92AF51A45157800A2C24C /* DragAndDropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B92AF41A45157800A2C24C /* DragAndDropImageView.swift */; };
 		72D2D2521A47CA2500242484 /* ColorSpaceConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D2D2511A47CA2500242484 /* ColorSpaceConversion.m */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		7216C74C1A476EF700DC2545 /* DominantColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DominantColors.swift; sourceTree = "<group>"; };
 		7216C74D1A476EF700DC2545 /* KMeans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMeans.swift; sourceTree = "<group>"; };
+		7282C2E01A48C747001D4408 /* ColorDifference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorDifference.swift; sourceTree = "<group>"; };
 		728FC1AA1A47C8F1005F0C62 /* INVector3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INVector3.m; sourceTree = "<group>"; };
 		728FC1AB1A47C8F1005F0C62 /* INVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INVector3.h; sourceTree = "<group>"; };
 		72B92AF41A45157800A2C24C /* DragAndDropImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropImageView.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			children = (
 				7216C74C1A476EF700DC2545 /* DominantColors.swift */,
 				7216C74D1A476EF700DC2545 /* KMeans.swift */,
+				7282C2E01A48C747001D4408 /* ColorDifference.swift */,
 				728FC1AB1A47C8F1005F0C62 /* INVector3.h */,
 				728FC1AA1A47C8F1005F0C62 /* INVector3.m */,
 				72D2D2501A47CA2500242484 /* ColorSpaceConversion.h */,
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72D797BE1A43F44D00D32E7C /* AppDelegate.swift in Sources */,
+				7282C2E11A48C747001D4408 /* ColorDifference.swift in Sources */,
 				72D2D2521A47CA2500242484 /* ColorSpaceConversion.m in Sources */,
 				72B92AF51A45157800A2C24C /* DragAndDropImageView.swift in Sources */,
 				728FC1AC1A47C8F1005F0C62 /* INVector3.m in Sources */,

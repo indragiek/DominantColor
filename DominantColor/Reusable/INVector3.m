@@ -16,10 +16,6 @@ INVector3 GLKVector3ToINVector3(GLKVector3 vector) {
     return (INVector3){ vector.x, vector.y, vector.z };
 }
 
-float INVector3Distance(INVector3 v1, INVector3 v2) {
-    return GLKVector3Distance(INVector3ToGLKVector3(v1), INVector3ToGLKVector3(v2));
-}
-
 INVector3 INVector3Add(INVector3 v1, INVector3 v2) {
     return GLKVector3ToINVector3(GLKVector3Add(INVector3ToGLKVector3(v1), INVector3ToGLKVector3(v2)));
 }
