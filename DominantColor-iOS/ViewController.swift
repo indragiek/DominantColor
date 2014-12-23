@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-   
+    
     @IBOutlet weak var box1: UIView!
     @IBOutlet weak var box2: UIView!
     @IBOutlet weak var box3: UIView!
@@ -51,7 +51,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
                 println("n = \(n) averaged \(ns/1000000) ms")
             }
         }
-
+        
     }
     
     // MARK: ImagePicker Delegate
@@ -61,7 +61,6 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
             imageView.image = imageSelected
             let CGImage = image.CGImage
             let colors = dominantColorsInImage(CGImage, 1000, 98251)
-            
             let boxes = [box1, box2, box3, box4, box5, box6]
             
             for box in boxes {

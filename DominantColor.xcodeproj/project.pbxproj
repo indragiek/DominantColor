@@ -20,21 +20,10 @@
 		898845DC1A490CE000003EF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 898845DA1A490CE000003EF2 /* Main.storyboard */; };
 		898845DE1A490CE000003EF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 898845DD1A490CE000003EF2 /* Images.xcassets */; };
 		898845E11A490CE000003EF2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 898845DF1A490CE000003EF2 /* LaunchScreen.xib */; };
-		898845ED1A490CE000003EF2 /* DominantColor_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898845EC1A490CE000003EF2 /* DominantColor_iOSTests.swift */; };
 		898845F41A490CF600003EF2 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74D1A476EF700DC2545 /* KMeans.swift */; };
 		898845F51A490CFC00003EF2 /* RGBYUVConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74F1A476EF700DC2545 /* RGBYUVConversion.m */; };
 		898845F61A490D0B00003EF2 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74C1A476EF700DC2545 /* DominantColors.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		898845E71A490CE000003EF2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 72D797B01A43F44D00D32E7C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 898845D11A490CE000003EF2;
-			remoteInfo = "DominantColor-iOS";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7216C74C1A476EF700DC2545 /* DominantColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DominantColors.swift; sourceTree = "<group>"; };
@@ -56,7 +45,6 @@
 		898845DB1A490CE000003EF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		898845DD1A490CE000003EF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		898845E01A490CE000003EF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		898845E61A490CE000003EF2 /* DominantColor-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DominantColor-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		898845EB1A490CE000003EF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		898845EC1A490CE000003EF2 /* DominantColor_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DominantColor_iOSTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,13 +59,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		898845CF1A490CE000003EF2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		898845E31A490CE000003EF2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -123,7 +104,6 @@
 			children = (
 				72D797B81A43F44D00D32E7C /* DominantColor.app */,
 				898845D21A490CE000003EF2 /* DominantColor-iOS.app */,
-				898845E61A490CE000003EF2 /* DominantColor-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -225,24 +205,6 @@
 			productReference = 898845D21A490CE000003EF2 /* DominantColor-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		898845E51A490CE000003EF2 /* DominantColor-iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 898845F31A490CE000003EF2 /* Build configuration list for PBXNativeTarget "DominantColor-iOSTests" */;
-			buildPhases = (
-				898845E21A490CE000003EF2 /* Sources */,
-				898845E31A490CE000003EF2 /* Frameworks */,
-				898845E41A490CE000003EF2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				898845E81A490CE000003EF2 /* PBXTargetDependency */,
-			);
-			name = "DominantColor-iOSTests";
-			productName = "DominantColor-iOSTests";
-			productReference = 898845E61A490CE000003EF2 /* DominantColor-iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -257,10 +219,6 @@
 					};
 					898845D11A490CE000003EF2 = {
 						CreatedOnToolsVersion = 6.1;
-					};
-					898845E51A490CE000003EF2 = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = 898845D11A490CE000003EF2;
 					};
 				};
 			};
@@ -279,7 +237,6 @@
 			targets = (
 				72D797B71A43F44D00D32E7C /* DominantColor */,
 				898845D11A490CE000003EF2 /* DominantColor-iOS */,
-				898845E51A490CE000003EF2 /* DominantColor-iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -301,13 +258,6 @@
 				898845DC1A490CE000003EF2 /* Main.storyboard in Resources */,
 				898845E11A490CE000003EF2 /* LaunchScreen.xib in Resources */,
 				898845DE1A490CE000003EF2 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		898845E41A490CE000003EF2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,23 +288,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		898845E21A490CE000003EF2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				898845ED1A490CE000003EF2 /* DominantColor_iOSTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		898845E81A490CE000003EF2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 898845D11A490CE000003EF2 /* DominantColor-iOS */;
-			targetProxy = 898845E71A490CE000003EF2 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		72D797C11A43F44D00D32E7C /* MainMenu.xib */ = {
@@ -529,45 +463,6 @@
 			};
 			name = Release;
 		};
-		898845F01A490CE000003EF2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "DominantColor-iOSTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DominantColor-iOS.app/DominantColor-iOS";
-			};
-			name = Debug;
-		};
-		898845F11A490CE000003EF2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "DominantColor-iOSTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DominantColor-iOS.app/DominantColor-iOS";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -594,14 +489,6 @@
 			buildConfigurations = (
 				898845EE1A490CE000003EF2 /* Debug */,
 				898845EF1A490CE000003EF2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		898845F31A490CE000003EF2 /* Build configuration list for PBXNativeTarget "DominantColor-iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				898845F01A490CE000003EF2 /* Debug */,
-				898845F11A490CE000003EF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

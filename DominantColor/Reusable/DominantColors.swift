@@ -48,24 +48,15 @@ private func enumerateRGBAContext(context: CGContext, handler: (UInt, UInt, RGBA
 }
 
 // MARK: Conversions
-//CGColorCreateGenericRGB isn't Avaiable on iOS
 
-#if os(OSX)
-    private extension IN_RGBColor {
-        func toCGColor() -> CGColorRef {
-            return CGColorCreateGenericRGB(CGFloat(r), CGFloat(g), CGFloat(b), 1.0)
-        }
-    }
-#elseif os(iOS)
-    private extension IN_RGBColor {
+private extension IN_RGBColor {
     func toCGColor() -> CGColorRef {
-    let components = [CGFloat(r), CGFloat(g),CGFloat(b), CGFloat(1.0)]
-    let colorSpace = CGColorSpaceCreateDeviceRGB()
-    let CGColor    = CGColorCreate( colorSpace, components);
-    return CGColor
-        }
+        let components = [CGFloat(r), CGFloat(g), CGFloat(b), CGFloat(1.0)]
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let CGColor    = CGColorCreate(colorSpace, components);
+        return CGColor
     }
-#endif
+}
 
 private extension RGBAPixel {
     func toRGBColor() -> IN_RGBColor {
@@ -104,7 +95,7 @@ private func selectKForElements<T>(elements: [T]) -> Int {
 
 // MARK: Main
 
-// Computes the proportionally scaled dimensions such that the 
+// Computes the proportionally scaled dimensions such that the
 // total number of pixels does not exceed the specified limit.
 private func scaledDimensionsForPixelLimit(limit: UInt, width: UInt, height: UInt) -> (UInt, UInt) {
     if (width * height > limit) {
