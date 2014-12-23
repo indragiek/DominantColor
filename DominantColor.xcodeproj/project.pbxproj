@@ -38,7 +38,6 @@
 		723DE5C51A4939A200C357E3 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE51A1A49348D00C357E3 /* KMeans.swift */; };
 		723DE5C61A4939A300C357E3 /* ColorSpaceConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */; };
 		723DE5C71A4939A500C357E3 /* INVector3.m in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5191A49348D00C357E3 /* INVector3.m */; };
-		898845F51A490CFC00003EF2 /* (null) in Sources */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -473,7 +472,6 @@
 			files = (
 				723DE56B1A49385C00C357E3 /* ViewController.swift in Sources */,
 				723DE5691A49385C00C357E3 /* AppDelegate.swift in Sources */,
-				898845F51A490CFC00003EF2 /* (null) in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
