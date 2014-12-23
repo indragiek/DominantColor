@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7216C7501A476EF700DC2545 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74C1A476EF700DC2545 /* DominantColors.swift */; };
 		7216C7511A476EF700DC2545 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74D1A476EF700DC2545 /* KMeans.swift */; };
+		723DE5101A49336F00C357E3 /* ColorDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282C2E01A48C747001D4408 /* ColorDifference.swift */; };
+		723DE5111A49337C00C357E3 /* INVector3.m in Sources */ = {isa = PBXBuildFile; fileRef = 728FC1AA1A47C8F1005F0C62 /* INVector3.m */; };
+		723DE5121A49337F00C357E3 /* ColorSpaceConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D2D2511A47CA2500242484 /* ColorSpaceConversion.m */; };
 		7282C2E11A48C747001D4408 /* ColorDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282C2E01A48C747001D4408 /* ColorDifference.swift */; };
 		728FC1AC1A47C8F1005F0C62 /* INVector3.m in Sources */ = {isa = PBXBuildFile; fileRef = 728FC1AA1A47C8F1005F0C62 /* INVector3.m */; };
 		72B92AF51A45157800A2C24C /* DragAndDropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B92AF41A45157800A2C24C /* DragAndDropImageView.swift */; };
@@ -23,7 +26,7 @@
 		898845DE1A490CE000003EF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 898845DD1A490CE000003EF2 /* Images.xcassets */; };
 		898845E11A490CE000003EF2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 898845DF1A490CE000003EF2 /* LaunchScreen.xib */; };
 		898845F41A490CF600003EF2 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74D1A476EF700DC2545 /* KMeans.swift */; };
-		898845F51A490CFC00003EF2 /* RGBYUVConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74F1A476EF700DC2545 /* RGBYUVConversion.m */; };
+		898845F51A490CFC00003EF2 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		898845F61A490D0B00003EF2 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7216C74C1A476EF700DC2545 /* DominantColors.swift */; };
 /* End PBXBuildFile section */
 
@@ -271,8 +274,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				898845F61A490D0B00003EF2 /* DominantColors.swift in Sources */,
-				898845F51A490CFC00003EF2 /* RGBYUVConversion.m in Sources */,
+				898845F51A490CFC00003EF2 /* (null) in Sources */,
+				723DE5121A49337F00C357E3 /* ColorSpaceConversion.m in Sources */,
+				723DE5101A49336F00C357E3 /* ColorDifference.swift in Sources */,
 				898845F41A490CF600003EF2 /* KMeans.swift in Sources */,
+				723DE5111A49337C00C357E3 /* INVector3.m in Sources */,
 				898845D91A490CE000003EF2 /* ViewController.swift in Sources */,
 				898845D71A490CE000003EF2 /* AppDelegate.swift in Sources */,
 			);
@@ -481,6 +487,7 @@
 				898845EF1A490CE000003EF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

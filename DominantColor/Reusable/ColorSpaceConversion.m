@@ -24,7 +24,7 @@ static GLKVector3 RGBToSRGB(GLKVector3 rgbVector) {
 static GLKVector3 SRGBToRGB(GLKVector3 srgbVector) {
 #if TARGET_OS_IPHONE
     // sRGB is the native device color space on iOS, no conversion is required.
-    return rgbVector;
+    return srgbVector;
 #else
     const CGFloat components[4] = { srgbVector.x, srgbVector.y, srgbVector.z, 1.0 };
     NSColor *srgbColor = [NSColor colorWithColorSpace:NSColorSpace.sRGBColorSpace components:components count:4];
