@@ -6,7 +6,11 @@
 //  Copyright (c) 2014 Indragie Karunaratne. All rights reserved.
 //
 
+#if os(OSX)
 import Foundation
+#elseif os(iOS)
+import UIKit
+#endif
 
 // MARK: Bitmaps
 
@@ -44,12 +48,24 @@ private func enumerateRGBAContext(context: CGContext, handler: (UInt, UInt, RGBA
 }
 
 // MARK: Conversions
+//CGColorCreateGenericRGB isn't Avaiable on iOS
 
-private extension IN_RGBColor {
-    func toCGColor() -> CGColorRef {
-        return CGColorCreateGenericRGB(CGFloat(r), CGFloat(g), CGFloat(b), 1.0)
+#if os(OSX)
+    private extension IN_RGBColor {
+        func toCGColor() -> CGColorRef {
+            return CGColorCreateGenericRGB(CGFloat(r), CGFloat(g), CGFloat(b), 1.0)
+        }
     }
-}
+#elseif os(iOS)
+    private extension IN_RGBColor {
+    func toCGColor() -> CGColorRef {
+    let components = [CGFloat(r), CGFloat(g),CGFloat(b), CGFloat(1.0)]
+    let colorSpace = CGColorSpaceCreateDeviceRGB()
+    let CGColor    = CGColorCreate( colorSpace, components);
+    return CGColor
+        }
+    }
+#endif
 
 private extension RGBAPixel {
     func toRGBColor() -> IN_RGBColor {
