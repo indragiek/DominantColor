@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="DominantColor_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gjM-vU-Oxh">
+                                <rect key="frame" x="32" y="80" width="256" height="256"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="256" id="5zG-Zk-FBY"/>
+                                    <constraint firstAttribute="width" constant="256" id="WnT-jm-AWI"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFs-W0-uW4">
+                                <rect key="frame" x="115" y="42" width="90" height="30"/>
+                                <state key="normal" title="Select Image">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="R0z-iL-jNb"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rph-LX-cib">
+                                <rect key="frame" x="-1" y="348" width="323" height="80"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8RD-Ya-Lx7">
+                                        <rect key="frame" x="263" y="20" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hzD-zq-e5t">
+                                        <rect key="frame" x="215" y="20" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbD-ZP-BKy">
+                                        <rect key="frame" x="167" y="20" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t5o-oD-cMC">
+                                        <rect key="frame" x="20" y="20" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wjD-pL-t1O">
+                                        <rect key="frame" x="119" y="20" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dhx-DO-y5X">
+                                        <rect key="frame" x="68" y="20" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xab-U8-4aK">
+                                <rect key="frame" x="105" y="455" width="110" height="30"/>
+                                <state key="normal" title="Run Benchmark">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="runBenchmarkTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="OpT-op-kTb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qFs-W0-uW4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="22" id="HFd-Mi-V7J"/>
+                            <constraint firstAttribute="centerX" secondItem="qFs-W0-uW4" secondAttribute="centerX" id="PLY-Mb-R0g"/>
+                            <constraint firstItem="gjM-vU-Oxh" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="60" id="a50-cw-NFJ"/>
+                            <constraint firstAttribute="centerX" secondItem="gjM-vU-Oxh" secondAttribute="centerX" id="aZy-mZ-v8p"/>
+                            <constraint firstItem="xab-U8-4aK" firstAttribute="top" secondItem="rph-LX-cib" secondAttribute="bottom" constant="27" id="oMS-gE-AGd"/>
+                            <constraint firstAttribute="centerX" secondItem="xab-U8-4aK" secondAttribute="centerX" id="qz8-wK-vuK"/>
+                            <constraint firstAttribute="centerX" secondItem="rph-LX-cib" secondAttribute="centerX" constant="-0.5" id="x6c-JT-iCv"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="rph-LX-cib" secondAttribute="bottom" constant="140" id="zDc-Ip-Pwg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="box1" destination="t5o-oD-cMC" id="0Wq-4k-rtX"/>
+                        <outlet property="box2" destination="dhx-DO-y5X" id="vNC-jC-2uv"/>
+                        <outlet property="box3" destination="wjD-pL-t1O" id="THy-QE-fK9"/>
+                        <outlet property="box4" destination="sbD-ZP-BKy" id="yjV-aU-B06"/>
+                        <outlet property="box5" destination="hzD-zq-e5t" id="NZc-32-dpm"/>
+                        <outlet property="box6" destination="8RD-Ya-Lx7" id="o5K-TL-fqE"/>
+                        <outlet property="imageView" destination="gjM-vU-Oxh" id="ePF-ha-mjP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="162" y="460"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

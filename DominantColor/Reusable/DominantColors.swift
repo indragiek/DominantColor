@@ -6,7 +6,11 @@
 //  Copyright (c) 2014 Indragie Karunaratne. All rights reserved.
 //
 
+#if os(OSX)
 import Foundation
+#elseif os(iOS)
+import UIKit
+#endif
 
 // MARK: Bitmaps
 
@@ -46,7 +50,7 @@ private func enumerateRGBAContext(context: CGContext, handler: (UInt, UInt, RGBA
 // MARK: Conversions
 
 private func RGBVectorToCGColor(rgbVector: INVector3) -> CGColor {
-    return CGColorCreateGenericRGB(CGFloat(rgbVector.x), CGFloat(rgbVector.y), CGFloat(rgbVector.z), 1.0)
+    return CGColorCreate(CGColorSpaceCreateDeviceRGB(), [CGFloat(rgbVector.x), CGFloat(rgbVector.y), CGFloat(rgbVector.z), 1.0])
 }
 
 private extension RGBAPixel {
@@ -86,7 +90,7 @@ private func selectKForElements<T>(elements: [T]) -> Int {
 
 // MARK: Main
 
-// Computes the proportionally scaled dimensions such that the 
+// Computes the proportionally scaled dimensions such that the
 // total number of pixels does not exceed the specified limit.
 private func scaledDimensionsForPixelLimit(limit: UInt, width: UInt, height: UInt) -> (UInt, UInt) {
     if (width * height > limit) {
