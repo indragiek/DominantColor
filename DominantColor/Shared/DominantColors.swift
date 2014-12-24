@@ -18,7 +18,21 @@ private struct RGBAPixel {
     let r: UInt8
     let g: UInt8
     let b: UInt8
+   
     let a: UInt8
+}
+
+extension INVector3: Hashable {
+    public var hashValue: Int {
+        // HashValue will be the result of an OR op over the R, G, B values which are each 8 bits
+        // But 8 * 3 = 24, so align that on the next available integer size ie 32 bits.
+        // In the end hashvalue will look like this: 00000000rrrrrrrrggggggggbbbbbbbb
+        return Int((Int(x) << sizeof(x.dynamicType) | Int(y)) << sizeof(y.dynamicType) | Int(z))
+    }
+}
+
+public func ==(lhs: INVector3, rhs: INVector3) -> Bool {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
 }
 
 private func createRGBAContext(width: UInt, height: UInt) -> CGContext {
@@ -88,6 +102,21 @@ private func selectKForElements<T>(elements: [T]) -> Int {
     return 16
 }
 
+// MARK: Memoization
+
+private func memoize<T: Hashable, U>(f: T -> U) -> T -> U {
+    var cache = [Int:U]()
+    
+    return { k in
+        var v = cache[k.hashValue]
+        if v == nil {
+            v = f(k)
+            cache[k.hashValue] = v
+        }
+        return v!
+    }
+}
+
 // MARK: Main
 
 // Computes the proportionally scaled dimensions such that the
@@ -109,37 +138,29 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: 
     // pixels sampled does not exceed the specified maximum.
     let context = createRGBAContext(scaledWidth, scaledHeight)
     CGContextDrawImage(context, CGRect(x: 0, y: 0, width: Int(scaledWidth), height: Int(scaledHeight)), image)
-    
-    var yuvColors = [INVector3]()
-    yuvColors.reserveCapacity(Int(width * height))
-    var cache = [UInt32:INVector3]()
+
 
     // Get the RGB colors from the bitmap context, ignoring any pixels
     // that have alpha transparency.
     // Also convert the colors to the LAB color space
+    var labValues = [INVector3]()
+    labValues.reserveCapacity(Int(scaledWidth * scaledHeight))
+    
+    var memoizedConverter = memoize(IN_RGBToLAB)
     enumerateRGBAContext(context) { (_, _, pixel) in
         if pixel.a == UInt8.max {
-            // HashValue will be the result of an OR op over the R, G, B values which are each 8 bytes
-            // But 8 * 3 = 24, so align that on the next available byte size ie 32
-            // So hashvalue will look like this: 00000000rrrrrrrrggggggggbbbbbbbb
-            var hashValue = (UInt32(pixel.r) << 16) | (UInt32(pixel.g) << 8) | (UInt32(pixel.b) << 0)
-            var labValue = cache[hashValue]
-            
-            if labValue == nil { // Cache miss
-                labValue = IN_RGBToLAB(pixel.toRGBVector())
-                cache[hashValue] = labValue
-            }
-            yuvColors.append(labValue!)
+            labValues.append(memoizedConverter(pixel.toRGBVector()))
         }
     }
 
     // cluster the colors using the k-means algorithm
-    let k = selectKForElements(yuvColors)
-    var clusters = kmeans(yuvColors, k, seed)
+    let k = selectKForElements(labValues)
+    var clusters = kmeans(labValues, k, seed)
     
     // Sort the clusters by size in descending order so that the
     // most dominant colors come first.
     clusters.sort { $0.size > $1.size }
-    
-    return clusters.map { RGBVectorToCGColor(IN_LABToRGB($0.centroid)) }
+
+    memoizedConverter = memoize(IN_LABToRGB)
+    return clusters.map { RGBVectorToCGColor(memoizedConverter($0.centroid)) }
 }
