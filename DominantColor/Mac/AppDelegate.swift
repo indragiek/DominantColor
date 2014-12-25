@@ -35,7 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, DragAndDropImageViewDelegate
             let CGImage = image.CGImageForProposedRect(nil, context: nil, hints: nil)!.takeUnretainedValue()
             for n in nValues {
                 let ns = dispatch_benchmark(5) {
-                    dominantColorsInImage(CGImage, n, 98251)
+                    dominantColorsInImage(CGImage, maxSampledPixels: n)
                     return
                 }
                 println("n = \(n) averaged \(ns/1000000) ms")
@@ -49,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, DragAndDropImageViewDelegate
             
             self.image = image
             let CGImage = image.CGImageForProposedRect(nil, context: nil, hints: nil)!.takeUnretainedValue()
-            let colors = dominantColorsInImage(CGImage, 1000, 98251)
+            let colors = dominantColorsInImage(CGImage)
             let boxes = [box1, box2, box3, box4, box5, box6]
             
             for box in boxes {

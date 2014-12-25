@@ -75,43 +75,23 @@ private extension RGBAPixel {
 
 // MARK: Clustering
 
-public func +(lhs: INVector3, rhs: INVector3) -> INVector3 {
-    return INVector3Add(lhs, rhs)
-}
-
-extension INVector3 : ClusteredType {
-    public func distance(to: INVector3) -> Float {
-        return CIE2000SquaredColorDifference(self, to)
-    }
-    
-    public func divideScalar(scalar: Int) -> INVector3 {
-        return INVector3DivideScalar(self, Float(scalar))
-    }
-    
-    public static var identity: INVector3 {
-        return INVector3(x: 0, y: 0, z: 0)
-    }
-}
-
-private func selectKForElements<T>(elements: [T]) -> Int {
-    // Seems like a magic number...
-    return 16
-}
+extension INVector3 : ClusteredType {}
 
 // MARK: Main
 
-// Computes the proportionally scaled dimensions such that the
-// total number of pixels does not exceed the specified limit.
-private func scaledDimensionsForPixelLimit(limit: UInt, width: UInt, height: UInt) -> (UInt, UInt) {
-    if (width * height > limit) {
-        let ratio = Float(width) / Float(height)
-        let maxWidth = sqrtf(ratio * Float(limit))
-        return (UInt(maxWidth), UInt(Float(limit) / maxWidth))
-    }
-    return (width, height)
+public enum GroupingAccuracy {
+    case Low        // CIE 76 - Euclidian distance
+    case Medium     // CIE 94 - Perceptual non-uniformity corrections
+    case High       // CIE 2000 - Additional corrections for neutral colors, lightness, chroma, and hue
 }
 
-public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: Int) -> [CGColor] {
+public func dominantColorsInImage(
+        image: CGImage,
+        maxSampledPixels: UInt = 1000,
+        accuracy: GroupingAccuracy = .Medium,
+        seed: UInt32 = 3571
+    ) -> [CGColor] {
+    
     let (width, height) = (CGImageGetWidth(image), CGImageGetHeight(image))
     let (scaledWidth, scaledHeight) = scaledDimensionsForPixelLimit(maxSampledPixels, width, height)
     
@@ -132,14 +112,40 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: 
             labValues.append(memoizedRGBToLAB(pixel))
         }
     }
-
     // Cluster the colors using the k-means algorithm
     let k = selectKForElements(labValues)
-    var clusters = kmeans(labValues, k, seed)
+    var clusters = kmeans(labValues, k, seed, distanceForAccuracy(accuracy))
     
     // Sort the clusters by size in descending order so that the
     // most dominant colors come first.
     clusters.sort { $0.size > $1.size }
     
     return clusters.map { RGBVectorToCGColor(IN_LABToRGB($0.centroid)) }
+}
+
+private func distanceForAccuracy(accuracy: GroupingAccuracy) -> (INVector3, INVector3) -> Float {
+    switch accuracy {
+    case .Low:
+        return CIE76SquaredColorDifference
+    case .Medium:
+        return CIE94SquaredColorDifference()
+    case .High:
+        return CIE2000SquaredColorDifference()
+    }
+}
+
+// Computes the proportionally scaled dimensions such that the
+// total number of pixels does not exceed the specified limit.
+private func scaledDimensionsForPixelLimit(limit: UInt, width: UInt, height: UInt) -> (UInt, UInt) {
+    if (width * height > limit) {
+        let ratio = Float(width) / Float(height)
+        let maxWidth = sqrtf(ratio * Float(limit))
+        return (UInt(maxWidth), UInt(Float(limit) / maxWidth))
+    }
+    return (width, height)
+}
+
+private func selectKForElements<T>(elements: [T]) -> Int {
+    // Seems like a magic number...
+    return 16
 }

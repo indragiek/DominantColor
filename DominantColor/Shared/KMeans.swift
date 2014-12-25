@@ -11,14 +11,9 @@ import Darwin
 // Represents a type that can be clustered using the k-means clustering
 // algorithm.
 protocol ClusteredType {
-    // Distance between two clustered objects. Typically, this is the
-    // Euclidean distance between two vectors.
-    func distance(to: Self) -> Float
-    
-    // `+` and `divideScalar` are used to compute average values to
-    // determine the cluster centroids.
+    // Used to compute average values to determine the cluster centroids.
     func +(lhs: Self, rhs: Self) -> Self
-    func divideScalar(scalar: Int) -> Self
+    func /(lhs: Self, rhs: Int) -> Self
     
     // Identity value such that x + identity = x. Typically the 0 vector.
     class var identity: Self { get }
@@ -32,11 +27,18 @@ struct Cluster<T : ClusteredType> {
 // k-means clustering algorithm from
 // http://users.eecs.northwestern.edu/~wkliao/Kmeans/
 
-func kmeans<T : ClusteredType>(objects: [T], k: Int, seed: Int, threshold: Float = 0.0001) -> [Cluster<T>] {
-    let n = countElements(objects)
-    assert(k <= n, "k cannot be larger than the total number of objects")
+func kmeans<T : ClusteredType>(
+        points: [T],
+        k: Int,
+        seed: UInt32,
+        distance: (T, T) -> Float,
+        threshold: Float = 0.0001
+    ) -> [Cluster<T>] {
+            
+    let n = countElements(points)
+    assert(k <= n, "k cannot be larger than the total number of points")
 
-    var centroids = objects.randomValues(seed, count: k)
+    var centroids = points.randomValues(seed, count: k)
     var memberships = [Int](count: n, repeatedValue: -1)
     var clusterSizes = [Int](count: k, repeatedValue: 0)
     
@@ -49,19 +51,19 @@ func kmeans<T : ClusteredType>(objects: [T], k: Int, seed: Int, threshold: Float
         var newClusterSizes = [Int](count: k, repeatedValue: 0)
         
         for i in 0..<n {
-            let object = objects[i]
-            let clusterIndex = findNearestCluster(object, centroids, k)
+            let point = points[i]
+            let clusterIndex = findNearestCluster(point, centroids, k, distance)
             if memberships[i] != clusterIndex {
                 error += 1
                 memberships[i] = clusterIndex
             }
             newClusterSizes[clusterIndex]++
-            newCentroids[clusterIndex] = newCentroids[clusterIndex] + object
+            newCentroids[clusterIndex] = newCentroids[clusterIndex] + point
         }
         for i in 0..<k {
             let size = newClusterSizes[i]
             if size > 0 {
-                centroids[i] = newCentroids[i].divideScalar(size)
+                centroids[i] = newCentroids[i] / size
             }
         }
         
@@ -72,11 +74,11 @@ func kmeans<T : ClusteredType>(objects: [T], k: Int, seed: Int, threshold: Float
     return map(Zip2(centroids, clusterSizes)) { Cluster(centroid: $0, size: $1) }
 }
 
-private func findNearestCluster<T : ClusteredType>(object: T, centroids: [T], k: Int) -> Int {
+private func findNearestCluster<T : ClusteredType>(point: T, centroids: [T], k: Int, distance: (T, T) -> Float) -> Int {
     var minDistance = Float.infinity
     var clusterIndex = 0
     for i in 0..<k {
-        let distance = object.distance(centroids[i])
+        let distance = distance(point, centroids[i])
         if distance < minDistance {
             minDistance = distance
             clusterIndex = i
@@ -97,8 +99,8 @@ private func randomNumberInRange(range: Range<Int>) -> Int {
 }
 
 private extension Array {
-    private func randomValues(seed: Int, count: Int) -> [T] {
-        srand(UInt32(seed))
+    private func randomValues(seed: UInt32, count: Int) -> [T] {
+        srand(seed)
         
         var indices = [Int]()
         indices.reserveCapacity(count)

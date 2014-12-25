@@ -16,15 +16,15 @@ Once the colors have been converted to sRGB, they are first converted to linear 
 
 #### Color Difference
 
-A simple calculation of the color difference simply takes the Euclidian distance between two vectors of LAB color coordinates<sup>[[8]](http://en.wikipedia.org/wiki/Color_difference#CIE76)</sup>. However, this does not address perceptual uniformity issues. This project uses the CIE 2000 definition of color difference instead, which adds several corrections to resolve these issues<sup>[[9]](http://en.wikipedia.org/wiki/Color_difference#CIEDE2000)</sup>. 
+A color difference algorithm is used to group similar colors. API consumers can choose between the CIE 76<sup>[[8]](http://en.wikipedia.org/wiki/Color_difference#CIE76)</sup>, CIE 94<sup>[[9]](http://en.wikipedia.org/wiki/Color_difference#CIE94)</sup>, and CIE 2000<sup>[[10]](http://en.wikipedia.org/wiki/Color_difference#CIEDE2000)</sup> algorithms for low, medium, and high color grouping accuracy, respectively. The default algorithm is CIE 94, as it provides results that are close to CIE 2000 with a negligible performance impact in comparison to CIE 76.
 
 #### Clustering (k-means)
 
-Pixels are grouped into clusters of dominant colors using a standard k-means clustering algorithm<sup>[[10](http://en.wikipedia.org/wiki/K-means_clustering)][[11](http://users.eecs.northwestern.edu/~wkliao/Kmeans/)][[12](http://cs.smu.ca/~r_zhang/code/kmeans.c)]</sup>. 
+Pixels are grouped into clusters of dominant colors using a standard k-means clustering algorithm<sup>[[11](http://en.wikipedia.org/wiki/K-means_clustering)][[12](http://users.eecs.northwestern.edu/~wkliao/Kmeans/)][[13](http://cs.smu.ca/~r_zhang/code/kmeans.c)]</sup>. 
 
 ##### Choosing K
 
-The k-value was originally chosen based on the rule of thumb `k = sqrt(n/2)`<sup>[[13](http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#cite_note-1)]</sup> but this resulted in `k`-values that were too large to run in a reasonable amount of time for large values of `n`. Right now, I'm using a magic value of `16` because empirical testing showed that it yielded the best results for many different images but I'm still looking into a number of more data-driven alternate approaches.
+The k-value was originally chosen based on the rule of thumb `k = sqrt(n/2)`<sup>[[14](http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#cite_note-1)]</sup> but this resulted in `k`-values that were too large to run in a reasonable amount of time for large values of `n`. Right now, I'm using a magic value of `16` because empirical testing showed that it yielded the best results for many different images but I'm still looking into a number of more data-driven alternate approaches.
 
 ##### Selecting Initial Centroids
 
@@ -32,7 +32,7 @@ The initial centroids are currently selected on a random basis. An alternative a
 
 #### Downsampling
 
-The k-means algorithm has a worst case runtime that is super-polynomial in the input size<sup>[[14](http://en.wikipedia.org/wiki/K-means%2B%2B)]</sup>, so sampling large numbers of pixels is a problem. Images are automatically downsampled such that the total number of pixels is less than or equal to a specified maximum number of pixels to sample. The value I've been using is `1000`, which is a good balance between accurate results and runtime. 
+The k-means algorithm has a worst case runtime that is super-polynomial in the input size<sup>[[15](http://en.wikipedia.org/wiki/K-means%2B%2B)]</sup>, so sampling large numbers of pixels is a problem. Images are automatically downsampled such that the total number of pixels is less than or equal to a specified maximum number of pixels to sample. The value I've been using is `1000`, which is a good balance between accurate results and runtime. 
 
 ### Implementation
 
@@ -65,9 +65,10 @@ Licensed under the MIT License.
 <sup>6</sup> [http://en.wikipedia.org/wiki/Illuminant_D65](http://en.wikipedia.org/wiki/Illuminant_D65)    
 <sup>7</sup> [http://www.easyrgb.com/index.php?X=MATH&H=15#text15](http://www.easyrgb.com/index.php?X=MATH&H=15#text15)  
 <sup>8</sup> [http://en.wikipedia.org/wiki/Color_difference#CIE76](http://en.wikipedia.org/wiki/Color_difference#CIE76)    
-<sup>9</sup> [http://en.wikipedia.org/wiki/Color_difference#CIEDE2000](http://en.wikipedia.org/wiki/Color_difference#CIEDE2000)    
-<sup>10</sup> [http://en.wikipedia.org/wiki/K-means_clustering](http://en.wikipedia.org/wiki/K-means_clustering)  
-<sup>11</sup> [http://users.eecs.northwestern.edu/~wkliao/Kmeans/](http://users.eecs.northwestern.edu/~wkliao/Kmeans/)  
-<sup>12</sup> [http://cs.smu.ca/~r_zhang/code/kmeans.c](http://cs.smu.ca/~r_zhang/code/kmeans.c)  
-<sup>13</sup> [http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#cite_note-1](http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#cite_note-1)  
-<sup>14</sup> [http://en.wikipedia.org/wiki/K-means%2B%2B](http://en.wikipedia.org/wiki/K-means%2B%2B)
+<sup>9</sup> [http://en.wikipedia.org/wiki/Color_difference#CIEDE2000](http://en.wikipedia.org/wiki/Color_difference#CIE94)    
+<sup>10</sup> [http://en.wikipedia.org/wiki/Color_difference#CIEDE2000](http://en.wikipedia.org/wiki/Color_difference#CIEDE2000)  
+<sup>11</sup> [http://en.wikipedia.org/wiki/K-means_clustering](http://en.wikipedia.org/wiki/K-means_clustering)  
+<sup>12</sup> [http://users.eecs.northwestern.edu/~wkliao/Kmeans/](http://users.eecs.northwestern.edu/~wkliao/Kmeans/)  
+<sup>13</sup> [http://cs.smu.ca/~r_zhang/code/kmeans.c](http://cs.smu.ca/~r_zhang/code/kmeans.c)  
+<sup>14</sup> [http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#cite_note-1](http://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set#cite_note-1)  
+<sup>15</sup> [http://en.wikipedia.org/wiki/K-means%2B%2B](http://en.wikipedia.org/wiki/K-means%2B%2B)
