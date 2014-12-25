@@ -98,21 +98,6 @@ private func selectKForElements<T>(elements: [T]) -> Int {
     return 16
 }
 
-// MARK: Memoization
-
-private func memoize<T: Hashable, U>(f: T -> U) -> T -> U {
-    var cache = [T : U]()
-    
-    return { key in
-        var value = cache[key]
-        if value == nil {
-            value = f(key)
-            cache[key] = value
-        }
-        return value!
-    }
-}
-
 // MARK: Main
 
 // Computes the proportionally scaled dimensions such that the
@@ -141,11 +126,7 @@ public func dominantColorsInImage(image: CGImage, maxSampledPixels: UInt, seed: 
     var labValues = [INVector3]()
     labValues.reserveCapacity(Int(scaledWidth * scaledHeight))
     
-    let pixelToLAB: RGBAPixel -> INVector3 = { pixel in
-        return IN_RGBToLAB(pixel.toRGBVector())
-    }
-    
-    let memoizedRGBToLAB = memoize(pixelToLAB)
+    let memoizedRGBToLAB: RGBAPixel -> INVector3 = memoize { IN_RGBToLAB($0.toRGBVector()) }
     enumerateRGBAContext(context) { (_, _, pixel) in
         if pixel.a == UInt8.max {
             labValues.append(memoizedRGBToLAB(pixel))

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F3D09861A4C212A001ED0BF /* Memoization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D09851A4C212A001ED0BF /* Memoization.swift */; };
+		2F3D09871A4C212A001ED0BF /* Memoization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D09851A4C212A001ED0BF /* Memoization.swift */; };
 		723DE5291A4934E200C357E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5261A4934E200C357E3 /* AppDelegate.swift */; };
 		723DE52A1A4934E200C357E3 /* DragAndDropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5271A4934E200C357E3 /* DragAndDropImageView.swift */; };
 		723DE52B1A4934E200C357E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 723DE5281A4934E200C357E3 /* Images.xcassets */; };
@@ -83,6 +85,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2F3D09851A4C212A001ED0BF /* Memoization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memoization.swift; sourceTree = "<group>"; };
 		723DE5141A49348D00C357E3 /* ColorDifference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorDifference.swift; sourceTree = "<group>"; };
 		723DE5151A49348D00C357E3 /* ColorSpaceConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSpaceConversion.h; sourceTree = "<group>"; };
 		723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSpaceConversion.m; sourceTree = "<group>"; };
@@ -161,6 +164,7 @@
 				723DE5191A49348D00C357E3 /* INVector3.m */,
 				723DE51A1A49348D00C357E3 /* KMeans.swift */,
 				723DE5381A49353C00C357E3 /* Supporting Files */,
+				2F3D09851A4C212A001ED0BF /* Memoization.swift */,
 			);
 			name = Shared;
 			path = DominantColor/Shared;
@@ -437,6 +441,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F3D09861A4C212A001ED0BF /* Memoization.swift in Sources */,
 				723DE55C1A49360F00C357E3 /* ColorDifference.swift in Sources */,
 				723DE55D1A49361100C357E3 /* DominantColors.swift in Sources */,
 				723DE55E1A49361200C357E3 /* KMeans.swift in Sources */,
@@ -449,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F3D09871A4C212A001ED0BF /* Memoization.swift in Sources */,
 				723DE5C31A49399E00C357E3 /* ColorDifference.swift in Sources */,
 				723DE5C41A4939A000C357E3 /* DominantColors.swift in Sources */,
 				723DE5C51A4939A200C357E3 /* KMeans.swift in Sources */,
