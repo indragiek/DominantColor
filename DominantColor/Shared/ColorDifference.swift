@@ -25,16 +25,15 @@ private func C(a: Float, b: Float) -> Float {
 
 // From http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE94.html
 public func CIE94SquaredColorDifference(
-    lab1: INVector3,
-    lab2: INVector3,
-    kL: Float = 1,
-    kC: Float = 1,
-    kH: Float = 1,
-    K1: Float = 0.045,
-    K2: Float = 0.015) -> Float {
+        kL: Float = 1,
+        kC: Float = 1,
+        kH: Float = 1,
+        K1: Float = 0.045,
+        K2: Float = 0.015
+    )(colors: (INVector3, INVector3)) -> Float {
     
-    let (L1, a1, b1) = lab1.unpack()
-    let (L2, a2, b2) = lab2.unpack()
+    let (L1, a1, b1) = colors.0.unpack()
+    let (L2, a2, b2) = colors.1.unpack()
     let ΔL = L1 - L2
         
     let (C1, C2) = (C(a1, b1), C(a2, b2))
@@ -50,15 +49,10 @@ public func CIE94SquaredColorDifference(
 }
 
 // From http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE2000.html
-public func CIE2000SquaredColorDifference(
-    lab1: INVector3,
-    lab2: INVector3,
-    kL: Float = 1,
-    kC: Float = 1,
-    kH: Float = 1) -> Float {
+public func CIE2000SquaredColorDifference(kL: Float = 1, kC: Float = 1, kH: Float = 1)(colors: (INVector3, INVector3)) -> Float {
         
-    let (L1, a1, b1) = lab1.unpack()
-    let (L2, a2, b2) = lab2.unpack()
+    let (L1, a1, b1) = colors.0.unpack()
+    let (L2, a2, b2) = colors.1.unpack()
     
     let ΔLp = L2 - L1
     let Lbp = (L1 + L2) / 2

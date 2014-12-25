@@ -31,7 +31,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
             let CGImage = image.CGImage
             for n in nValues {
                 let ns = dispatch_benchmark(5) {
-                    dominantColorsInImage(CGImage, n, 98251)
+                    dominantColorsInImage(CGImage, maxSampledPixels: n)
                     return
                 }
                 println("n = \(n) averaged \(ns/1000000) ms")
@@ -47,7 +47,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
             imageView.image = imageSelected
             
             let CGImage = image.CGImage
-            let colors = dominantColorsInImage(CGImage, 1000, 98251)
+            let colors = dominantColorsInImage(CGImage)
 
             for box in boxes {
                 box.backgroundColor = UIColor.clearColor()
