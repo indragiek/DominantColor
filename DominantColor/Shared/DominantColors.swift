@@ -69,7 +69,7 @@ extension INVector3 : ClusteredType {}
 
 // MARK: Main
 
-public enum ClusteringAccuracy {
+public enum GroupingAccuracy {
     case Low        // CIE 76 - Euclidian distance
     case Medium     // CIE 94 - Perceptual non-uniformity corrections
     case High       // CIE 2000 - Additional corrections for neutral colors, lightness, chroma, and hue
@@ -78,7 +78,7 @@ public enum ClusteringAccuracy {
 public func dominantColorsInImage(
         image: CGImage,
         maxSampledPixels: UInt = 1000,
-        accuracy: ClusteringAccuracy = .Medium,
+        accuracy: GroupingAccuracy = .Medium,
         seed: UInt32 = 3571
     ) -> [CGColor] {
     
@@ -112,7 +112,7 @@ public func dominantColorsInImage(
     return clusters.map { RGBVectorToCGColor(IN_LABToRGB($0.centroid)) }
 }
 
-private func distanceForAccuracy(accuracy: ClusteringAccuracy) -> (INVector3, INVector3) -> Float {
+private func distanceForAccuracy(accuracy: GroupingAccuracy) -> (INVector3, INVector3) -> Float {
     switch accuracy {
     case .Low:
         return CIE76SquaredColorDifference
