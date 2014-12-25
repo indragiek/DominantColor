@@ -49,7 +49,11 @@ public func CIE94SquaredColorDifference(
 }
 
 // From http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE2000.html
-public func CIE2000SquaredColorDifference(kL: Float = 1, kC: Float = 1, kH: Float = 1)(colors: (INVector3, INVector3)) -> Float {
+public func CIE2000SquaredColorDifference(
+        kL: Float = 1,
+        kC: Float = 1,
+        kH: Float = 1
+    )(colors: (INVector3, INVector3)) -> Float {
         
     let (L1, a1, b1) = colors.0.unpack()
     let (L2, a2, b2) = colors.1.unpack()
