@@ -38,6 +38,8 @@
 		723DE5C51A4939A200C357E3 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE51A1A49348D00C357E3 /* KMeans.swift */; };
 		723DE5C61A4939A300C357E3 /* ColorSpaceConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */; };
 		723DE5C71A4939A500C357E3 /* INVector3.m in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5191A49348D00C357E3 /* INVector3.m */; };
+		72431C0F1A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72431C0E1A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift */; };
+		72431C101A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72431C0E1A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,7 @@
 		723DE5741A49388400C357E3 /* ExampleiOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ExampleiOS-Bridging-Header.h"; path = "DominantColor/iOS/ExampleiOS-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		723DE59F1A4938DD00C357E3 /* DominantColor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DominantColor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		723DE5BE1A49394D00C357E3 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/GLKit.framework; sourceTree = DEVELOPER_DIR; };
+		72431C0E1A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INVector3SwiftExtensions.swift; sourceTree = "<group>"; };
 		72D797B81A43F44D00D32E7C /* ExampleMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72D797DE1A43F89000D32E7C /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		898845D21A490CE000003EF2 /* ExampleiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +162,7 @@
 				723DE5171A49348D00C357E3 /* DominantColors.swift */,
 				723DE5181A49348D00C357E3 /* INVector3.h */,
 				723DE5191A49348D00C357E3 /* INVector3.m */,
+				72431C0E1A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift */,
 				723DE51A1A49348D00C357E3 /* KMeans.swift */,
 				723DE5381A49353C00C357E3 /* Supporting Files */,
 			);
@@ -438,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				723DE55C1A49360F00C357E3 /* ColorDifference.swift in Sources */,
+				72431C0F1A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift in Sources */,
 				723DE55D1A49361100C357E3 /* DominantColors.swift in Sources */,
 				723DE55E1A49361200C357E3 /* KMeans.swift in Sources */,
 				723DE5601A49361900C357E3 /* ColorSpaceConversion.m in Sources */,
@@ -450,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				723DE5C31A49399E00C357E3 /* ColorDifference.swift in Sources */,
+				72431C101A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift in Sources */,
 				723DE5C41A4939A000C357E3 /* DominantColors.swift in Sources */,
 				723DE5C51A4939A200C357E3 /* KMeans.swift in Sources */,
 				723DE5C61A4939A300C357E3 /* ColorSpaceConversion.m in Sources */,
