@@ -1,6 +1,6 @@
 ## DominantColor
 
-Finding the dominant colors of an image using the YUV color space and the k-means clustering algorithm.
+Finding the dominant colors of an image using the CIE LAB color space and the k-means clustering algorithm.
 
 ### Algorithm
 
