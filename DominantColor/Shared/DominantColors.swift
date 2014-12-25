@@ -65,15 +65,7 @@ private extension RGBAPixel {
 
 // MARK: Clustering
 
-public func +(lhs: INVector3, rhs: INVector3) -> INVector3 {
-    return INVector3Add(lhs, rhs)
-}
-
 extension INVector3 : ClusteredType {
-    public func divideScalar(scalar: Int) -> INVector3 {
-        return INVector3DivideScalar(self, Float(scalar))
-    }
-    
     public static var identity: INVector3 {
         return INVector3(x: 0, y: 0, z: 0)
     }

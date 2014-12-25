@@ -12,3 +12,11 @@ extension INVector3 {
     }
 }
 
+func +(lhs: INVector3, rhs: INVector3) -> INVector3 {
+    return INVector3(x: lhs.x + rhs.x, y: lhs.y + rhs.y, z: lhs.z + rhs.z)
+}
+
+func /(lhs: INVector3, rhs: Int) -> INVector3 {
+    let scalar = Float(rhs)
+    return INVector3(x: lhs.x / scalar, y: lhs.y / scalar, z: lhs.z / scalar)
+}

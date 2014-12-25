@@ -11,10 +11,9 @@ import Darwin
 // Represents a type that can be clustered using the k-means clustering
 // algorithm.
 protocol ClusteredType {
-    // `+` and `divideScalar` are used to compute average values to
-    // determine the cluster centroids.
+    // Used to compute average values to determine the cluster centroids.
     func +(lhs: Self, rhs: Self) -> Self
-    func divideScalar(scalar: Int) -> Self
+    func /(lhs: Self, rhs: Int) -> Self
     
     // Identity value such that x + identity = x. Typically the 0 vector.
     class var identity: Self { get }
@@ -64,7 +63,7 @@ func kmeans<T : ClusteredType>(
         for i in 0..<k {
             let size = newClusterSizes[i]
             if size > 0 {
-                centroids[i] = newCentroids[i].divideScalar(size)
+                centroids[i] = newCentroids[i] / size
             }
         }
         
