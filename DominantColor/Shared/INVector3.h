@@ -18,6 +18,3 @@ typedef struct {
 
 GLKVector3 INVector3ToGLKVector3(INVector3 vector);
 INVector3 GLKVector3ToINVector3(GLKVector3 vector);
-
-INVector3 INVector3Add(INVector3 v1, INVector3 v2);
-INVector3 INVector3DivideScalar(INVector3 vector, float scalar);
