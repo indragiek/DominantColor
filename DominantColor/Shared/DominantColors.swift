@@ -65,11 +65,7 @@ private extension RGBAPixel {
 
 // MARK: Clustering
 
-extension INVector3 : ClusteredType {
-    public static var identity: INVector3 {
-        return INVector3(x: 0, y: 0, z: 0)
-    }
-}
+extension INVector3 : ClusteredType {}
 
 // MARK: Main
 
