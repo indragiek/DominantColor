@@ -21,6 +21,16 @@ private struct RGBAPixel {
     let a: UInt8
 }
 
+extension RGBAPixel: Hashable {
+    private var hashValue: Int {
+        return (((r.hashValue << 8) | g.hashValue) << 8) | b.hashValue
+    }
+}
+
+private func ==(lhs: RGBAPixel, rhs: RGBAPixel) -> Bool {
+    return lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b
+}
+
 private func createRGBAContext(width: UInt, height: UInt) -> CGContext {
     return CGBitmapContextCreate(
         nil,
@@ -89,21 +99,22 @@ public func dominantColorsInImage(
     // pixels sampled does not exceed the specified maximum.
     let context = createRGBAContext(scaledWidth, scaledHeight)
     CGContextDrawImage(context, CGRect(x: 0, y: 0, width: Int(scaledWidth), height: Int(scaledHeight)), image)
-    
+
     // Get the RGB colors from the bitmap context, ignoring any pixels
     // that have alpha transparency.
-    var colors = [INVector3]()
-    colors.reserveCapacity(Int(width * height))
+    // Also convert the colors to the LAB color space
+    var labValues = [INVector3]()
+    labValues.reserveCapacity(Int(scaledWidth * scaledHeight))
+    
+    let memoizedRGBToLAB: RGBAPixel -> INVector3 = memoize { IN_RGBToLAB($0.toRGBVector()) }
     enumerateRGBAContext(context) { (_, _, pixel) in
         if pixel.a == UInt8.max {
-            colors.append(pixel.toRGBVector())
+            labValues.append(memoizedRGBToLAB(pixel))
         }
     }
-    
-    // Convert the colors to the LAB color space and cluster the colors using the k-means algorithm
-    let yuvColors = colors.map { IN_RGBToLAB($0) }
-    let k = selectKForElements(yuvColors)
-    var clusters = kmeans(yuvColors, k, seed, distanceForAccuracy(accuracy))
+    // Cluster the colors using the k-means algorithm
+    let k = selectKForElements(labValues)
+    var clusters = kmeans(labValues, k, seed, distanceForAccuracy(accuracy))
     
     // Sort the clusters by size in descending order so that the
     // most dominant colors come first.
