@@ -28,17 +28,17 @@ struct Cluster<T : ClusteredType> {
 // http://users.eecs.northwestern.edu/~wkliao/Kmeans/
 
 func kmeans<T : ClusteredType>(
-        objects: [T],
+        points: [T],
         k: Int,
         seed: UInt32,
         distance: (T, T) -> Float,
         threshold: Float = 0.0001
     ) -> [Cluster<T>] {
             
-    let n = countElements(objects)
-    assert(k <= n, "k cannot be larger than the total number of objects")
+    let n = countElements(points)
+    assert(k <= n, "k cannot be larger than the total number of points")
 
-    var centroids = objects.randomValues(seed, count: k)
+    var centroids = points.randomValues(seed, count: k)
     var memberships = [Int](count: n, repeatedValue: -1)
     var clusterSizes = [Int](count: k, repeatedValue: 0)
     
@@ -51,14 +51,14 @@ func kmeans<T : ClusteredType>(
         var newClusterSizes = [Int](count: k, repeatedValue: 0)
         
         for i in 0..<n {
-            let object = objects[i]
-            let clusterIndex = findNearestCluster(object, centroids, k, distance)
+            let point = points[i]
+            let clusterIndex = findNearestCluster(point, centroids, k, distance)
             if memberships[i] != clusterIndex {
                 error += 1
                 memberships[i] = clusterIndex
             }
             newClusterSizes[clusterIndex]++
-            newCentroids[clusterIndex] = newCentroids[clusterIndex] + object
+            newCentroids[clusterIndex] = newCentroids[clusterIndex] + point
         }
         for i in 0..<k {
             let size = newClusterSizes[i]
@@ -74,11 +74,11 @@ func kmeans<T : ClusteredType>(
     return map(Zip2(centroids, clusterSizes)) { Cluster(centroid: $0, size: $1) }
 }
 
-private func findNearestCluster<T : ClusteredType>(object: T, centroids: [T], k: Int, distance: (T, T) -> Float) -> Int {
+private func findNearestCluster<T : ClusteredType>(point: T, centroids: [T], k: Int, distance: (T, T) -> Float) -> Int {
     var minDistance = Float.infinity
     var clusterIndex = 0
     for i in 0..<k {
-        let distance = distance(object, centroids[i])
+        let distance = distance(point, centroids[i])
         if distance < minDistance {
             minDistance = distance
             clusterIndex = i
