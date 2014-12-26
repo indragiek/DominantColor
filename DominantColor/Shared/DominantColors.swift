@@ -43,20 +43,6 @@ private func createRGBAContext(width: UInt, height: UInt) -> CGContext {
     )
 }
 
-// Enumerates over all of the pixels in an RGBA bitmap context
-// in the order that they are stored in memory, for faster access.
-//
-// From: https://www.mikeash.com/pyblog/friday-qa-2012-08-31-obtaining-and-interpreting-image-data.html
-private func enumerateRGBAContext(context: CGContext, handler: (UInt, UInt, RGBAPixel) -> Void) {
-    let (width, height) = (CGBitmapContextGetWidth(context), CGBitmapContextGetHeight(context))
-    let data = unsafeBitCast(CGBitmapContextGetData(context), UnsafeMutablePointer<RGBAPixel>.self)
-    for y in 0..<height {
-        for x in 0..<width {
-            handler(x, y, data[Int(x + y * width)])
-        }
-    }
-}
-
 // MARK: Conversions
 
 private func RGBVectorToCGColor(rgbVector: INVector3) -> CGColor {
@@ -133,18 +119,22 @@ public func dominantColorsInImage(
     // Get the RGB colors from the bitmap context, ignoring any pixels
     // that have alpha transparency.
     // Also convert the colors to the LAB color space
+    let pixelCount = Int(scaledWidth * scaledHeight)
     var labValues = [INVector3]()
-    labValues.reserveCapacity(Int(scaledWidth * scaledHeight))
+    labValues.reserveCapacity(pixelCount)
     
     let RGBToLAB: RGBAPixel -> INVector3 = {
         let f: RGBAPixel -> INVector3 = { IN_RGBToLAB($0.toRGBVector()) }
         return memoizeConversions ? memoize(f) : f
     }()
-    enumerateRGBAContext(context) { (_, _, pixel) in
+    let data = unsafeBitCast(CGBitmapContextGetData(context), UnsafeMutablePointer<RGBAPixel>.self)
+    for i in 0..<pixelCount {
+        let pixel = data[i]
         if pixel.a == UInt8.max {
             labValues.append(RGBToLAB(pixel))
         }
     }
+
     // Cluster the colors using the k-means algorithm
     let k = selectKForElements(labValues)
     var clusters = kmeans(labValues, k, seed, distanceForAccuracy(accuracy))
