@@ -12,57 +12,6 @@ import Foundation
 import UIKit
 #endif
 
-// MARK: Bitmaps
-
-private struct RGBAPixel {
-    let r: UInt8
-    let g: UInt8
-    let b: UInt8
-    let a: UInt8
-}
-
-extension RGBAPixel: Hashable {
-    private var hashValue: Int {
-        return (((Int(r) << 8) | Int(g)) << 8) | Int(b)
-    }
-}
-
-private func ==(lhs: RGBAPixel, rhs: RGBAPixel) -> Bool {
-    return lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b
-}
-
-private func createRGBAContext(width: UInt, height: UInt) -> CGContext {
-    return CGBitmapContextCreate(
-        nil,
-        width,
-        height,
-        8,          // bits per component
-        width * 4,  // bytes per row
-        CGColorSpaceCreateDeviceRGB(),
-        CGBitmapInfo(CGImageAlphaInfo.PremultipliedLast.rawValue)
-    )
-}
-
-// MARK: Conversions
-
-private func RGBVectorToCGColor(rgbVector: INVector3) -> CGColor {
-    return CGColorCreate(CGColorSpaceCreateDeviceRGB(), [CGFloat(rgbVector.x), CGFloat(rgbVector.y), CGFloat(rgbVector.z), 1.0])
-}
-
-private extension RGBAPixel {
-    func toRGBVector() -> INVector3 {
-        return INVector3(
-            x: Float(r) / Float(UInt8.max),
-            y: Float(g) / Float(UInt8.max),
-            z: Float(b) / Float(UInt8.max)
-        )
-    }
-}
-
-// MARK: Clustering
-
-extension INVector3 : ClusteredType {}
-
 // MARK: Main
 
 public enum GroupingAccuracy {
@@ -172,3 +121,54 @@ private func selectKForElements<T>(elements: [T]) -> Int {
     // Seems like a magic number...
     return 16
 }
+
+// MARK: Bitmaps
+
+private struct RGBAPixel {
+    let r: UInt8
+    let g: UInt8
+    let b: UInt8
+    let a: UInt8
+}
+
+extension RGBAPixel: Hashable {
+    private var hashValue: Int {
+        return (((Int(r) << 8) | Int(g)) << 8) | Int(b)
+    }
+}
+
+private func ==(lhs: RGBAPixel, rhs: RGBAPixel) -> Bool {
+    return lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b
+}
+
+private func createRGBAContext(width: UInt, height: UInt) -> CGContext {
+    return CGBitmapContextCreate(
+        nil,
+        width,
+        height,
+        8,          // bits per component
+        width * 4,  // bytes per row
+        CGColorSpaceCreateDeviceRGB(),
+        CGBitmapInfo(CGImageAlphaInfo.PremultipliedLast.rawValue)
+    )
+}
+
+// MARK: Conversions
+
+private func RGBVectorToCGColor(rgbVector: INVector3) -> CGColor {
+    return CGColorCreate(CGColorSpaceCreateDeviceRGB(), [CGFloat(rgbVector.x), CGFloat(rgbVector.y), CGFloat(rgbVector.z), 1.0])
+}
+
+private extension RGBAPixel {
+    func toRGBVector() -> INVector3 {
+        return INVector3(
+            x: Float(r) / Float(UInt8.max),
+            y: Float(g) / Float(UInt8.max),
+            z: Float(b) / Float(UInt8.max)
+        )
+    }
+}
+
+// MARK: Clustering
+
+extension INVector3 : ClusteredType {}
