@@ -106,12 +106,21 @@ public func dominantColorsInImage(
     var labValues = [INVector3]()
     labValues.reserveCapacity(Int(scaledWidth * scaledHeight))
     
+#if MEMOIZE
     let memoizedRGBToLAB: RGBAPixel -> INVector3 = memoize { IN_RGBToLAB($0.toRGBVector()) }
     enumerateRGBAContext(context) { (_, _, pixel) in
         if pixel.a == UInt8.max {
             labValues.append(memoizedRGBToLAB(pixel))
         }
     }
+#else
+    enumerateRGBAContext(context) { (_, _, pixel) in
+        if pixel.a == UInt8.max {
+            labValues.append(IN_RGBToLAB(pixel.toRGBVector()))
+        }
+    }
+#endif // MEMOIZE
+        
     // Cluster the colors using the k-means algorithm
     let k = selectKForElements(labValues)
     var clusters = kmeans(labValues, k, seed, distanceForAccuracy(accuracy))
