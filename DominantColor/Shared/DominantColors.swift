@@ -89,13 +89,37 @@ struct DefaultParameterValues {
     static var maxSampledPixels: UInt = 1000
     static var accuracy: GroupingAccuracy = .Medium
     static var seed: UInt32 = 3571
+    static var memoizeConversions: Bool = false
 }
 
+/**
+Computes the dominant colors in an image
+
+:param: image              The image
+:param: maxSampledPixels   Maximum number of pixels to sample in the image. If
+                           the total number of pixels in the image exceeds this
+                           value, it will be downsampled to meet the constraint.
+:param: accuracy           Level of accuracy to use when grouping similar colors.
+                           Higher accuracy will come with a performance tradeoff.
+:param: seed               Seed to use when choosing the initial points for grouping
+                           of similar colors. The same seed is guaranteed to return
+                           the same colors every time.
+:param: memoizeConversions Whether to memoize conversions from RGB to the LAB color
+                           space (used for grouping similar colors). Memoization
+                           will only yield better performance for large values of
+                           `maxSampledPixels` in images that are primarily comprised
+                           of flat colors. If this information about the image is
+                           not known beforehand, it is best to not memoize.
+
+:returns: A list of dominant colors in the image sorted from most dominant to
+          least dominant.
+*/
 public func dominantColorsInImage(
         image: CGImage,
         maxSampledPixels: UInt = DefaultParameterValues.maxSampledPixels,
         accuracy: GroupingAccuracy = DefaultParameterValues.accuracy,
-        seed: UInt32 = DefaultParameterValues.seed
+        seed: UInt32 = DefaultParameterValues.seed,
+        memoizeConversions: Bool = DefaultParameterValues.memoizeConversions
     ) -> [CGColor] {
     
     let (width, height) = (CGImageGetWidth(image), CGImageGetHeight(image))
@@ -112,10 +136,13 @@ public func dominantColorsInImage(
     var labValues = [INVector3]()
     labValues.reserveCapacity(Int(scaledWidth * scaledHeight))
     
-    let memoizedRGBToLAB: RGBAPixel -> INVector3 = memoize { IN_RGBToLAB($0.toRGBVector()) }
+    let RGBToLAB: RGBAPixel -> INVector3 = {
+        let f: RGBAPixel -> INVector3 = { IN_RGBToLAB($0.toRGBVector()) }
+        return memoizeConversions ? memoize(f) : f
+    }()
     enumerateRGBAContext(context) { (_, _, pixel) in
         if pixel.a == UInt8.max {
-            labValues.append(memoizedRGBToLAB(pixel))
+            labValues.append(RGBToLAB(pixel))
         }
     }
     // Cluster the colors using the k-means algorithm
