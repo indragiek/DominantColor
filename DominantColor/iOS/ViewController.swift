@@ -46,14 +46,12 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
             self.image = imageSelected
             imageView.image = imageSelected
             
-            let CGImage = image.CGImage
-            let colors = dominantColorsInImage(CGImage)
-
+            let colors = imageSelected.dominantColors()
             for box in boxes {
                 box.backgroundColor = UIColor.clearColor()
             }
             for i in 0..<min(countElements(colors), countElements(boxes)) {
-                boxes[i].backgroundColor = UIColor(CGColor: colors[i])
+                boxes[i].backgroundColor = colors[i]
             }
         }
         picker.dismissViewControllerAnimated(true, completion: nil)

@@ -48,15 +48,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, DragAndDropImageViewDelegate
             imageView.image = image
             
             self.image = image
-            let CGImage = image.CGImageForProposedRect(nil, context: nil, hints: nil)!.takeUnretainedValue()
-            let colors = dominantColorsInImage(CGImage)
+            let colors = image.dominantColors()
             let boxes = [box1, box2, box3, box4, box5, box6]
             
             for box in boxes {
                 box.fillColor = NSColor.clearColor()
             }
             for i in 0..<min(countElements(colors), countElements(boxes)) {
-                boxes[i].fillColor = NSColor(CGColor: colors[i])
+                boxes[i].fillColor = colors[i]
             }
         }
     }
