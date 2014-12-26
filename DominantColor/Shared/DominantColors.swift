@@ -23,7 +23,7 @@ private struct RGBAPixel {
 
 extension RGBAPixel: Hashable {
     private var hashValue: Int {
-        return (((r.hashValue << 8) | g.hashValue) << 8) | b.hashValue
+        return (((Int(r) << 8) | Int(g)) << 8) | Int(b)
     }
 }
 
