@@ -85,11 +85,17 @@ public enum GroupingAccuracy {
     case High       // CIE 2000 - Additional corrections for neutral colors, lightness, chroma, and hue
 }
 
+struct DefaultParameterValues {
+    static var maxSampledPixels: UInt = 1000
+    static var accuracy: GroupingAccuracy = .Medium
+    static var seed: UInt32 = 3571
+}
+
 public func dominantColorsInImage(
         image: CGImage,
-        maxSampledPixels: UInt = 1000,
-        accuracy: GroupingAccuracy = .Medium,
-        seed: UInt32 = 3571
+        maxSampledPixels: UInt = DefaultParameterValues.maxSampledPixels,
+        accuracy: GroupingAccuracy = DefaultParameterValues.accuracy,
+        seed: UInt32 = DefaultParameterValues.seed
     ) -> [CGColor] {
     
     let (width, height) = (CGImageGetWidth(image), CGImageGetHeight(image))
