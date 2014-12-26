@@ -166,13 +166,13 @@
 				723DE5171A49348D00C357E3 /* DominantColors.swift */,
 				72431C0E1A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift */,
 				723DE51A1A49348D00C357E3 /* KMeans.swift */,
+				2F3D09851A4C212A001ED0BF /* Memoization.swift */,
 				724C2DCC1A4CD64600472402 /* PlatformExtensions.swift */,
 				723DE5151A49348D00C357E3 /* ColorSpaceConversion.h */,
 				723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */,
 				723DE5181A49348D00C357E3 /* INVector3.h */,
 				723DE5191A49348D00C357E3 /* INVector3.m */,
 				723DE5381A49353C00C357E3 /* Supporting Files */,
-				2F3D09851A4C212A001ED0BF /* Memoization.swift */,
 			);
 			name = Shared;
 			path = DominantColor/Shared;
