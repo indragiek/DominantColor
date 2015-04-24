@@ -12,9 +12,9 @@ import GLKit.GLKMath
 // calculations it doesn't matter and saves an unnecessary computation.
 
 // From http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE76.html
-func CIE76SquaredColorDifference(lab1: INVector3, lab2: INVector3) -> Float {
-    let (L1, a1, b1) = lab1.unpack()
-    let (L2, a2, b2) = lab2.unpack()
+func CIE76SquaredColorDifference(colors: (INVector3, INVector3)) -> Float {
+    let (L1, a1, b1) = colors.0.unpack()
+    let (L2, a2, b2) = colors.1.unpack()
     
     return pow(L2 - L1, 2) + pow(a2 - a1, 2) + pow(b2 - b1, 2)
 }
