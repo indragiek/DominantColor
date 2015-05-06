@@ -16,7 +16,7 @@ protocol ClusteredType {
     func /(lhs: Self, rhs: Int) -> Self
     
     // Identity value such that x + identity = x. Typically the 0 vector.
-    class var identity: Self { get }
+    static var identity: Self { get }
 }
 
 struct Cluster<T : ClusteredType> {
@@ -35,10 +35,10 @@ func kmeans<T : ClusteredType>(
         threshold: Float = 0.0001
     ) -> [Cluster<T>] {
             
-    let n = countElements(points)
+    let n = count(points)
     assert(k <= n, "k cannot be larger than the total number of points")
 
-    var centroids = points.randomValues(seed, count: k)
+    var centroids = points.randomValues(seed, num: k)
     var memberships = [Int](count: n, repeatedValue: -1)
     var clusterSizes = [Int](count: k, repeatedValue: 0)
     
@@ -99,13 +99,13 @@ private func randomNumberInRange(range: Range<Int>) -> Int {
 }
 
 private extension Array {
-    private func randomValues(seed: UInt32, count: Int) -> [T] {
+    private func randomValues(seed: UInt32, num: Int) -> [T] {
         srand(seed)
         
         var indices = [Int]()
-        indices.reserveCapacity(count)
-        let range = 0..<countElements(self)
-        for i in 0..<count {
+        indices.reserveCapacity(num)
+        let range = 0..<self.count
+        for i in 0..<num {
             var random = 0
             do {
                 random = randomNumberInRange(range)

@@ -27,7 +27,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     
     @IBAction func runBenchmarkTapped(sender: AnyObject) {
         if let image = image {
-            let nValues: [UInt] = [100, 1000, 2000, 5000, 10000]
+            let nValues: [Int] = [100, 1000, 2000, 5000, 10000]
             let CGImage = image.CGImage
             for n in nValues {
                 let ns = dispatch_benchmark(5) {
@@ -41,7 +41,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     
     // MARK: ImagePicker Delegate
     
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         if let imageSelected = image {
             self.image = imageSelected
             imageView.image = imageSelected
@@ -50,7 +50,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
             for box in boxes {
                 box.backgroundColor = UIColor.clearColor()
             }
-            for i in 0..<min(countElements(colors), countElements(boxes)) {
+            for i in 0..<min(colors.count, boxes.count) {
                 boxes[i].backgroundColor = colors[i]
             }
         }

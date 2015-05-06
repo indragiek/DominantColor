@@ -31,7 +31,7 @@ private func ==(lhs: RGBAPixel, rhs: RGBAPixel) -> Bool {
     return lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b
 }
 
-private func createRGBAContext(width: UInt, height: UInt) -> CGContext {
+private func createRGBAContext(width: Int, height: Int) -> CGContext {
     return CGBitmapContextCreate(
         nil,
         width,
@@ -47,7 +47,7 @@ private func createRGBAContext(width: UInt, height: UInt) -> CGContext {
 // in the order that they are stored in memory, for faster access.
 //
 // From: https://www.mikeash.com/pyblog/friday-qa-2012-08-31-obtaining-and-interpreting-image-data.html
-private func enumerateRGBAContext(context: CGContext, handler: (UInt, UInt, RGBAPixel) -> Void) {
+private func enumerateRGBAContext(context: CGContext, handler: (Int, Int, RGBAPixel) -> Void) {
     let (width, height) = (CGBitmapContextGetWidth(context), CGBitmapContextGetHeight(context))
     let data = unsafeBitCast(CGBitmapContextGetData(context), UnsafeMutablePointer<RGBAPixel>.self)
     for y in 0..<height {
@@ -86,7 +86,7 @@ public enum GroupingAccuracy {
 }
 
 struct DefaultParameterValues {
-    static var maxSampledPixels: UInt = 1000
+    static var maxSampledPixels: Int = 1000
     static var accuracy: GroupingAccuracy = .Medium
     static var seed: UInt32 = 3571
     static var memoizeConversions: Bool = false
@@ -116,7 +116,7 @@ Computes the dominant colors in an image
 */
 public func dominantColorsInImage(
         image: CGImage,
-        maxSampledPixels: UInt = DefaultParameterValues.maxSampledPixels,
+        maxSampledPixels: Int = DefaultParameterValues.maxSampledPixels,
         accuracy: GroupingAccuracy = DefaultParameterValues.accuracy,
         seed: UInt32 = DefaultParameterValues.seed,
         memoizeConversions: Bool = DefaultParameterValues.memoizeConversions
@@ -169,11 +169,11 @@ private func distanceForAccuracy(accuracy: GroupingAccuracy) -> (INVector3, INVe
 
 // Computes the proportionally scaled dimensions such that the
 // total number of pixels does not exceed the specified limit.
-private func scaledDimensionsForPixelLimit(limit: UInt, width: UInt, height: UInt) -> (UInt, UInt) {
+private func scaledDimensionsForPixelLimit(limit: Int, width: Int, height: Int) -> (Int, Int) {
     if (width * height > limit) {
         let ratio = Float(width) / Float(height)
         let maxWidth = sqrtf(ratio * Float(limit))
-        return (UInt(maxWidth), UInt(Float(limit) / maxWidth))
+        return (Int(maxWidth), Int(Float(limit) / maxWidth))
     }
     return (width, height)
 }
