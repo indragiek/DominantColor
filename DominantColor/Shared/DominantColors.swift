@@ -161,9 +161,9 @@ private func distanceForAccuracy(accuracy: GroupingAccuracy) -> (INVector3, INVe
     case .Low:
         return CIE76SquaredColorDifference
     case .Medium:
-        return { CIE94SquaredColorDifference()(colors: $0) }
+        return CIE94SquaredColorDifference()
     case .High:
-        return { CIE2000SquaredColorDifference()(colors: $0) }
+        return CIE2000SquaredColorDifference()
     }
 }
 
