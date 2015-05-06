@@ -31,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, DragAndDropImageViewDelegate
     
     @IBAction func runBenchmark(sender: NSButton) {
         if let image = image {
-            let nValues: [UInt] = [100, 1000, 2000, 5000, 10000]
+            let nValues: [Int] = [100, 1000, 2000, 5000, 10000]
             let CGImage = image.CGImageForProposedRect(nil, context: nil, hints: nil)!.takeUnretainedValue()
             for n in nValues {
                 let ns = dispatch_benchmark(5) {
@@ -54,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, DragAndDropImageViewDelegate
             for box in boxes {
                 box.fillColor = NSColor.clearColor()
             }
-            for i in 0..<min(countElements(colors), countElements(boxes)) {
+            for i in 0..<min(colors.count, boxes.count) {
                 boxes[i].fillColor = colors[i]
             }
         }

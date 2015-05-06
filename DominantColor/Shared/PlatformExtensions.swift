@@ -32,14 +32,14 @@ public extension NSImage {
               least dominant.
     */
     public func dominantColors(
-        maxSampledPixels: UInt = DefaultParameterValues.maxSampledPixels,
+        maxSampledPixels: Int = DefaultParameterValues.maxSampledPixels,
         accuracy: GroupingAccuracy = DefaultParameterValues.accuracy,
         seed: UInt32 = DefaultParameterValues.seed,
         memoizeConversions: Bool = DefaultParameterValues.memoizeConversions
     ) -> [NSColor] {
         let image = CGImageForProposedRect(nil, context: nil, hints: nil)!.takeUnretainedValue()
         let colors = dominantColorsInImage(image, maxSampledPixels: maxSampledPixels, accuracy: accuracy, seed: seed, memoizeConversions: memoizeConversions)
-        return colors.map { NSColor(CGColor: $0) }
+        return colors.map { NSColor(CGColor: $0)! }
     }
 }
 
