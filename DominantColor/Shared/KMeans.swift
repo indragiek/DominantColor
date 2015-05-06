@@ -31,7 +31,7 @@ func kmeans<T : ClusteredType>(
         points: [T],
         k: Int,
         seed: UInt32,
-        distance: (T, T) -> Float,
+        distance: ((T, T) -> Float),
         threshold: Float = 0.0001
     ) -> [Cluster<T>] {
             
