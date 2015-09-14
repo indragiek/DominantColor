@@ -39,8 +39,8 @@ private func createRGBAContext(width: Int, height: Int) -> CGContext {
         8,          // bits per component
         width * 4,  // bytes per row
         CGColorSpaceCreateDeviceRGB(),
-        CGBitmapInfo(CGImageAlphaInfo.PremultipliedLast.rawValue)
-    )
+        CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue).rawValue
+    )!
 }
 
 // Enumerates over all of the pixels in an RGBA bitmap context
@@ -60,7 +60,7 @@ private func enumerateRGBAContext(context: CGContext, handler: (Int, Int, RGBAPi
 // MARK: Conversions
 
 private func RGBVectorToCGColor(rgbVector: INVector3) -> CGColor {
-    return CGColorCreate(CGColorSpaceCreateDeviceRGB(), [CGFloat(rgbVector.x), CGFloat(rgbVector.y), CGFloat(rgbVector.z), 1.0])
+    return CGColorCreate(CGColorSpaceCreateDeviceRGB(), [CGFloat(rgbVector.x), CGFloat(rgbVector.y), CGFloat(rgbVector.z), 1.0])!
 }
 
 private extension RGBAPixel {
@@ -95,23 +95,23 @@ struct DefaultParameterValues {
 /**
 Computes the dominant colors in an image
 
-:param: image              The image
-:param: maxSampledPixels   Maximum number of pixels to sample in the image. If
+- parameter image:              The image
+- parameter maxSampledPixels:   Maximum number of pixels to sample in the image. If
                            the total number of pixels in the image exceeds this
                            value, it will be downsampled to meet the constraint.
-:param: accuracy           Level of accuracy to use when grouping similar colors.
+- parameter accuracy:           Level of accuracy to use when grouping similar colors.
                            Higher accuracy will come with a performance tradeoff.
-:param: seed               Seed to use when choosing the initial points for grouping
+- parameter seed:               Seed to use when choosing the initial points for grouping
                            of similar colors. The same seed is guaranteed to return
                            the same colors every time.
-:param: memoizeConversions Whether to memoize conversions from RGB to the LAB color
+- parameter memoizeConversions: Whether to memoize conversions from RGB to the LAB color
                            space (used for grouping similar colors). Memoization
                            will only yield better performance for large values of
                            `maxSampledPixels` in images that are primarily comprised
                            of flat colors. If this information about the image is
                            not known beforehand, it is best to not memoize.
 
-:returns: A list of dominant colors in the image sorted from most dominant to
+- returns: A list of dominant colors in the image sorted from most dominant to
           least dominant.
 */
 public func dominantColorsInImage(
@@ -123,11 +123,11 @@ public func dominantColorsInImage(
     ) -> [CGColor] {
     
     let (width, height) = (CGImageGetWidth(image), CGImageGetHeight(image))
-    let (scaledWidth, scaledHeight) = scaledDimensionsForPixelLimit(maxSampledPixels, width, height)
+    let (scaledWidth, scaledHeight) = scaledDimensionsForPixelLimit(maxSampledPixels, width: width, height: height)
     
     // Downsample the image if necessary, so that the total number of
     // pixels sampled does not exceed the specified maximum.
-    let context = createRGBAContext(scaledWidth, scaledHeight)
+    let context = createRGBAContext(scaledWidth, height: scaledHeight)
     CGContextDrawImage(context, CGRect(x: 0, y: 0, width: Int(scaledWidth), height: Int(scaledHeight)), image)
 
     // Get the RGB colors from the bitmap context, ignoring any pixels
@@ -147,11 +147,11 @@ public func dominantColorsInImage(
     }
     // Cluster the colors using the k-means algorithm
     let k = selectKForElements(labValues)
-    var clusters = kmeans(labValues, k, seed, distanceForAccuracy(accuracy))
+    var clusters = kmeans(labValues, k: k, seed: seed, distance: distanceForAccuracy(accuracy))
     
     // Sort the clusters by size in descending order so that the
     // most dominant colors come first.
-    clusters.sort { $0.size > $1.size }
+    clusters.sortInPlace { $0.size > $1.size }
     
     return clusters.map { RGBVectorToCGColor(IN_LABToRGB($0.centroid)) }
 }
