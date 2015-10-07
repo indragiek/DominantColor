@@ -19,7 +19,7 @@ func CIE76SquaredColorDifference(lab1: INVector3, lab2: INVector3) -> Float {
     return pow(L2 - L1, 2) + pow(a2 - a1, 2) + pow(b2 - b1, 2)
 }
 
-private func C(a: Float, b: Float) -> Float {
+private func C(a: Float, _ b: Float) -> Float {
     return sqrt(pow(a, 2) + pow(b, 2))
 }
 
@@ -61,7 +61,7 @@ func CIE2000SquaredColorDifference(
     let ΔLp = L2 - L1
     let Lbp = (L1 + L2) / 2
     
-    let (C1, C2) = (C(a1, b1), C(a2, b2))
+    let (C1, C2) = (C(a1, b: b1), C(a2, b: b2))
     let Cb = (C1 + C2) / 2
     
     let G = (1 - sqrt(pow(Cb, 7) / (pow(Cb, 7) + pow(25, 7)))) / 2
@@ -103,12 +103,12 @@ func CIE2000SquaredColorDifference(
             return (h1p + h2p) / 2
         }
     }()
-    
-    let T = 1
-        - 0.17 * cos(GLKMathDegreesToRadians(Hbp - 30))
-        + 0.24 * cos(GLKMathDegreesToRadians(2 * Hbp))
-        + 0.32 * cos(GLKMathDegreesToRadians(3 * Hbp + 6))
-        - 0.20 * cos(GLKMathDegreesToRadians(4 * Hbp - 63))
+
+    // Expression was too complex to be solved in reasonable time; consider breaking up the expression into distinct sub-expressions
+    let T1 = 1 - 0.17 * cos(GLKMathDegreesToRadians(Hbp - 30))
+    let T2 = T1 + 0.24 * cos(GLKMathDegreesToRadians(2 * Hbp))
+    let T3 = T2 + 0.32 * cos(GLKMathDegreesToRadians(3 * Hbp + 6))
+    let T = T3 - 0.20 * cos(GLKMathDegreesToRadians(4 * Hbp - 63))
     
     let Sl = 1 + (0.015 * pow(Lbp - 50, 2)) / sqrt(20 + pow(Lbp - 50, 2))
     let Sc = 1 + 0.045 * Cbp
