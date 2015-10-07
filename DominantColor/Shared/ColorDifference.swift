@@ -61,7 +61,7 @@ func CIE2000SquaredColorDifference(
     let ΔLp = L2 - L1
     let Lbp = (L1 + L2) / 2
     
-    let (C1, C2) = (C(a1, b: b1), C(a2, b: b2))
+    let (C1, C2) = (C(a1, b1), C(a2, b2))
     let Cb = (C1 + C2) / 2
     
     let G = (1 - sqrt(pow(Cb, 7) / (pow(Cb, 7) + pow(25, 7)))) / 2
