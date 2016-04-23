@@ -57,7 +57,7 @@ func kmeans<T : ClusteredType>(
                 error += 1
                 memberships[i] = clusterIndex
             }
-            newClusterSizes[clusterIndex]++
+            newClusterSizes[clusterIndex] += 1
             newCentroids[clusterIndex] = newCentroids[clusterIndex] + point
         }
         for i in 0..<k {
@@ -71,12 +71,7 @@ func kmeans<T : ClusteredType>(
         previousError = error
     } while abs(error - previousError) > threshold
     
-        var clusters = [Cluster<T>]()
-        for (first, second) in Zip2Sequence(centroids, clusterSizes) {
-            clusters.append(Cluster(centroid: first, size: second))
-        }
-        
-    return clusters
+    return Zip2Sequence(centroids, clusterSizes).map { Cluster(centroid: $0, size: $1) }
 }
 
 private func findNearestCluster<T : ClusteredType>(point: T, centroids: [T], k: Int, distance: (T, T) -> Float) -> Int {
