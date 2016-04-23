@@ -36,7 +36,7 @@ func CIE94SquaredColorDifference(
     let (L2, a2, b2) = lab2.unpack()
     let ΔL = L1 - L2
         
-    let (C1, C2) = (C(a1, b1), C(a2, b2))
+    let (C1, C2) = (C(a1, b: b1), C(a2, b: b2))
     let ΔC = C1 - C2
 
     let ΔH = sqrt(pow(a1 - a2, 2) + pow(b1 - b2, 2) - pow(ΔC, 2))
@@ -61,7 +61,7 @@ func CIE2000SquaredColorDifference(
     let ΔLp = L2 - L1
     let Lbp = (L1 + L2) / 2
     
-    let (C1, C2) = (C(a1, b1), C(a2, b2))
+    let (C1, C2) = (C(a1, b: b1), C(a2, b: b2))
     let Cb = (C1 + C2) / 2
     
     let G = (1 - sqrt(pow(Cb, 7) / (pow(Cb, 7) + pow(25, 7)))) / 2
@@ -70,7 +70,7 @@ func CIE2000SquaredColorDifference(
     }
     let (a1p, a2p) = (ap(a1), ap(a2))
 
-    let (C1p, C2p) = (C(a1p, b1), C(a2p, b2))
+    let (C1p, C2p) = (C(a1p, b: b1), C(a2p, b: b2))
     let ΔCp = C2p - C1p
     let Cbp = (C1p + C2p) / 2
     
@@ -104,12 +104,14 @@ func CIE2000SquaredColorDifference(
         }
     }()
     
-    let T = 1
+    var T = 1
         - 0.17 * cos(GLKMathDegreesToRadians(Hbp - 30))
         + 0.24 * cos(GLKMathDegreesToRadians(2 * Hbp))
-        + 0.32 * cos(GLKMathDegreesToRadians(3 * Hbp + 6))
-        - 0.20 * cos(GLKMathDegreesToRadians(4 * Hbp - 63))
     
+        T = T
+            + 0.32 * cos(GLKMathDegreesToRadians(3 * Hbp + 6))
+            - 0.20 * cos(GLKMathDegreesToRadians(4 * Hbp - 63))
+        
     let Sl = 1 + (0.015 * pow(Lbp - 50, 2)) / sqrt(20 + pow(Lbp - 50, 2))
     let Sc = 1 + 0.045 * Cbp
     let Sh = 1 + 0.015 * Cbp * T
