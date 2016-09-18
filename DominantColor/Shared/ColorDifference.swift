@@ -12,25 +12,25 @@ import GLKit.GLKMath
 // calculations it doesn't matter and saves an unnecessary computation.
 
 // From http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE76.html
-func CIE76SquaredColorDifference(lab1: INVector3, lab2: INVector3) -> Float {
+func CIE76SquaredColorDifference(_ lab1: INVector3, lab2: INVector3) -> Float {
     let (L1, a1, b1) = lab1.unpack()
     let (L2, a2, b2) = lab2.unpack()
     
     return pow(L2 - L1, 2) + pow(a2 - a1, 2) + pow(b2 - b1, 2)
 }
 
-private func C(a: Float, b: Float) -> Float {
+private func C(_ a: Float, b: Float) -> Float {
     return sqrt(pow(a, 2) + pow(b, 2))
 }
 
 // From http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE94.html
 func CIE94SquaredColorDifference(
-        kL: Float = 1,
+        _ kL: Float = 1,
         kC: Float = 1,
         kH: Float = 1,
         K1: Float = 0.045,
         K2: Float = 0.015
-    ) -> (lab1:INVector3, lab2:INVector3) -> Float {
+    ) -> (_ lab1:INVector3, _ lab2:INVector3) -> Float {
     
     return { (lab1:INVector3, lab2:INVector3) -> Float in
         
@@ -53,10 +53,10 @@ func CIE94SquaredColorDifference(
 
 // From http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE2000.html
 func CIE2000SquaredColorDifference(
-        kL: Float = 1,
+        _ kL: Float = 1,
         kC: Float = 1,
         kH: Float = 1
-    ) -> (lab1:INVector3, lab2:INVector3) -> Float {
+    ) -> (_ lab1:INVector3, _ lab2:INVector3) -> Float {
     
     return { (lab1:INVector3, lab2:INVector3) -> Float in
         let (L1, a1, b1) = lab1.unpack()
@@ -69,7 +69,7 @@ func CIE2000SquaredColorDifference(
         let Cb = (C1 + C2) / 2
         
         let G = (1 - sqrt(pow(Cb, 7) / (pow(Cb, 7) + pow(25, 7)))) / 2
-        let ap: Float -> Float = { a in
+        let ap: (Float) -> Float = { a in
             return a * (1 + G)
         }
         let (a1p, a2p) = (ap(a1), ap(a2))

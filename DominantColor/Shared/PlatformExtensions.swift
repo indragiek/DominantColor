@@ -69,14 +69,14 @@ public extension UIImage {
               least dominant.
     */
     public func dominantColors(
-        maxSampledPixels: Int = DefaultParameterValues.maxSampledPixels,
+        _ maxSampledPixels: Int = DefaultParameterValues.maxSampledPixels,
         accuracy: GroupingAccuracy = DefaultParameterValues.accuracy,
         seed: UInt32 = DefaultParameterValues.seed,
         memoizeConversions: Bool = DefaultParameterValues.memoizeConversions
     ) -> [UIColor] {
-        if let CGImage = self.CGImage {
+        if let CGImage = self.cgImage {
             let colors = dominantColorsInImage(CGImage, maxSampledPixels: maxSampledPixels, accuracy: accuracy, seed: seed, memoizeConversions: memoizeConversions)
-            return colors.map { UIColor(CGColor: $0) }
+            return colors.map { UIColor(cgColor: $0) }
         } else {
             return []
         }
