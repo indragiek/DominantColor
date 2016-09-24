@@ -103,10 +103,11 @@ private extension Array {
 
         var indices = [Int]()
         indices.reserveCapacity(num)
+        let range: Range<Int> = 0..<self.count
         for _ in 0..<num {
             var random = 0
             repeat {
-                random = Int(arc4random_uniform(UInt32(self.count)))
+                random = randomNumberInRange(range)
             } while indices.contains(random)
             indices.append(random)
         }
