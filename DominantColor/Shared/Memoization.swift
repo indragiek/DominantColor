@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Indragie Karunaratne. All rights reserved.
 //
 
-func memoize<T: Hashable, U>(f: T -> U) -> T -> U {
+func memoize<T: Hashable, U>(_ f: @escaping (T) -> U) -> (T) -> U {
     var cache = [T : U]()
     
     return { key in

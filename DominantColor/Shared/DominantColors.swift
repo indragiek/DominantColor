@@ -22,7 +22,7 @@ private struct RGBAPixel {
 }
 
 extension RGBAPixel: Hashable {
-    private var hashValue: Int {
+    fileprivate var hashValue: Int {
         return (((Int(r) << 8) | Int(g)) << 8) | Int(b)
     }
 }
@@ -31,15 +31,15 @@ private func ==(lhs: RGBAPixel, rhs: RGBAPixel) -> Bool {
     return lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b
 }
 
-private func createRGBAContext(width: Int, height: Int) -> CGContext {
-    return CGBitmapContextCreate(
-        nil,
-        width,
-        height,
-        8,          // bits per component
-        width * 4,  // bytes per row
-        CGColorSpaceCreateDeviceRGB(),
-        CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue).rawValue
+private func createRGBAContext(_ width: Int, height: Int) -> CGContext {
+    return CGContext(
+        data: nil,
+        width: width,
+        height: height,
+        bitsPerComponent: 8,          // bits per component
+        bytesPerRow: width * 4,  // bytes per row
+        space: CGColorSpaceCreateDeviceRGB(),
+        bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue).rawValue
     )!
 }
 
@@ -47,9 +47,9 @@ private func createRGBAContext(width: Int, height: Int) -> CGContext {
 // in the order that they are stored in memory, for faster access.
 //
 // From: https://www.mikeash.com/pyblog/friday-qa-2012-08-31-obtaining-and-interpreting-image-data.html
-private func enumerateRGBAContext(context: CGContext, handler: (Int, Int, RGBAPixel) -> Void) {
-    let (width, height) = (CGBitmapContextGetWidth(context), CGBitmapContextGetHeight(context))
-    let data = unsafeBitCast(CGBitmapContextGetData(context), UnsafeMutablePointer<RGBAPixel>.self)
+private func enumerateRGBAContext(_ context: CGContext, handler: (Int, Int, RGBAPixel) -> Void) {
+    let (width, height) = (context.width, context.height)
+    let data = unsafeBitCast(context.data, to: UnsafeMutablePointer<RGBAPixel>.self)
     for y in 0..<height {
         for x in 0..<width {
             handler(x, y, data[Int(x + y * width)])
@@ -59,8 +59,8 @@ private func enumerateRGBAContext(context: CGContext, handler: (Int, Int, RGBAPi
 
 // MARK: Conversions
 
-private func RGBVectorToCGColor(rgbVector: INVector3) -> CGColor {
-    return CGColorCreate(CGColorSpaceCreateDeviceRGB(), [CGFloat(rgbVector.x), CGFloat(rgbVector.y), CGFloat(rgbVector.z), 1.0])!
+private func RGBVectorToCGColor(_ rgbVector: INVector3) -> CGColor {
+    return CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [CGFloat(rgbVector.x), CGFloat(rgbVector.y), CGFloat(rgbVector.z), 1.0])!
 }
 
 private extension RGBAPixel {
@@ -80,14 +80,14 @@ extension INVector3 : ClusteredType {}
 // MARK: Main
 
 public enum GroupingAccuracy {
-    case Low        // CIE 76 - Euclidian distance
-    case Medium     // CIE 94 - Perceptual non-uniformity corrections
-    case High       // CIE 2000 - Additional corrections for neutral colors, lightness, chroma, and hue
+    case low        // CIE 76 - Euclidian distance
+    case medium     // CIE 94 - Perceptual non-uniformity corrections
+    case high       // CIE 2000 - Additional corrections for neutral colors, lightness, chroma, and hue
 }
 
 struct DefaultParameterValues {
     static var maxSampledPixels: Int = 1000
-    static var accuracy: GroupingAccuracy = .Medium
+    static var accuracy: GroupingAccuracy = .medium
     static var seed: UInt32 = 3571
     static var memoizeConversions: Bool = false
 }
@@ -115,20 +115,20 @@ Computes the dominant colors in an image
           least dominant.
 */
 public func dominantColorsInImage(
-        image: CGImage,
+        _ image: CGImage,
         maxSampledPixels: Int = DefaultParameterValues.maxSampledPixels,
         accuracy: GroupingAccuracy = DefaultParameterValues.accuracy,
         seed: UInt32 = DefaultParameterValues.seed,
         memoizeConversions: Bool = DefaultParameterValues.memoizeConversions
     ) -> [CGColor] {
     
-    let (width, height) = (CGImageGetWidth(image), CGImageGetHeight(image))
+    let (width, height) = (image.width, image.height)
     let (scaledWidth, scaledHeight) = scaledDimensionsForPixelLimit(maxSampledPixels, width: width, height: height)
     
     // Downsample the image if necessary, so that the total number of
     // pixels sampled does not exceed the specified maximum.
     let context = createRGBAContext(scaledWidth, height: scaledHeight)
-    CGContextDrawImage(context, CGRect(x: 0, y: 0, width: Int(scaledWidth), height: Int(scaledHeight)), image)
+    context.draw(image, in: CGRect(x: 0, y: 0, width: Int(scaledWidth), height: Int(scaledHeight)))
 
     // Get the RGB colors from the bitmap context, ignoring any pixels
     // that have alpha transparency.
@@ -136,8 +136,8 @@ public func dominantColorsInImage(
     var labValues = [INVector3]()
     labValues.reserveCapacity(Int(scaledWidth * scaledHeight))
     
-    let RGBToLAB: RGBAPixel -> INVector3 = {
-        let f: RGBAPixel -> INVector3 = { IN_RGBToLAB($0.toRGBVector()) }
+    let RGBToLAB: (RGBAPixel) -> INVector3 = {
+        let f: (RGBAPixel) -> INVector3 = { IN_RGBToLAB($0.toRGBVector()) }
         return memoizeConversions ? memoize(f) : f
     }()
     enumerateRGBAContext(context) { (_, _, pixel) in
@@ -151,25 +151,25 @@ public func dominantColorsInImage(
     
     // Sort the clusters by size in descending order so that the
     // most dominant colors come first.
-    clusters.sortInPlace { $0.size > $1.size }
+    clusters.sort { $0.size > $1.size }
     
     return clusters.map { RGBVectorToCGColor(IN_LABToRGB($0.centroid)) }
 }
 
-private func distanceForAccuracy(accuracy: GroupingAccuracy) -> (INVector3, INVector3) -> Float {
+private func distanceForAccuracy(_ accuracy: GroupingAccuracy) -> (INVector3, INVector3) -> Float {
     switch accuracy {
-    case .Low:
+    case .low:
         return CIE76SquaredColorDifference
-    case .Medium:
+    case .medium:
         return CIE94SquaredColorDifference()
-    case .High:
+    case .high:
         return CIE2000SquaredColorDifference()
     }
 }
 
 // Computes the proportionally scaled dimensions such that the
 // total number of pixels does not exceed the specified limit.
-private func scaledDimensionsForPixelLimit(limit: Int, width: Int, height: Int) -> (Int, Int) {
+private func scaledDimensionsForPixelLimit(_ limit: Int, width: Int, height: Int) -> (Int, Int) {
     if (width * height > limit) {
         let ratio = Float(width) / Float(height)
         let maxWidth = sqrtf(ratio * Float(limit))
@@ -178,7 +178,7 @@ private func scaledDimensionsForPixelLimit(limit: Int, width: Int, height: Int) 
     return (width, height)
 }
 
-private func selectKForElements<T>(elements: [T]) -> Int {
+private func selectKForElements<T>(_ elements: [T]) -> Int {
     // Seems like a magic number...
     return 16
 }
