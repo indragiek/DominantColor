@@ -93,7 +93,7 @@ private func randomNumberInRange(_ range: Range<Int>) -> Int {
     let limit = buckets * interval
     var r = 0
     repeat {
-        r = Int(arc4random())
+        r = Int(arc4random_uniform(UInt32(limit)))
     } while r >= limit
     return range.lowerBound + (r / buckets)
 }
