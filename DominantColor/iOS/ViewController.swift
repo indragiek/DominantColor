@@ -26,7 +26,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(imagePickerController, animated: true, completion: nil)
     }
     
-    @IBAction func runBenchmarkTapped(sender: AnyObject) {
+    @IBAction func runBenchmarkTapped(_ sender: AnyObject) {
         if let image = image {
             let nValues: [Int] = [100, 1000, 2000, 5000, 10000]
             let CGImage = image.cgImage
