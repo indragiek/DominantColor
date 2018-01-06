@@ -71,7 +71,7 @@ public extension UIImage {
     public func dominantColors(
         _ maxSampledPixels: Int = DefaultParameterValues.maxSampledPixels,
         accuracy: GroupingAccuracy = DefaultParameterValues.accuracy,
-        seed: UInt32 = DefaultParameterValues.seed,
+        seed: UInt64 = DefaultParameterValues.seed,
         memoizeConversions: Bool = DefaultParameterValues.memoizeConversions
     ) -> [UIColor] {
         if let CGImage = self.cgImage {

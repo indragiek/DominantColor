@@ -8,8 +8,8 @@ Pod::Spec.new do |spec|
 	spec.source = { :git => 'https://github.com/indragiek/DominantColor.git', :tag => spec.version.to_s }
 	spec.source_files = 'DominantColor/Shared/*.{swift,h,m}'
 	spec.requires_arc = true
-	spec.frameworks = 'GLKit'
-	spec.ios.deployment_target = '8.0'
+	spec.frameworks = ['GLKit', 'GameKit']
+	spec.ios.deployment_target = '9.0'
 	spec.osx.deployment_target = '10.9'
 	spec.ios.frameworks = 'UIKit'
 	spec.osx.frameworks = 'Cocoa'
