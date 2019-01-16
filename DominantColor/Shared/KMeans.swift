@@ -7,6 +7,7 @@
 //
 
 import Darwin
+import GameKit
 
 // Represents a type that can be clustered using the k-means clustering
 // algorithm.
@@ -30,7 +31,7 @@ struct Cluster<T : ClusteredType> {
 func kmeans<T : ClusteredType>(
         _ points: [T],
         k: Int,
-        seed: UInt32,
+        seed: UInt64,
         distance: ((T, T) -> Float),
         threshold: Float = 0.0001
     ) -> [Cluster<T>] {
@@ -38,7 +39,7 @@ func kmeans<T : ClusteredType>(
     let n = points.count
     assert(k <= n, "k cannot be larger than the total number of points")
 
-    var centroids = points.randomValues(k)
+    var centroids = points.randomValues(k, seed: seed)
     var memberships = [Int](repeating: -1, count: n)
     var clusterSizes = [Int](repeating: 0, count: k)
     
@@ -87,27 +88,20 @@ private func findNearestCluster<T : ClusteredType>(_ point: T, centroids: [T], k
     return clusterIndex
 }
 
-private func randomNumberInRange(_ range: Range<Int>) -> Int {
-    let interval = range.upperBound - range.lowerBound - 1
-    let buckets = Int(RAND_MAX) / interval
-    let limit = buckets * interval
-    var r = 0
-    repeat {
-        r = Int(arc4random_uniform(UInt32(limit)))
-    } while r >= limit
-    return range.lowerBound + (r / buckets)
-}
-
 private extension Array {
-    func randomValues(_ num: Int) -> [Element] {
+    func randomValues(_ num: Int, seed: UInt64) -> [Element] {
+        let rs = GKMersenneTwisterRandomSource()
+        rs.seed = seed
+
+        let rd = GKRandomDistribution(randomSource: rs, lowestValue: 0, highestValue: self.count)
 
         var indices = [Int]()
         indices.reserveCapacity(num)
-        let range: Range<Int> = 0..<self.count
+
         for _ in 0..<num {
             var random = 0
             repeat {
-                random = randomNumberInRange(range)
+                random = rd.nextInt()
             } while indices.contains(random)
             indices.append(random)
         }
