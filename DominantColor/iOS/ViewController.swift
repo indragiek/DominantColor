@@ -26,13 +26,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(imagePickerController, animated: true, completion: nil)
     }
     
-    @IBAction func runBenchmarkTapped(sender: AnyObject) {
+    @IBAction func runBenchmarkTapped(_ sender: AnyObject) {
         if let image = image {
             let nValues: [Int] = [100, 1000, 2000, 5000, 10000]
             let CGImage = image.cgImage
             for n in nValues {
                 let ns = dispatch_benchmark(5) {
-                    dominantColorsInImage(CGImage!, maxSampledPixels: n)
+                    _ = dominantColorsInImage(CGImage!, maxSampledPixels: n)
                     return
                 }
                 print("n = \(n) averaged \(ns/1000000) ms")
@@ -42,8 +42,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: ImagePicker Delegate
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage? {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        if let image: UIImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage? {
             self.image = image
             imageView.image = image
             
@@ -62,4 +63,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil);
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

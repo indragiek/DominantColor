@@ -106,6 +106,6 @@ private extension Array {
             indices.append(random)
         }
 
-        return indices.map { self[$0] }
+        return indices.map { self[$0 - 1] }
     }
 }

@@ -14,32 +14,41 @@ import Cocoa
 
 class DragAndDropImageView: NSImageView {
     @IBOutlet weak var delegate: DragAndDropImageViewDelegate?
-    
+
+    private let filenameType = NSPasteboard.PasteboardType(rawValue: "NSFilenamesPboardType")
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        registerForDraggedTypes([NSFilenamesPboardType, NSTIFFPboardType])
+        registerForDraggedTypes([filenameType])
     }
-    
+
+    private func fileURL(for pasteboard: NSPasteboard) -> URL? {
+        if let files = pasteboard.propertyList(forType: filenameType) as? [String] {
+            guard let filename = files.first else { return nil }
+
+            return URL(fileURLWithPath: filename)
+        }
+        return nil
+    }
+
     // MARK: NSDraggingDestination
-    
-    override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
-        let pasteboard = sender.draggingPasteboard()
-        if let data = pasteboard.dataForType(NSTIFFPboardType) {
-            return .Copy
-        } else if let files = pasteboard.propertyListForType(NSFilenamesPboardType) as? [String] {
-            let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, files[0].pathExtension, nil).takeRetainedValue()
-            return (UTTypeConformsTo(UTI, kUTTypeImage) == 1) ? .Copy : .None
+
+    override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
+        let pasteboard = sender.draggingPasteboard
+        if let fileURL = fileURL(for: pasteboard) {
+            let pathExtension = fileURL.pathExtension as CFString
+            guard let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, nil)?.takeRetainedValue() else { return [] }
+            return (UTTypeConformsTo(UTI, kUTTypeImage) == true) ? .copy : []
         }
-        return .None
+        return []
     }
-    
-    override func performDragOperation(sender: NSDraggingInfo) -> Bool {
-        let pasteboard = sender.draggingPasteboard()
-        if let data = pasteboard.dataForType(NSTIFFPboardType) {
-            self.delegate?.dragAndDropImageView(self, droppedImage: NSImage(data: data))
-        } else if let files = pasteboard.propertyListForType(NSFilenamesPboardType) as? [String] {
-            self.delegate?.dragAndDropImageView(self, droppedImage: NSImage(contentsOfFile: files[0]))
+
+    override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        let pasteboard = sender.draggingPasteboard
+        if let fileURL = fileURL(for: pasteboard) {
+            self.delegate?.dragAndDropImageView(imageView: self, droppedImage: NSImage(contentsOf: fileURL))
+            return true
         }
-        return true
+        return false
     }
 }
