@@ -24,21 +24,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, DragAndDropImageViewDelegate
     var image: NSImage?
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        imageView.delegate = self
     }
     
     // MARK: DragAndDropImageViewDelegate
     
-    @IBAction func runBenchmark(sender: NSButton) {
+    @IBAction func runBenchmark(_ sender: NSButton) {
         if let image = image {
             let nValues: [Int] = [100, 1000, 2000, 5000, 10000]
-            let CGImage = image.CGImageForProposedRect(nil, context: nil, hints: nil)!.takeUnretainedValue()
+            let CGImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)!
             for n in nValues {
                 let ns = dispatch_benchmark(5) {
-                    dominantColorsInImage(CGImage, maxSampledPixels: n)
+                    _ = dominantColorsInImage(CGImage, maxSampledPixels: n)
                     return
                 }
-                println("n = \(n) averaged \(ns/1000000) ms")
+                print("n = \(n) averaged \(ns/1000000) ms")
             }
         }
     }
@@ -52,10 +51,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, DragAndDropImageViewDelegate
             let boxes = [box1, box2, box3, box4, box5, box6]
             
             for box in boxes {
-                box.fillColor = NSColor.clearColor()
+                box?.fillColor = .clear
             }
             for i in 0..<min(colors.count, boxes.count) {
-                boxes[i].fillColor = colors[i]
+                boxes[i]?.fillColor = colors[i]
             }
         }
     }
