@@ -90,7 +90,7 @@ private func findNearestCluster<T : ClusteredType>(_ point: T, centroids: [T], k
 
 private extension Array {
     func randomValues(_ num: Int, seed: UInt64) -> [Element] {
-        if self.count < 2 {
+        if self.isEmpty {
             return self
         }
         let rs = GKMersenneTwisterRandomSource()
