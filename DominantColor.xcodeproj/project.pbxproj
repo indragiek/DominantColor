@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		194EDC4F220AB84C00B4EE26 /* ColorSpaceConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194EDC4E220AB84C00B4EE26 /* ColorSpaceConversion.swift */; };
+		194EDC50220AB84C00B4EE26 /* ColorSpaceConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194EDC4E220AB84C00B4EE26 /* ColorSpaceConversion.swift */; };
 		2F3D09861A4C212A001ED0BF /* Memoization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D09851A4C212A001ED0BF /* Memoization.swift */; };
 		2F3D09871A4C212A001ED0BF /* Memoization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D09851A4C212A001ED0BF /* Memoization.swift */; };
 		723DE5291A4934E200C357E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5261A4934E200C357E3 /* AppDelegate.swift */; };
@@ -16,13 +18,9 @@
 		723DE54D1A49353C00C357E3 /* DominantColor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723DE5361A49353C00C357E3 /* DominantColor.framework */; };
 		723DE54E1A49353C00C357E3 /* DominantColor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 723DE5361A49353C00C357E3 /* DominantColor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		723DE5591A49358F00C357E3 /* DominantColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5581A49358F00C357E3 /* DominantColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		723DE55A1A49360A00C357E3 /* INVector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5181A49348D00C357E3 /* INVector3.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		723DE55B1A49360C00C357E3 /* ColorSpaceConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5151A49348D00C357E3 /* ColorSpaceConversion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		723DE55C1A49360F00C357E3 /* ColorDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5141A49348D00C357E3 /* ColorDifference.swift */; };
 		723DE55D1A49361100C357E3 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5171A49348D00C357E3 /* DominantColors.swift */; };
 		723DE55E1A49361200C357E3 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE51A1A49348D00C357E3 /* KMeans.swift */; };
-		723DE55F1A49361700C357E3 /* INVector3.m in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5191A49348D00C357E3 /* INVector3.m */; };
-		723DE5601A49361900C357E3 /* ColorSpaceConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */; };
 		723DE5611A49372D00C357E3 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72D797DE1A43F89000D32E7C /* GLKit.framework */; };
 		723DE5691A49385C00C357E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5661A49385C00C357E3 /* AppDelegate.swift */; };
 		723DE56A1A49385C00C357E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 723DE5671A49385C00C357E3 /* Images.xcassets */; };
@@ -33,13 +31,9 @@
 		723DE5B71A4938DD00C357E3 /* DominantColor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 723DE59F1A4938DD00C357E3 /* DominantColor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		723DE5BF1A49394D00C357E3 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723DE5BE1A49394D00C357E3 /* GLKit.framework */; };
 		723DE5C01A49395A00C357E3 /* DominantColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5581A49358F00C357E3 /* DominantColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		723DE5C11A49395C00C357E3 /* ColorSpaceConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5151A49348D00C357E3 /* ColorSpaceConversion.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		723DE5C21A49395D00C357E3 /* INVector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5181A49348D00C357E3 /* INVector3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		723DE5C31A49399E00C357E3 /* ColorDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5141A49348D00C357E3 /* ColorDifference.swift */; };
 		723DE5C41A4939A000C357E3 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5171A49348D00C357E3 /* DominantColors.swift */; };
 		723DE5C51A4939A200C357E3 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE51A1A49348D00C357E3 /* KMeans.swift */; };
-		723DE5C61A4939A300C357E3 /* ColorSpaceConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */; };
-		723DE5C71A4939A500C357E3 /* INVector3.m in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5191A49348D00C357E3 /* INVector3.m */; };
 		72431C0F1A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72431C0E1A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift */; };
 		72431C101A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72431C0E1A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift */; };
 		724C2DCD1A4CD64600472402 /* PlatformExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724C2DCC1A4CD64600472402 /* PlatformExtensions.swift */; };
@@ -89,13 +83,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		194EDC4E220AB84C00B4EE26 /* ColorSpaceConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpaceConversion.swift; sourceTree = "<group>"; };
 		2F3D09851A4C212A001ED0BF /* Memoization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memoization.swift; sourceTree = "<group>"; };
 		723DE5141A49348D00C357E3 /* ColorDifference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorDifference.swift; sourceTree = "<group>"; };
-		723DE5151A49348D00C357E3 /* ColorSpaceConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSpaceConversion.h; sourceTree = "<group>"; };
-		723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSpaceConversion.m; sourceTree = "<group>"; };
 		723DE5171A49348D00C357E3 /* DominantColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DominantColors.swift; sourceTree = "<group>"; };
-		723DE5181A49348D00C357E3 /* INVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INVector3.h; sourceTree = "<group>"; };
-		723DE5191A49348D00C357E3 /* INVector3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INVector3.m; sourceTree = "<group>"; };
 		723DE51A1A49348D00C357E3 /* KMeans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMeans.swift; sourceTree = "<group>"; };
 		723DE5261A4934E200C357E3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Mac/AppDelegate.swift; sourceTree = "<group>"; };
 		723DE5271A4934E200C357E3 /* DragAndDropImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DragAndDropImageView.swift; path = Mac/DragAndDropImageView.swift; sourceTree = "<group>"; };
@@ -168,10 +159,7 @@
 				723DE51A1A49348D00C357E3 /* KMeans.swift */,
 				2F3D09851A4C212A001ED0BF /* Memoization.swift */,
 				724C2DCC1A4CD64600472402 /* PlatformExtensions.swift */,
-				723DE5151A49348D00C357E3 /* ColorSpaceConversion.h */,
-				723DE5161A49348D00C357E3 /* ColorSpaceConversion.m */,
-				723DE5181A49348D00C357E3 /* INVector3.h */,
-				723DE5191A49348D00C357E3 /* INVector3.m */,
+				194EDC4E220AB84C00B4EE26 /* ColorSpaceConversion.swift */,
 				723DE5381A49353C00C357E3 /* Supporting Files */,
 			);
 			name = Shared;
@@ -272,8 +260,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				723DE5591A49358F00C357E3 /* DominantColor.h in Headers */,
-				723DE55B1A49360C00C357E3 /* ColorSpaceConversion.h in Headers */,
-				723DE55A1A49360A00C357E3 /* INVector3.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,8 +268,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				723DE5C01A49395A00C357E3 /* DominantColor.h in Headers */,
-				723DE5C11A49395C00C357E3 /* ColorSpaceConversion.h in Headers */,
-				723DE5C21A49395D00C357E3 /* INVector3.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,12 +441,11 @@
 			files = (
 				724C2DCD1A4CD64600472402 /* PlatformExtensions.swift in Sources */,
 				2F3D09861A4C212A001ED0BF /* Memoization.swift in Sources */,
+				194EDC4F220AB84C00B4EE26 /* ColorSpaceConversion.swift in Sources */,
 				723DE55C1A49360F00C357E3 /* ColorDifference.swift in Sources */,
 				72431C0F1A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift in Sources */,
 				723DE55D1A49361100C357E3 /* DominantColors.swift in Sources */,
 				723DE55E1A49361200C357E3 /* KMeans.swift in Sources */,
-				723DE5601A49361900C357E3 /* ColorSpaceConversion.m in Sources */,
-				723DE55F1A49361700C357E3 /* INVector3.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,12 +455,11 @@
 			files = (
 				724C2DCE1A4CD64600472402 /* PlatformExtensions.swift in Sources */,
 				2F3D09871A4C212A001ED0BF /* Memoization.swift in Sources */,
+				194EDC50220AB84C00B4EE26 /* ColorSpaceConversion.swift in Sources */,
 				723DE5C31A49399E00C357E3 /* ColorDifference.swift in Sources */,
 				72431C101A4BCF3B00470BD7 /* INVector3SwiftExtensions.swift in Sources */,
 				723DE5C41A4939A000C357E3 /* DominantColors.swift in Sources */,
 				723DE5C51A4939A200C357E3 /* KMeans.swift in Sources */,
-				723DE5C61A4939A300C357E3 /* ColorSpaceConversion.m in Sources */,
-				723DE5C71A4939A500C357E3 /* INVector3.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

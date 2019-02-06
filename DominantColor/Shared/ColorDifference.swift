@@ -12,7 +12,7 @@ import GLKit.GLKMath
 // calculations it doesn't matter and saves an unnecessary computation.
 
 // From http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE76.html
-func CIE76SquaredColorDifference(_ lab1: INVector3, lab2: INVector3) -> Float {
+func CIE76SquaredColorDifference(_ lab1: GLKVector3, lab2: GLKVector3) -> Float {
     let (L1, a1, b1) = lab1.unpack()
     let (L2, a2, b2) = lab2.unpack()
     
@@ -30,9 +30,9 @@ func CIE94SquaredColorDifference(
         kH: Float = 1,
         K1: Float = 0.045,
         K2: Float = 0.015
-    ) -> (_ lab1:INVector3, _ lab2:INVector3) -> Float {
+    ) -> (_ lab1:GLKVector3, _ lab2:GLKVector3) -> Float {
     
-    return { (lab1:INVector3, lab2:INVector3) -> Float in
+    return { (lab1:GLKVector3, lab2:GLKVector3) -> Float in
         
         let (L1, a1, b1) = lab1.unpack()
         let (L2, a2, b2) = lab2.unpack()
@@ -56,9 +56,9 @@ func CIE2000SquaredColorDifference(
         _ kL: Float = 1,
         kC: Float = 1,
         kH: Float = 1
-    ) -> (_ lab1:INVector3, _ lab2:INVector3) -> Float {
+    ) -> (_ lab1:GLKVector3, _ lab2:GLKVector3) -> Float {
     
-    return { (lab1:INVector3, lab2:INVector3) -> Float in
+    return { (lab1:GLKVector3, lab2:GLKVector3) -> Float in
         let (L1, a1, b1) = lab1.unpack()
         let (L2, a2, b2) = lab2.unpack()
         

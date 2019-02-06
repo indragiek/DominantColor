@@ -11,6 +11,7 @@ import Foundation
 #elseif os(iOS)
 import UIKit
 #endif
+import GLKit
 
 // MARK: Bitmaps
 
@@ -59,23 +60,23 @@ private func enumerateRGBAContext(_ context: CGContext, handler: (Int, Int, RGBA
 
 // MARK: Conversions
 
-private func RGBVectorToCGColor(_ rgbVector: INVector3) -> CGColor {
+private func RGBVectorToCGColor(_ rgbVector: GLKVector3) -> CGColor {
     return CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [CGFloat(rgbVector.x), CGFloat(rgbVector.y), CGFloat(rgbVector.z), 1.0])!
 }
 
 private extension RGBAPixel {
-    func toRGBVector() -> INVector3 {
-        return INVector3(
-            x: Float(r) / Float(UInt8.max),
-            y: Float(g) / Float(UInt8.max),
-            z: Float(b) / Float(UInt8.max)
+    func toRGBVector() -> GLKVector3 {
+        return GLKVector3Make(
+            Float(r) / Float(UInt8.max),
+            Float(g) / Float(UInt8.max),
+            Float(b) / Float(UInt8.max)
         )
     }
 }
 
 // MARK: Clustering
 
-extension INVector3 : ClusteredType {}
+extension GLKVector3 : ClusteredType {}
 
 // MARK: Main
 
@@ -133,11 +134,11 @@ public func dominantColorsInImage(
     // Get the RGB colors from the bitmap context, ignoring any pixels
     // that have alpha transparency.
     // Also convert the colors to the LAB color space
-    var labValues = [INVector3]()
+    var labValues = [GLKVector3]()
     labValues.reserveCapacity(Int(scaledWidth * scaledHeight))
     
-    let RGBToLAB: (RGBAPixel) -> INVector3 = {
-        let f: (RGBAPixel) -> INVector3 = { IN_RGBToLAB($0.toRGBVector()) }
+    let RGBToLAB: (RGBAPixel) -> GLKVector3 = {
+        let f: (RGBAPixel) -> GLKVector3 = { IN_RGBToLAB($0.toRGBVector()) }
         return memoizeConversions ? memoize(f) : f
     }()
     enumerateRGBAContext(context) { (_, _, pixel) in
@@ -156,7 +157,7 @@ public func dominantColorsInImage(
     return clusters.map { RGBVectorToCGColor(IN_LABToRGB($0.centroid)) }
 }
 
-private func distanceForAccuracy(_ accuracy: GroupingAccuracy) -> (INVector3, INVector3) -> Float {
+private func distanceForAccuracy(_ accuracy: GroupingAccuracy) -> (GLKVector3, GLKVector3) -> Float {
     switch accuracy {
     case .low:
         return CIE76SquaredColorDifference

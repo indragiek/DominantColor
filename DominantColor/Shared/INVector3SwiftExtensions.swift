@@ -6,24 +6,26 @@
 //  Copyright (c) 2014 Indragie Karunaratne. All rights reserved.
 //
 
-extension INVector3 {
+import GLKit
+
+extension GLKVector3 {
     func unpack() -> (Float, Float, Float) {
         return (x, y, z)
     }
     
-    static var identity: INVector3 {
-        return INVector3(x: 0, y: 0, z: 0)
+    static var identity: GLKVector3 {
+        return GLKVector3Make(0, 0, 0)
     }
-}
 
-func +(lhs: INVector3, rhs: INVector3) -> INVector3 {
-    return INVector3(x: lhs.x + rhs.x, y: lhs.y + rhs.y, z: lhs.z + rhs.z)
-}
+    static func +(lhs: GLKVector3, rhs: GLKVector3) -> GLKVector3 {
+        return GLKVector3Make(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z)
+    }
 
-func /(lhs: INVector3, rhs: Float) -> INVector3 {
-    return INVector3(x: lhs.x / rhs, y: lhs.y / rhs, z: lhs.z / rhs)
-}
+    static func /(lhs: GLKVector3, rhs: Float) -> GLKVector3 {
+        return GLKVector3Make(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs)
+    }
 
-func /(lhs: INVector3, rhs: Int) -> INVector3 {
-    return lhs / Float(rhs)
+    static func /(lhs: GLKVector3, rhs: Int) -> GLKVector3 {
+        return lhs / Float(rhs)
+    }
 }
