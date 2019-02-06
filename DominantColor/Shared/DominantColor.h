@@ -13,7 +13,3 @@ FOUNDATION_EXPORT double DominantColorVersionNumber;
 
 //! Project version string for DominantColor.
 FOUNDATION_EXPORT const unsigned char DominantColorVersionString[];
-
-#import <DominantColor/ColorSpaceConversion.h>
-
-
