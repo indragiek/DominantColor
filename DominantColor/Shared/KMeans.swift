@@ -90,10 +90,13 @@ private func findNearestCluster<T : ClusteredType>(_ point: T, centroids: [T], k
 
 private extension Array {
     func randomValues(_ num: Int, seed: UInt64) -> [Element] {
+        if self.count < 2 {
+            return self
+        }
         let rs = GKMersenneTwisterRandomSource()
         rs.seed = seed
 
-        let rd = GKRandomDistribution(randomSource: rs, lowestValue: 0, highestValue: self.count)
+        let rd = GKRandomDistribution(randomSource: rs, lowestValue: 0, highestValue: self.count - 1)
 
         var indices = [Int]()
         indices.reserveCapacity(num)
