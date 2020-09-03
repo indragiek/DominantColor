@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
 	spec.name = 'DominantColor'
-	spec.version = '0.1.0'
+	spec.version = '0.2.0'
 	spec.summary = 'Finding dominant colors of an image using k-means clustering.'
 	spec.homepage = 'https://github.com/indragiek/DominantColor'
 	spec.license = 'MIT'
