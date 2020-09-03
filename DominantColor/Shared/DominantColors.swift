@@ -23,8 +23,10 @@ private struct RGBAPixel {
 }
 
 extension RGBAPixel: Hashable {
-    fileprivate var hashValue: Int {
-        return (((Int(r) << 8) | Int(g)) << 8) | Int(b)
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(r)
+        hasher.combine(g)
+        hasher.combine(b)
     }
 }
 

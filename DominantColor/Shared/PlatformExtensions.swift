@@ -31,7 +31,7 @@ public extension NSImage {
     - returns: A list of dominant colors in the image sorted from most dominant to
               least dominant.
     */
-    public func dominantColors(
+    func dominantColors(
         maxSampledPixels: Int = DefaultParameterValues.maxSampledPixels,
         accuracy: GroupingAccuracy = DefaultParameterValues.accuracy,
         seed: UInt64 = DefaultParameterValues.seed,
@@ -68,7 +68,7 @@ public extension UIImage {
     - returns: A list of dominant colors in the image sorted from most dominant to
               least dominant.
     */
-    public func dominantColors(
+    func dominantColors(
         _ maxSampledPixels: Int = DefaultParameterValues.maxSampledPixels,
         accuracy: GroupingAccuracy = DefaultParameterValues.accuracy,
         seed: UInt64 = DefaultParameterValues.seed,
