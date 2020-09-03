@@ -13,4 +13,5 @@ Pod::Spec.new do |spec|
 	spec.osx.deployment_target = '10.9'
 	spec.ios.frameworks = 'UIKit'
 	spec.osx.frameworks = 'Cocoa'
+	spec.swift_versions = ['5.0']
 end
