@@ -6,13 +6,21 @@
 //  Copyright (c) 2014 Indragie Karunaratne. All rights reserved.
 //
 
-import GLKit.GLKMath
+import simd
+
+@inlinable func SIMDMathDegreesToRadians(_ degrees: Float) -> Float {
+    return degrees * (Float.pi / 180.0)
+}
+
+@inlinable func SIMDMathRadiansToDegrees(_ radians: Float) -> Float {
+    return radians * (180.0 / Float.pi)
+}
 
 // These functions return the squared color difference because for distance 
 // calculations it doesn't matter and saves an unnecessary computation.
 
 // From http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE76.html
-func CIE76SquaredColorDifference(_ lab1: GLKVector3, lab2: GLKVector3) -> Float {
+func CIE76SquaredColorDifference(_ lab1: simd_float3, lab2: simd_float3) -> Float {
     let (L1, a1, b1) = lab1.unpack()
     let (L2, a2, b2) = lab2.unpack()
     
@@ -30,9 +38,9 @@ func CIE94SquaredColorDifference(
         kH: Float = 1,
         K1: Float = 0.045,
         K2: Float = 0.015
-    ) -> (_ lab1:GLKVector3, _ lab2:GLKVector3) -> Float {
+    ) -> (_ lab1:simd_float3, _ lab2:simd_float3) -> Float {
     
-    return { (lab1:GLKVector3, lab2:GLKVector3) -> Float in
+    return { (lab1:simd_float3, lab2:simd_float3) -> Float in
         
         let (L1, a1, b1) = lab1.unpack()
         let (L2, a2, b2) = lab2.unpack()
@@ -56,9 +64,9 @@ func CIE2000SquaredColorDifference(
         _ kL: Float = 1,
         kC: Float = 1,
         kH: Float = 1
-    ) -> (_ lab1:GLKVector3, _ lab2:GLKVector3) -> Float {
+    ) -> (_ lab1:simd_float3, _ lab2:simd_float3) -> Float {
     
-    return { (lab1:GLKVector3, lab2:GLKVector3) -> Float in
+    return { (lab1:simd_float3, lab2:simd_float3) -> Float in
         let (L1, a1, b1) = lab1.unpack()
         let (L2, a2, b2) = lab2.unpack()
         
@@ -80,7 +88,7 @@ func CIE2000SquaredColorDifference(
         
         let hp: (Float, Float) -> Float = { ap, b in
             if ap == 0 && b == 0 { return 0 }
-            let θ = GLKMathRadiansToDegrees(atan2(b, ap))
+            let θ = SIMDMathRadiansToDegrees(atan2(b, ap))
             return fmod(θ < 0 ? (θ + 360) : θ, 360)
         }
         let (h1p, h2p) = (hp(a1p, b1), hp(a2p, b2))
@@ -97,7 +105,7 @@ func CIE2000SquaredColorDifference(
             }
         }()
         
-        let ΔHp = 2 * sqrt(C1p * C2p) * sin(GLKMathDegreesToRadians(Δhp / 2))
+        let ΔHp = 2 * sqrt(C1p * C2p) * sin(SIMDMathDegreesToRadians(Δhp / 2))
         let Hbp: Float = {
             if (C1p == 0 || C2p == 0) {
                 return h1p + h2p
@@ -109,12 +117,12 @@ func CIE2000SquaredColorDifference(
         }()
         
         var T = 1
-            - 0.17 * cos(GLKMathDegreesToRadians(Hbp - 30))
-            + 0.24 * cos(GLKMathDegreesToRadians(2 * Hbp))
+            - 0.17 * cos(SIMDMathDegreesToRadians(Hbp - 30))
+            + 0.24 * cos(SIMDMathDegreesToRadians(2 * Hbp))
         
         T = T
-            + 0.32 * cos(GLKMathDegreesToRadians(3 * Hbp + 6))
-            - 0.20 * cos(GLKMathDegreesToRadians(4 * Hbp - 63))
+            + 0.32 * cos(SIMDMathDegreesToRadians(3 * Hbp + 6))
+            - 0.20 * cos(SIMDMathDegreesToRadians(4 * Hbp - 63))
         
         let Sl = 1 + (0.015 * pow(Lbp - 50, 2)) / sqrt(20 + pow(Lbp - 50, 2))
         let Sc = 1 + 0.045 * Cbp
@@ -122,7 +130,7 @@ func CIE2000SquaredColorDifference(
         
         let Δθ = 30 * exp(-pow((Hbp - 275) / 25, 2))
         let Rc = 2 * sqrt(pow(Cbp, 7) / (pow(Cbp, 7) + pow(25, 7)))
-        let Rt = -Rc * sin(GLKMathDegreesToRadians(2 * Δθ))
+        let Rt = -Rc * sin(SIMDMathDegreesToRadians(2 * Δθ))
         
         let Lterm = ΔLp / (kL * Sl)
         let Cterm = ΔCp / (kC * Sc)

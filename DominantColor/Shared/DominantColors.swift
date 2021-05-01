@@ -11,7 +11,8 @@ import Foundation
 #elseif os(iOS)
 import UIKit
 #endif
-import GLKit
+
+import simd
 
 // MARK: Bitmaps
 
@@ -62,13 +63,13 @@ private func enumerateRGBAContext(_ context: CGContext, handler: (Int, Int, RGBA
 
 // MARK: Conversions
 
-private func RGBVectorToCGColor(_ rgbVector: GLKVector3) -> CGColor {
+private func RGBVectorToCGColor(_ rgbVector: simd_float3) -> CGColor {
     return CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [CGFloat(rgbVector.x), CGFloat(rgbVector.y), CGFloat(rgbVector.z), 1.0])!
 }
 
 private extension RGBAPixel {
-    func toRGBVector() -> GLKVector3 {
-        return GLKVector3Make(
+    func toRGBVector() -> simd_float3 {
+        return simd_float3(
             Float(r) / Float(UInt8.max),
             Float(g) / Float(UInt8.max),
             Float(b) / Float(UInt8.max)
@@ -78,7 +79,7 @@ private extension RGBAPixel {
 
 // MARK: Clustering
 
-extension GLKVector3 : ClusteredType {}
+extension simd_float3 : ClusteredType {}
 
 // MARK: Main
 
@@ -136,11 +137,11 @@ public func dominantColorsInImage(
     // Get the RGB colors from the bitmap context, ignoring any pixels
     // that have alpha transparency.
     // Also convert the colors to the LAB color space
-    var labValues = [GLKVector3]()
+    var labValues = [simd_float3]()
     labValues.reserveCapacity(Int(scaledWidth * scaledHeight))
-    
-    let RGBToLAB: (RGBAPixel) -> GLKVector3 = {
-        let f: (RGBAPixel) -> GLKVector3 = { IN_RGBToLAB($0.toRGBVector()) }
+
+    let RGBToLAB: (RGBAPixel) -> simd_float3 = {
+        let f: (RGBAPixel) -> simd_float3 = { IN_RGBToLAB($0.toRGBVector()) }
         return memoizeConversions ? memoize(f) : f
     }()
     enumerateRGBAContext(context) { (_, _, pixel) in
@@ -151,15 +152,15 @@ public func dominantColorsInImage(
     // Cluster the colors using the k-means algorithm
     let k = selectKForElements(labValues)
     var clusters = kmeans(labValues, k: k, seed: seed, distance: distanceForAccuracy(accuracy))
-    
+
     // Sort the clusters by size in descending order so that the
     // most dominant colors come first.
     clusters.sort { $0.size > $1.size }
-    
+
     return clusters.map { RGBVectorToCGColor(IN_LABToRGB($0.centroid)) }
 }
 
-private func distanceForAccuracy(_ accuracy: GroupingAccuracy) -> (GLKVector3, GLKVector3) -> Float {
+private func distanceForAccuracy(_ accuracy: GroupingAccuracy) -> (simd_float3, simd_float3) -> Float {
     switch accuracy {
     case .low:
         return CIE76SquaredColorDifference

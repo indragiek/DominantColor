@@ -9,8 +9,8 @@ Pod::Spec.new do |spec|
 	spec.source_files = 'DominantColor/Shared/*.{swift,h,m}'
 	spec.requires_arc = true
 	spec.frameworks = ['GLKit', 'GameKit']
-	spec.ios.deployment_target = '9.0'
-	spec.osx.deployment_target = '10.11'
+	spec.ios.deployment_target = '11.0'
+	spec.osx.deployment_target = '10.13'
 	spec.ios.frameworks = 'UIKit'
 	spec.osx.frameworks = 'Cocoa'
 	spec.swift_versions = ['5.0']

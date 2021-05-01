@@ -21,7 +21,6 @@
 		723DE55C1A49360F00C357E3 /* ColorDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5141A49348D00C357E3 /* ColorDifference.swift */; };
 		723DE55D1A49361100C357E3 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5171A49348D00C357E3 /* DominantColors.swift */; };
 		723DE55E1A49361200C357E3 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE51A1A49348D00C357E3 /* KMeans.swift */; };
-		723DE5611A49372D00C357E3 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72D797DE1A43F89000D32E7C /* GLKit.framework */; };
 		723DE5691A49385C00C357E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5661A49385C00C357E3 /* AppDelegate.swift */; };
 		723DE56A1A49385C00C357E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 723DE5671A49385C00C357E3 /* Images.xcassets */; };
 		723DE56B1A49385C00C357E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5681A49385C00C357E3 /* ViewController.swift */; };
@@ -29,7 +28,6 @@
 		723DE5711A49386B00C357E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 723DE56E1A49386B00C357E3 /* Main.storyboard */; };
 		723DE5B61A4938DD00C357E3 /* DominantColor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723DE59F1A4938DD00C357E3 /* DominantColor.framework */; };
 		723DE5B71A4938DD00C357E3 /* DominantColor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 723DE59F1A4938DD00C357E3 /* DominantColor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		723DE5BF1A49394D00C357E3 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723DE5BE1A49394D00C357E3 /* GLKit.framework */; };
 		723DE5C01A49395A00C357E3 /* DominantColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 723DE5581A49358F00C357E3 /* DominantColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		723DE5C31A49399E00C357E3 /* ColorDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5141A49348D00C357E3 /* ColorDifference.swift */; };
 		723DE5C41A4939A000C357E3 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723DE5171A49348D00C357E3 /* DominantColors.swift */; };
@@ -118,7 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				723DE5611A49372D00C357E3 /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,7 +123,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				723DE5BF1A49394D00C357E3 /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +523,6 @@
 		723DE5501A49353C00C357E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
@@ -558,7 +553,6 @@
 		723DE5511A49353C00C357E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
