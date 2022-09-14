@@ -6,7 +6,7 @@
 //  Copyright © 2019 Indragie Karunaratne. All rights reserved.
 //
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 #elseif os(OSX)
 import AppKit
@@ -17,7 +17,7 @@ import simd
 // MARK: - RGB
 
 func RGBToSRGB(_ rgbVector: simd_float3) -> simd_float3 {
-    #if os(iOS)
+    #if os(iOS) || os(tvOS)
     return rgbVector
     #elseif os(OSX)
     let rgbColor = NSColor(deviceRed: CGFloat(rgbVector.x), green: CGFloat(rgbVector.y), blue: CGFloat(rgbVector.z), alpha: 1.0)
@@ -29,7 +29,7 @@ func RGBToSRGB(_ rgbVector: simd_float3) -> simd_float3 {
 }
 
 func SRGBToRGB(_ srgbVector: simd_float3) -> simd_float3 {
-    #if os(iOS)
+    #if os(iOS) || os(tvOS)
     return srgbVector
     #elseif os(OSX)
     let components: [CGFloat] = [CGFloat(srgbVector.x), CGFloat(srgbVector.y), CGFloat(srgbVector.z), 1.0]
