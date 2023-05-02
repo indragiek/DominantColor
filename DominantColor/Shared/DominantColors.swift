@@ -12,6 +12,7 @@ import Foundation
 import UIKit
 #endif
 
+import CoreGraphics
 import simd
 
 // MARK: Bitmaps
