@@ -133,7 +133,7 @@ func LABToXYZ(_ labVector: simd_float3, _ tristimulus: simd_float3) -> simd_floa
 // MARK: - Public
 
 // From http://www.easyrgb.com/index.php?X=MATH&H=15#text15
-let D65Tristimulus = simd_float3(5.047, 100.0, 108.883)
+let D65Tristimulus = simd_float3(95.047, 100.0, 108.883)
 
 func IN_RGBToLAB(_ gVector: simd_float3) -> simd_float3 {
     let srgbVector = RGBToSRGB(gVector)
